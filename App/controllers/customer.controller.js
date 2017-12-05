@@ -38,9 +38,8 @@ exports.addItem = function (req,res){
 }
 
 exports.updateItem = function (req,res){
-    var id = {Customer_ID:req.body.Customer_ID};
     var update = {Customer_ID:req.body.update_col1, Customer_FirstName:req.body.update_col2, Customer_LastName:req.body.update_col3, Customer_Number:req.body.update_col4, Customer_Email:req.body.update_col5, Customer_Address:req.body.update_col6, Company:req.body.update_col7};
-    connection.query('UPDATE Customer SET ?', update, function(err,result){
+    connection.query('UPDATE Customer SET ?' + 'WHERE Customer_ID = ' + update.Customer_ID, update, function(err,result){
         if(err){
             console.log(err);
             return;

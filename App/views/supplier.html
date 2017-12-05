@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         <script src='/template.js'></script>
+<<<<<<< Updated upstream
 		<link rel="stylesheet" type="text/css" href="template.css">
     </head>
     <body>
@@ -18,11 +19,24 @@
                 <input class='form-control' type="text" name="Sup_Number" placeholder="Number">
                 <input class='form-control' type="email" name="Sup_Email" placeholder="Email">
                 <input class='form-control' type="text" name="Sup_Address" placeholder="Address">        
+=======
+    <link rel="stylesheet" type="text/css" href="template.css">
+    </head>
+    <body>
+        <div class="container">
+        <h2>Material</h2>
+        <form action="/addMaterial" method="POST">
+            <div class="col-md-12">
+                <input class="form-control" type="text" name="Material_Name" placeholder="Material_Name">
+                <input class='form-control' type="text" name="Material_Balance" placeholder="Material_Balance">
+                <input class='form-control' type="text" name="Unit_Measure" placeholder="Unit Measure">        
+>>>>>>> Stashed changes
                 <button class='btn btn-primary' type="submit" value="Submit">Push</button>    
             </div>
         </form>
         </div>
         <div class="container">
+<<<<<<< Updated upstream
 	<div class="row">
 		<table class="table table-hover table-responsive">
 		    <thead>
@@ -51,6 +65,36 @@
 		    </tbody>
 		</table>
 	</div>
+=======
+  <div class="row">
+    <table class="table table-hover table-responsive">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Supplier Name</th>
+                <th>Contact Number</th>        
+                <th>Email</th>
+                <th>Address</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <%for(var i = 0 ; i < item.length;i++){%>
+                    <tr> 
+              <td id = "col1_ID<%=item[i].Sup_ID%>"><%=item[i].Sup_ID%></td>
+              <td id = "col2_ID<%=item[i].Sup_ID%>"><%=item[i].Mat_Name%></td>
+              <td id = "col3_ID<%=item[i].Sup_ID%>"><%=item[i].Mat_Balance%></td>
+              <td id = "col4_ID<%=item[i].Sup_ID%>"><%=item[i].Unit_Measure%></td>
+              <td id = "col5_ID<%=item[i].Sup_ID%>"><%=item[i].Unit_Measure%></td>
+                        <td><button type="button" data-toggle="modal" data-target="#edit" data-uid="<%=item[i].Sup_ID%>" class="update btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span></button></td>
+                    <td><button type="button" data-toggle="modal" data-target="#delete" data-uid="<%=item[i].Sup_ID%>" class="delete btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span></button></td>
+          </tr>
+                <%}%>
+        </tbody>
+    </table>
+  </div>
+>>>>>>> Stashed changes
 </div>
 <div id="edit" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -59,6 +103,7 @@
         <button type="button" class="close" data-dismiss="modal">×</button>
         <h3 class="modal-title">Update Data</h3>
       </div>
+<<<<<<< Updated upstream
       <form action = "/updateProduct" method="POST">
       <div class="modal-body">
           <h4>ID</h4>
@@ -71,6 +116,18 @@
            <input id="update_col4" type="email" class="form-control" name="update_col4" placeholder="Email">
           <h4>Address</h4>
            <input id="update_col5" type="text" class="form-control" name="update_col5" placeholder="Address">
+=======
+      <form action = "/updateMaterial" method="POST">
+      <div class="modal-body">
+          <h4>ID</h4>
+           <input id="update_col1" type="text" class="form-control" name="update_col1" placeholder="Material ID">
+          <h4>Material Name</h4>
+           <input id="update_col2" type="text" class="form-control" name="update_col2" placeholder="Material Name">
+          <h4>Material Balance</h4>
+           <input id="update_col3" type="text" class="form-control" name="update_col3" placeholder="Material Balance">
+          <h4>Unit Measure</h4>
+           <input id="update_col4" type="text" class="form-control" name="update_col4" placeholder="Unit Measure">
+>>>>>>> Stashed changes
       </div>
       <div class="modal-footer">
         <button type="submit" id="up" class="btn btn-warning" value="submit">Update</button>
@@ -91,14 +148,28 @@
         <strong>Are you sure you want to delete this data?</strong>
       </div>
       <div class="modal-footer">
+<<<<<<< Updated upstream
       <form action="/deleteProduct" method="POST">
         <input type="text" id="del_input_ID" name="del_Sup_ID" style ="display:none">
         <button type="submit" id="del" class="btn btn-danger" value="submit">Delete</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </form>
       </div>      
+=======
+      <form action="/deleteMaterial" method="POST">
+        <input type="text" id="del_input_ID" name="del_Material_ID" style ="display:none">
+        <button type="submit" id="del" class="btn btn-danger" value="submit">Delete</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </form>
+      </div>
+      
+>>>>>>> Stashed changes
     </div>
   </div>
 </div>
     </body>
+<<<<<<< Updated upstream
 </html>
+=======
+</html>
+>>>>>>> Stashed changes
