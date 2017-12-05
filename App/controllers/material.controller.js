@@ -15,22 +15,14 @@ else{
 }
 });
 
-<<<<<<< Updated upstream
-exports.Material = function(req, res){
-    connection.query("SELECT * FROM Material",function(err,result){
-=======
 //function exports
 exports.Material = function (req, res){
    connection.query("SELECT * FROM Material",function(err,result){
->>>>>>> Stashed changes
     if(err){
         res.send('Error' + err);
         return;
     }
-<<<<<<< Updated upstream
     res.render('material.html',{item:result});    
-=======
-    res.render('testsql.html',{item:result});    
     });
 }
 
@@ -66,6 +58,5 @@ exports.deleteMaterial = function (req,res){
             return;
         }
         res.redirect('/Material');
->>>>>>> Stashed changes
     });
 }
