@@ -1,5 +1,6 @@
 module.exports = function(app){
 //routing
+<<<<<<< Updated upstream
 
 //product
 var ProductController = require('../controllers/product.controller.js');
@@ -32,4 +33,17 @@ app.get('/Supplier', SupplierController.showItem);
 app.post('/addSupplier', SupplierController.addItem);
 app.post('/deleteSupplier', SupplierController.deleteItem);
 app.post('/updateSupplier', SupplierController.updateItem);
+=======
+var controller = require('../controllers/product.controller.js');
+app.get('/Product', controller.Product);
+app.post('/addProduct', controller.addProduct);
+app.post('/deleteProduct', controller.deleteProduct);
+app.post('/updateProduct', controller.updateProduct);
+
+var controller = require('../controllers/material.controller.js');
+app.get('/Material', controller.Material);
+app.post('/addMaterial', controller.addMaterial);
+app.post('/deleteMaterial', controller.deleteMaterial);
+app.post('/updateMaterial', controller.updateMaterial);
+>>>>>>> Stashed changes
 };
