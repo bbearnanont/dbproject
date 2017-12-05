@@ -32,4 +32,16 @@ app.get('/Supplier', SupplierController.showItem);
 app.post('/addSupplier', SupplierController.addItem);
 app.post('/deleteSupplier', SupplierController.deleteItem);
 app.post('/updateSupplier', SupplierController.updateItem);
+
+
+//Customer
+var CustomerController = require('../controllers/customer.controller.js');
+app.get('/Customer', CustomerController.showItem);
+app.post('/addCustomer', CustomerController.addItem);
+app.post('/deleteCustomer', CustomerController.deleteItem);
+app.post('/updateCustomer', CustomerController.updateItem);
+
+
 };
+
+
