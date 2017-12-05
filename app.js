@@ -17,5 +17,5 @@ app.set('views', path.join(__dirname, '/App/views'));
 app.use(bodyParser());
 app.engine('html', ejs.renderFile);  
 app.listen(port);
-app.use(express.static('public'));
+app.use(express.static('public'))
 
