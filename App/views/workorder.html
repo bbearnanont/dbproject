@@ -14,9 +14,9 @@
         <h2>Work Order</h2>
         <form action="/addWorkOrder" method="POST">
             <div class="col-md-12">
-               <input class='form-control' type="text" name="Recieved_Date" placeholder="Recieved Date">
-                <input class='form-control' type="text" name="Delivery_Date" placeholder="Delivery Date">
-                <input class='form-control' type="text" name="Complete_Date" placeholder="Complete Date">
+               <input class='form-control' type="date" name="Recieved_Date" placeholder="Recieved Date">
+                <input class='form-control' type="date" name="Delivery_Date" placeholder="Delivery Date">
+                <input class='form-control' type="date" name="Complete_Date" placeholder="Complete Date">
                 <select class='form-control'name= "Po_ID">                  
                   <%
                   for ( var i = 0; i < po.length; i++ )
@@ -106,11 +106,11 @@
           <h4>Work Order ID</h4>
            <input id="update_col1" type="text" class="form-control" name="update_col1" placeholder="Work Order ID">
           <h4>Recieved Date</h4>
-           <input id="update_col2" type="text" class="form-control" name="update_col2" placeholder="Recieved Date">
+           <input id="update_col2" type="date" class="form-control" name="update_col2" placeholder="Recieved Date">
           <h4>Delivery Date</h4>
-           <input id="update_col3" type="text" class="form-control" name="update_col3" placeholder="Delivery Date">
+           <input id="update_col3" type="date" class="form-control" name="update_col3" placeholder="Delivery Date">
           <h4>Complete Date</h4>
-           <input id="update_col4" type="text" class="form-control" name="update_col4" placeholder="Complete Date">
+           <input id="update_col4" type="date" class="form-control" name="update_col4" placeholder="Complete Date">
           <h4>Purchase Order ID</h4>
               <select class='form-control'name= "update_col5">                  
                   <%
@@ -161,7 +161,7 @@
       </div>
       <div class="modal-footer">
       <form action="/deleteWorkOrder" method="POST">
-        <input type="text" id="del_input_ID" name="del_WO_ID" style ="display:none">
+        <input type="text" id="del_input_ID" name="del_Wo_id" style ="display:none">
         <button type="submit" id="del" class="btn btn-danger" value="submit">Delete</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </form>
