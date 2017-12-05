@@ -51,10 +51,13 @@ app.post('/addBuyOrder', BuyOrderController.addItem);
 app.post('/deleteBuyOrder', BuyOrderController.deleteItem);
 app.post('/updateBuyOrder', BuyOrderController.updateItem);
 
-//Buy Order List
-var BuyOrderListController = require('../controllers/buyorderlist.controller.js');
-app.get('/BuyOrderList', BuyOrderListController.showItem);
-app.post('/addBuyOrderList', BuyOrderListController.addItem);
-app.post('/deleteBuyOrderList', BuyOrderListController.deleteItem);
-app.post('/updateBuyOrderList', BuyOrderListController.updateItem);
+
+
+//Work Order
+var WorkOrderController = require('../controllers/workorder.controller.js');
+app.get('/WorkOrder', WorkOrderController.showItem);
+app.post('/addWorkOrder', WorkOrderController.addItem);
+app.post('/deleteWorkOrder', WorkOrderController.deleteItem);
+app.post('/updateWorkOrder', WorkOrderController.updateItem);
 };
+
