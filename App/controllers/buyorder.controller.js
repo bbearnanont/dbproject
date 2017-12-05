@@ -65,8 +65,8 @@ exports.addItem = function (req,res){
 }
 
 exports.updateItem = function (req,res){
-    var update = {BO_ID:req.body.update_col1, Sup_ID:req.body.update_col2, Order_Date:req.body.update_col3, Delivered_Date:req.body.update_col4, Staff_ID:req.body.update_col5, Description:req.body.update_col6};
-    connection.query('UPDATE Buy_Order SET ?' + 'WHERE BO_ID = ' + update.BO_ID, update, function(err,result){
+    var update = {Bo_ID:req.body.update_col1, Order_Date:req.body.update_col3, Delivered_Date:req.body.update_col4, Description:req.body.update_col6};
+    connection.query('UPDATE Buy_Order SET ?' + 'WHERE Bo_ID = ' + update.Bo_ID, update, function(err,result){
         if(err){
             console.log(err);
             return;
@@ -76,7 +76,7 @@ exports.updateItem = function (req,res){
 }
 
 exports.deleteItem = function (req,res){
-    var del = {BO_ID:req.body.del_BO_ID};
+    var del = {Bo_ID:req.body.del_Bo_ID};
     connection.query('DELETE FROM Buy_Order WHERE ?', del, function(err,result){
         if(err){
             console.log(err);

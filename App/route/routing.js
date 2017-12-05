@@ -51,6 +51,12 @@ app.post('/addBuyOrder', BuyOrderController.addItem);
 app.post('/deleteBuyOrder', BuyOrderController.deleteItem);
 app.post('/updateBuyOrder', BuyOrderController.updateItem);
 
+//Material Order
+var MaterialOrderController = require('../controllers/materialorder.controller.js');
+app.get('/MaterialOrder', MaterialOrderController.showItem);
+app.post('/addMaterialOrder', MaterialOrderController.addItem);
+app.post('/deleteMaterialOrder', MaterialOrderController.deleteItem);
+app.post('/updateMaterialOrder', MaterialOrderController.updateItem);
 
 
 //Work Order
