@@ -11,13 +11,13 @@
     </head>
     <body>
         <div class="container">
-        <h2>Product</h2>
-        <form action="/addProduct" method="POST">
+        <h2>Supplier</h2>
+        <form action="/addSupplier" method="POST">
             <div class="col-md-12">
-                <input class="form-control" type="text" name="Product_Name" placeholder="Product_Name">
-                <input class='form-control' type="text" name="Product_Balance" placeholder="Product Balance">
-                <input class='form-control' type="text" name="Unit_Price" placeholder="Unit Price">
-                <input class='form-control' type="text" name="Unit_Measure" placeholder="Unit Measure">        
+                <input class="form-control" type="text" name="Sup_Name" placeholder="Supplier Name">
+                <input class='form-control' type="text" name="Sup_Number" placeholder="Number">
+                <input class='form-control' type="email" name="Sup_Email" placeholder="Email">
+                <input class='form-control' type="text" name="Sup_Address" placeholder="Address">        
                 <button class='btn btn-primary' type="submit" value="Submit">Push</button>    
             </div>
         </form>
@@ -28,24 +28,24 @@
 		    <thead>
 		        <tr>
 		            <th>ID</th>
-		            <th>Product Name testttgithub</th>
-		            <th>Balance</th>
-		            <th>Unit Price</th>
-                    <th>Unit Measure</th>
+		            <th>Supplier Name</th>
+		            <th>Number</th>
+		            <th>Email</th>
+                    <th>Address</th>
 		            <th>Edit</th>
 		            <th>Delete</th>
 		        </tr>
 		    </thead>
-		    <tbody>
+		    <tbody> 
 		        <%for(var i = 0 ; i < item.length;i++){%>
                     <tr> 
-					    <td id = "col1_ID<%=item[i].Product_ID%>"><%=item[i].Product_ID%></td>
-					   	<td id = "col2_ID<%=item[i].Product_ID%>"><%=item[i].Product_Name%></td>
-					   	<td id = "col3_ID<%=item[i].Product_ID%>"><%=item[i].Product_Balance%></td>
-                        <td id = "col4_ID<%=item[i].Product_ID%>"><%=item[i].Unit_Price%></td>
-                        <td id = "col5_ID<%=item[i].Product_ID%>"><%=item[i].Unit_Measure%></td>
-                        <td><button type="button" data-toggle="modal" data-target="#edit" data-uid="<%=item[i].Product_ID%>" class="update btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span></button></td>
-		                <td><button type="button" data-toggle="modal" data-target="#delete" data-uid="<%=item[i].Product_ID%>" class="delete btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span></button></td>
+					    <td id = "col1_ID<%=item[i].Sup_ID%>"><%=item[i].Sup_ID%></td>
+					   	<td id = "col2_ID<%=item[i].Sup_ID%>"><%=item[i].Sup_Name%></td>
+					   	<td id = "col3_ID<%=item[i].Sup_ID%>"><%=item[i].Sup_Number%></td>
+                        <td id = "col4_ID<%=item[i].Sup_ID%>"><%=item[i].Sup_Email%></td>
+                        <td id = "col5_ID<%=item[i].Sup_ID%>"><%=item[i].Sup_Address%></td>
+                        <td><button type="button" data-toggle="modal" data-target="#edit" data-uid="<%=item[i].Sup_ID%>" class="update btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span></button></td>
+		                <td><button type="button" data-toggle="modal" data-target="#delete" data-uid="<%=item[i].Sup_ID%>" class="delete btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span></button></td>
 					</tr>
                 <%}%>
 		    </tbody>
@@ -62,15 +62,15 @@
       <form action = "/updateProduct" method="POST">
       <div class="modal-body">
           <h4>ID</h4>
-           <input id="update_col1" type="text" class="form-control" name="update_col1" placeholder="Product ID">
-          <h4>Product Name</h4>
-           <input id="update_col2" type="text" class="form-control" name="update_col2" placeholder="Product Name">
-          <h4>Product Balance</h4>
-           <input id="update_col3" type="text" class="form-control" name="update_col3" placeholder="Product Balance">
-          <h4>Unit Price</h4>
-           <input id="update_col4" type="text" class="form-control" name="update_col4" placeholder="Unit Price">
-          <h4>Unit Measure</h4>
-           <input id="update_col5" type="text" class="form-control" name="update_col5" placeholder="Unit Measure">
+           <input id="update_col1" type="text" class="form-control" name="update_col1" placeholder="Supplier ID">
+          <h4>Supplier Name</h4>
+           <input id="update_col2" type="text" class="form-control" name="update_col2" placeholder="Supplier Name">
+          <h4>Number</h4>
+           <input id="update_col3" type="text" class="form-control" name="update_col3" placeholder="Number">
+          <h4>Email</h4>
+           <input id="update_col4" type="email" class="form-control" name="update_col4" placeholder="Email">
+          <h4>Address</h4>
+           <input id="update_col5" type="text" class="form-control" name="update_col5" placeholder="Address">
       </div>
       <div class="modal-footer">
         <button type="submit" id="up" class="btn btn-warning" value="submit">Update</button>
@@ -92,12 +92,11 @@
       </div>
       <div class="modal-footer">
       <form action="/deleteProduct" method="POST">
-        <input type="text" id="del_input_ID" name="del_Product_ID" style ="display:none">
+        <input type="text" id="del_input_ID" name="del_Sup_ID" style ="display:none">
         <button type="submit" id="del" class="btn btn-danger" value="submit">Delete</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </form>
-      </div>
-      
+      </div>      
     </div>
   </div>
 </div>
