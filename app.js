@@ -7,6 +7,7 @@ var ejs = require('ejs');
 var mysql = require('mysql');
 var bodyParser = require('body-parser');
 var port = 8000;
+var path = require('path');
 
 
 //sql connection
@@ -14,7 +15,7 @@ var connection = mysql.createConnection({
 host: 'localhost',
 user: 'root',
 password: '',
-database: 'nodejstest'
+database: 'project_db'
 });
 connection.connect(function(error){
 if(!!error){
@@ -26,6 +27,8 @@ else{
 });
 
 //setting up
+app.set('views', path.join(__dirname, '/App/views'));
+
 app.use(bodyParser());
 app.engine('html', ejs.renderFile);  
 app.listen(port);
