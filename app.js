@@ -14,7 +14,7 @@ var connection = mysql.createConnection({
 host: 'localhost',
 user: 'root',
 password: '',
-database: 'nodejstest'
+database: 'Warehouse'
 });
 connection.connect(function(error){
 if(!!error){
@@ -32,14 +32,14 @@ app.listen(port);
 app.use(express.static('public'));
 
 //routing
-app.get('/Product', Product);
-app.post('/addProduct', addProduct);
-app.post('/deleteProduct', deleteProduct);
-app.post('/updateProduct', updateProduct);
+app.get('/Material', Material);
+app.post('/addMaterial', addMaterial);
+app.post('/deleteMaterial', deleteMaterial);
+app.post('/updateMaterial', updateMaterial);
 
 //function
-function Product(req, res){
-    connection.query("SELECT * FROM Product",function(err,result){
+function Material(req, res){
+    connection.query("SELECT * FROM Material",function(err,result){
     if(err){
         res.send('Error' + err);
         return;
@@ -48,36 +48,38 @@ function Product(req, res){
     });
 }
 
-function addProduct(req,res){
-    var insert = {Product_Name:req.body.Product_Name, Product_Balance:req.body.Product_Balance, Unit_Price:req.body.Unit_Price, Unit_Measure:req.body.Unit_Measure}
-    connection.query('INSERT INTO Product SET ?',insert,function(err,result){
+function addMaterial(req,res){
+    var insert = {Mat_Name:req.body.Material_Name, Mat_Balance:req.body.Material_Balance, Unit_Measure:req.body.Unit_Measure}
+    connection.query('INSERT INTO Material SET ?',insert,function(err,result){
         if(err){
             console.log(err);
             return;
         }
-        res.redirect('/Product');
+        res.redirect('/Material');
     });
 }
 
-function updateProduct(req,res){
-    var update = {Product_ID:req.body.update_col1, Product_Name:req.body.update_col2, Product_Balance:req.body.update_col3, Unit_Price:req.body.update_col4, Unit_Measure:req.body.update_col5};
-    connection.query('UPDATE Product SET ?', update, function(err,result){
+function updateMaterial(req,res){
+    console.log(req.body);
+    var update = {Mat_ID:req.body.update_col1, Mat_Name:req.body.update_col2, Mat_Balance:req.body.update_col3, Unit_Measure:req.body.update_col4};
+    //console.log(update.Mat_ID, update);
+    connection.query('UPDATE Material SET ?'+'WHERE Mat_ID ='+update.Mat_ID, update, function(err,result){
         if(err){
             console.log(err);
             return;
         }
-        res.redirect('/Product');
+        res.redirect('/Material');
     });
 }
 
-function deleteProduct(req,res){
-    var del = {Product_ID:req.body.del_Product_ID};
+function deleteMaterial(req,res){
+    var del = {Mat_ID:req.body.del_Material_ID};
     console.log(del);
-    connection.query('DELETE FROM Product WHERE ?', del, function(err,result){
+    connection.query('DELETE FROM Material WHERE ?', del, function(err,result){
         if(err){
             console.log(err);
             return;
         }
-        res.redirect('/Product');
+        res.redirect('/Material');
     });
 }
