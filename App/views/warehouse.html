@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <script src='/jquery-3.1.1.min.js'></script>    
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src='/template.js'></script>
+    <link rel="stylesheet" type="text/css" href="template.css">
+    </head>
+    <body>
+        <div class="container">
+        <h2>Warehouse</h2>
+        <form action="/addWarehouse" method="POST">
+            <div class="col-md-12">
+                <input class="form-control" type="text" name="Warehouse_Name" placeholder="Warehouse_Name">
+                <input class='form-control' type="text" name="Warehouse_Location" placeholder="Warehouse_Location">
+                 
+                <button class='btn btn-primary' type="submit" value="Submit">Push</button>    
+            </div>
+        </form>
+        </div>
+        <div class="container">
+  <div class="row">
+    <table class="table table-hover table-responsive">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Warehouse Name</th>
+                  <th>Location</th>                
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <%for(var i = 0 ; i < item.length;i++){%>
+                    <tr> 
+              <td id = "col1_ID<%=item[i].Wh_ID%>"><%=item[i].Wh_ID%></td>
+              <td id = "col2_ID<%=item[i].Wh_ID%>"><%=item[i].Wh_Name%></td>
+              <td id = "col3_ID<%=item[i].Wh_ID%>"><%=item[i].Wh_Location%></td>
+              
+                        <td><button type="button" data-toggle="modal" data-target="#edit" data-uid="<%=item[i].Wh_ID%>" class="update btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span></button></td>
+                    <td><button type="button" data-toggle="modal" data-target="#delete" data-uid="<%=item[i].Wh_ID%>" class="delete btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span></button></td>
+          </tr>
+                <%}%>
+        </tbody>
+    </table>
+  </div>
+</div>
+<div id="edit" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h3 class="modal-title">Update Data</h3>
+      </div>
+      <form action = "/updateWarehouse" method="POST">
+      <div class="modal-body">
+          <h4>ID</h4>
+           <input id="update_col1" type="text" class="form-control" name="update_col1" placeholder="Warehouse ID">
+          <h4>Warehouse Name</h4>
+           <input id="update_col2" type="text" class="form-control" name="update_col2" placeholder="Warehouse Name">
+          <h4>Warehouse Location</h4>
+           <input id="update_col3" type="text" class="form-control" name="update_col3" placeholder="Warehouse Balance">
+      </div>
+      <div class="modal-footer">
+        <button type="submit" id="up" class="btn btn-warning" value="submit">Update</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div id="delete" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h4 class="modal-title">Delete Data</h4>
+      </div>
+      <div class="modal-body">
+        <strong>Are you sure you want to delete this data?</strong>
+      </div>
+      <div class="modal-footer">
+      <form action="/deleteWarehouse" method="POST">
+        <input type="text" id="del_input_ID" name="del_Warehouse_ID" style ="display:none">
+        <button type="submit" id="del" class="btn btn-danger" value="submit">Delete</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </form>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </body>
+</html>
