@@ -18,4 +18,4 @@ app.engine('html', ejs.renderFile);
 app.listen(port);
 app.use(express.static('public'));
 
-routing(app);
+routing(app)
