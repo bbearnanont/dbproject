@@ -44,4 +44,17 @@ app.post('/addWarehouse', WarehouseController.addWarehouse);
 app.post('/deleteWarehouse', WarehouseController.deleteWarehouse);
 app.post('/updateWarehouse', WarehouseController.updateWarehouse);
 
+//Buy Order
+var BuyOrderController = require('../controllers/buyorder.controller.js');
+app.get('/BuyOrder', BuyOrderController.showItem);
+app.post('/addBuyOrder', BuyOrderController.addItem);
+app.post('/deleteBuyOrder', BuyOrderController.deleteItem);
+app.post('/updateBuyOrder', BuyOrderController.updateItem);
+
+//Buy Order List
+var BuyOrderListController = require('../controllers/buyorderlist.controller.js');
+app.get('/BuyOrderList', BuyOrderListController.showItem);
+app.post('/addBuyOrderList', BuyOrderListController.addItem);
+app.post('/deleteBuyOrderList', BuyOrderListController.deleteItem);
+app.post('/updateBuyOrderList', BuyOrderListController.updateItem);
 };
