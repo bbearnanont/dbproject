@@ -71,4 +71,12 @@ app.get('/ReturnMaterial', ReturnMaterialController.showItem);
 app.post('/addReturnMaterial', ReturnMaterialController.addItem);
 app.post('/deleteReturnMaterial', ReturnMaterialController.deleteItem);
 app.post('/updateReturnMaterial', ReturnMaterialController.updateItem);
+
+//Work Order
+var WorkOrderController = require('../controllers/workorder.controller.js');
+app.get('/WorkOrder', WorkOrderController.showItem);
+app.post('/addWorkOrder', WorkOrderController.addItem);
+app.post('/deleteWorkOrder', WorkOrderController.deleteItem);
+app.post('/updateWorkOrder', WorkOrderController.updateItem);
 };
+
