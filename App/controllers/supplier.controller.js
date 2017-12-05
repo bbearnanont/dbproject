@@ -38,9 +38,8 @@ exports.addItem = function (req,res){
 }
 
 exports.updateItem = function (req,res){
-    var id = {Sup_ID:req.body.update_col1}
     var update = {Sup_ID:req.body.update_col1, Sup_Name:req.body.update_col2, Sup_Number:req.body.update_col3, Sup_Email:req.body.update_col4, Sup_Address:req.body.update_col5};
-    connection.query('UPDATE Supplier SET ? WHERE ?', update, id, function(err,result){
+    connection.query('UPDATE Supplier SET ?' + 'WHERE Sup_ID = ' + update.Sup_ID, update, function(err,result){
         if(err){
             console.log(err);
             return;
@@ -51,7 +50,6 @@ exports.updateItem = function (req,res){
 
 exports.deleteItem = function (req,res){
     var del = {Sup_ID:req.body.del_Sup_ID};
-    console.log(del);
     connection.query('DELETE FROM Supplier WHERE ?', del, function(err,result){
         if(err){
             console.log(err);
