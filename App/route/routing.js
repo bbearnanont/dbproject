@@ -51,10 +51,10 @@ app.post('/addBuyOrder', BuyOrderController.addItem);
 app.post('/deleteBuyOrder', BuyOrderController.deleteItem);
 app.post('/updateBuyOrder', BuyOrderController.updateItem);
 
-//Buy Order List
-var BuyOrderListController = require('../controllers/buyorderlist.controller.js');
-app.get('/BuyOrderList', BuyOrderListController.showItem);
-app.post('/addBuyOrderList', BuyOrderListController.addItem);
-app.post('/deleteBuyOrderList', BuyOrderListController.deleteItem);
-app.post('/updateBuyOrderList', BuyOrderListController.updateItem);
+//Material Order
+var MaterialOrderController = require('../controllers/materialorder.controller.js');
+app.get('/MaterialOrder', MaterialOrderController.showItem);
+app.post('/addMaterialOrder', MaterialOrderController.addItem);
+app.post('/deleteMaterialOrder', MaterialOrderController.deleteItem);
+app.post('/updateMaterialOrder', MaterialOrderController.updateItem);
 };
