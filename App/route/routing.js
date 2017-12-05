@@ -57,4 +57,18 @@ app.get('/MaterialOrder', MaterialOrderController.showItem);
 app.post('/addMaterialOrder', MaterialOrderController.addItem);
 app.post('/deleteMaterialOrder', MaterialOrderController.deleteItem);
 app.post('/updateMaterialOrder', MaterialOrderController.updateItem);
+
+//Return Product
+var ReturnProductController = require('../controllers/returnproduct.controller.js');
+app.get('/ReturnProduct', ReturnProductController.showItem);
+app.post('/addReturnProduct', ReturnProductController.addItem);
+app.post('/deleteReturnProduct', ReturnProductController.deleteItem);
+app.post('/updateReturnProduct', ReturnProductController.updateItem);
+
+//Return Material
+var ReturnMaterialController = require('../controllers/returnmaterial.controller.js');
+app.get('/ReturnMaterial', ReturnMaterialController.showItem);
+app.post('/addReturnMaterial', ReturnMaterialController.addItem);
+app.post('/deleteReturnMaterial', ReturnMaterialController.deleteItem);
+app.post('/updateReturnMaterial', ReturnMaterialController.updateItem);
 };

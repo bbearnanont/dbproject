@@ -11,28 +11,20 @@
     </head>
     <body>
         <div class="container">
-        <h2>Material Order</h2>
-        <form action="/addMaterialOrder" method="POST">
+        <h2>Return Material</h2>
+        <form action="/addReturnMaterial" method="POST">
             <div class="col-md-12">
-                <input class='form-control' type="date" name="Date" placeholder="Date">
-                <select class='form-control'name= "Staff_ID">
-                        
-                        <%
-                        for ( var i = 0; i < staff.length; i++ )
-                        {
-                            %><option value="<%=staff[ i ].Staff_ID %>" ><%=staff[i].Staff_First_Name+' ' +staff[i].Staff_Last_Name%></option><%
-                        }
-                        %>
-                </select>
-                <select class='form-control'name= "Wo_id">
-                        
-                        <%
-                        for ( var i = 0; i < work_order.length; i++ )
-                        {
-                            %><option value="<%=work_order[ i ].Wo_id %>" ><%=work_order[i].Head_Staff%></option><%
-                        }
-                        %>
-                </select>
+                <select class='form-control'name= "Mo_ID">
+                  
+                  <%
+                  for ( var i = 0; i < material_order.length; i++ )
+                  {
+                      %><option value="<%=material_order[ i ].Mo_ID %>" ><%=material_order[i].Mo_ID%></option><%
+                  }
+                  %>
+                  </select>
+                <input class='form-control' type="date" name="Attempt_Date" placeholder="Attempt Date">
+                <input class='form-control' type="date" name="Result_Date" placeholder="Result Date">
                 <input class="form-control" type="text" name="Description" placeholder="Description">        
                 <button class='btn btn-primary' type="submit" value="Submit">Push</button>    
             </div>
@@ -43,36 +35,36 @@
 		<table class="table table-hover table-responsive">
 		    <thead>
 		        <tr>
-		            <th>Material ID</th>
-		            <th>Date</th>
-		            <th>Staff ID</th>
-                    <th>Work Order ID</th>
+		            <th>Return Material ID</th>
+		            <th>Material Order ID</th>
+		            <th>Attempt Date</th>
+                    <th>Result Date</th>
                     <th>Description</th>
 		            <th>Edit</th>
 		            <th>Delete</th>
 		        </tr>
 		    </thead>
-		    <tbody>
-            <%function formatDate(date) {
-              var d = new Date(date),
-                  month = '' + (d.getMonth() + 1),
-                  day = '' + d.getDate(),
-                  year = d.getFullYear();
-          
-              if (month.length < 2) month = '0' + month;
-              if (day.length < 2) day = '0' + day;
-          
-              return [year, month, day].join('-');
-          }%> 
+		    <tbody> 
+                   <%function formatDate(date) {
+                        var d = new Date(date),
+                            month = '' + (d.getMonth() + 1),
+                            day = '' + d.getDate(),
+                            year = d.getFullYear();
+                    
+                        if (month.length < 2) month = '0' + month;
+                        if (day.length < 2) day = '0' + day;
+                    
+                        return [year, month, day].join('-');
+                    }%>
 		        <%for(var i = 0 ; i < item.length;i++){%>
                     <tr> 
-					    <td id = "col1_ID<%=item[i].Mo_ID%>"><%=item[i].Mo_ID%></td>
-					   	<td id = "col2_ID<%=item[i].Mo_ID%>"><%=formatDate(item[i].Date)%></td>
-					   	<td id = "col3_ID<%=item[i].Mo_ID%>"><%=item[i].Staff_ID%></td>
-                        <td id = "col4_ID<%=item[i].Mo_ID%>"><%=item[i].Wo_id%></td>
-                        <td id = "col5_ID<%=item[i].Mo_ID%>"><%=item[i].Description%></td>
-                        <td><button type="button" data-toggle="modal" data-target="#edit" data-uid="<%=item[i].Mo_ID%>" class="update btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span></button></td>
-		                <td><button type="button" data-toggle="modal" data-target="#delete" data-uid="<%=item[i].Mo_ID%>" class="delete btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span></button></td>
+					    <td id = "col1_ID<%=item[i].Rm_ID%>"><%=item[i].Rm_ID%></td>
+					   	<td id = "col2_ID<%=item[i].Rm_ID%>"><%=item[i].Mo_ID%></td>
+					   	<td id = "col3_ID<%=item[i].Rm_ID%>"><%=formatDate(item[i].Attempt_Date)%></td>
+                        <td id = "col4_ID<%=item[i].Rm_ID%>"><%=formatDate(item[i].Result_Date)%></td>
+                        <td id = "col5_ID<%=item[i].Rm_ID%>"><%=item[i].Description%></td>
+                        <td><button type="button" data-toggle="modal" data-target="#edit" data-uid="<%=item[i].Rm_ID%>" class="update btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span></button></td>
+		                <td><button type="button" data-toggle="modal" data-target="#delete" data-uid="<%=item[i].Rm_ID%>" class="delete btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span></button></td>
 					</tr>
                 <%}%>
 		    </tbody>
@@ -86,11 +78,13 @@
         <button type="button" class="close" data-dismiss="modal">×</button>
         <h3 class="modal-title">Update Data</h3>
       </div>
-      <form action = "/updateMaterialOrder" method="POST">
+      <form action = "/updateReturnMaterial" method="POST">
       <div class="modal-body">
-           <input id="update_col1" type="text" class="form-control" name="update_col1" placeholder="Material Order ID" style="display:none">
-           <h4>Date</h4>
-           <input id="update_col2" type="date" class="form-control" name="update_col2" placeholder="Date">
+          <input id="update_col1" type="text" class="form-control" name="update_col1" placeholder="Return Material ID" style="display:none">
+          <h4>Attempt Date</h4>
+           <input id="update_col3" type="date" class="form-control" name="update_col3" placeholder="Attempt Date">
+          <h4>Result Date</h4>
+           <input id="update_col4" type="date" class="form-control" name="update_col4" placeholder="Result Date">
            <h4>Description</h4>
            <input id="update_col5" type="text" class="form-control" name="update_col5" placeholder="Description">
       </div>
@@ -113,8 +107,8 @@
         <strong>Are you sure you want to delete this data?</strong>
       </div>
       <div class="modal-footer">
-      <form action="/deleteMaterialOrder" method="POST">
-        <input type="text" id="del_input_ID" name="del_Mo_ID" style ="display:none">
+      <form action="/deleteReturnMaterial" method="POST">
+        <input type="text" id="del_input_ID" name="del_Rm_ID" style ="display:none">
         <button type="submit" id="del" class="btn btn-danger" value="submit">Delete</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </form>
