@@ -27,7 +27,7 @@ exports.showItem = function (req, res){
 }
 
 exports.addItem = function (req,res){
-    var insert = {Customer_FirstName:req.body.Customer_FirstName, Customer_LastName:req.body.Customer_LastName, Customer_Number:req.body.Customer_Number, Customer_Email:req.body.Customer_Email, Customer_Address:req.body.Customer_Address, Company:req.body.Company};
+    var insert = {Customer_FirstName:req.body.Customer_FirstName, Customer_Lastname:req.body.Customer_LastName, Customer_Number:req.body.Customer_Number, Customer_Email:req.body.Customer_Email, Customer_Address:req.body.Customer_Address, Company:req.body.Company};
     connection.query('INSERT INTO Customer SET ?',insert,function(err,result){
         if(err){
             console.log(err);
@@ -38,7 +38,7 @@ exports.addItem = function (req,res){
 }
 
 exports.updateItem = function (req,res){
-    var update = {Customer_ID:req.body.update_col1, Customer_FirstName:req.body.update_col2, Customer_LastName:req.body.update_col3, Customer_Number:req.body.update_col4, Customer_Email:req.body.update_col5, Customer_Address:req.body.update_col6, Company:req.body.update_col7};
+    var update = {Customer_ID:req.body.update_col1, Customer_FirstName:req.body.update_col2, Customer_Lastname:req.body.update_col3, Customer_Number:req.body.update_col4, Customer_Email:req.body.update_col5, Customer_Address:req.body.update_col6, Company:req.body.update_col7};
     connection.query('UPDATE Customer SET ?' + 'WHERE Customer_ID = ' + update.Customer_ID, update, function(err,result){
         if(err){
             console.log(err);

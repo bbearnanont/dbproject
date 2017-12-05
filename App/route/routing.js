@@ -9,7 +9,6 @@ app.post('/deleteProduct', ProductController.deleteItem);
 app.post('/updateProduct', ProductController.updateItem);
 
 //staff
-
 var StaffController = require('../controllers/staff.controller.js');
 app.get('/Staff', StaffController.showItem);
 app.post('/addStaff', StaffController.addItem);
@@ -31,10 +30,18 @@ app.post('/addCustomer', CustomerController.addItem);
 app.post('/deleteCustomer', CustomerController.deleteItem);
 app.post('/updateCustomer', CustomerController.updateItem);
 
+//Material
 var MaterialController = require('../controllers/material.controller.js');
 app.get('/Material', MaterialController.Material);
 app.post('/addMaterial', MaterialController.addMaterial);
 app.post('/deleteMaterial', MaterialController.deleteMaterial);
 app.post('/updateMaterial', MaterialController.updateMaterial);
-};
 
+//Warehouse
+var WarehouseController = require('../controllers/warehouse.controller.js');
+app.get('/Warehouse', WarehouseController.showWarehouse);
+app.post('/addWarehouse', WarehouseController.addWarehouse);
+app.post('/deleteWarehouse', WarehouseController.deleteWarehouse);
+app.post('/updateWarehouse', WarehouseController.updateWarehouse);
+
+};
