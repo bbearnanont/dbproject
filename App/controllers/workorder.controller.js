@@ -61,7 +61,7 @@ exports.showItem = function (req, res){
 }
 
 exports.addItem = function (req,res){
-    var insert = {Recieved_Date:req.body.Recieve_Date, Delivery_Date:req.body.Delivery_Date, Complete_Date:req.body.Complete_Date, Po_ID:req.body.Po_ID, Product_ID:req.body.Product_ID, Head_Staff:req.body.Staff_ID, Description:req.body.Description};
+    var insert = {Recieved_Date:req.body.Recieved_Date, Delivery_Date:req.body.Delivery_Date, Complete_Date:req.body.Complete_Date, Po_ID:req.body.Po_ID, Product_ID:req.body.Product_ID, Head_Staff:req.body.Staff_ID, Description:req.body.Description};
     console.log(req.body);
     connection.query('INSERT INTO work_order SET ?',insert,function(err,result){
         if(err){
