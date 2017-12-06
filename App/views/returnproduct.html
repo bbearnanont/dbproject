@@ -14,8 +14,8 @@
         <h2>Return Product</h2>
         <form action="/addReturnProduct" method="POST">
             <div class="col-md-12">
-                <select class='form-control'name= "PO_ID">
-                  
+               <h4>Purchase Order id</h4>
+                <select class='form-control'name= "PO_ID">                  
                   <%
                   for ( var i = 0; i < purchase_order.length; i++ )
                   {
@@ -23,8 +23,11 @@
                   }
                   %>
                   </select>
+              <h4>Attempt Date</h4>
                 <input class='form-control' type="date" name="Attempt_Date" placeholder="Attempt Date">
+              <h4>Result Date</h4>
                 <input class='form-control' type="date" name="Result_Date" placeholder="Result Date">
+              <h4>Description</h4>
                 <input class="form-control" type="text" name="Description" placeholder="Description">        
                 <button class='btn btn-primary' type="submit" value="Submit">Push</button>    
             </div>
@@ -81,6 +84,15 @@
       <form action = "/updateReturnProduct" method="POST">
       <div class="modal-body">
           <input id="update_col1" type="text" class="form-control" name="update_col1" placeholder="Return Product ID" style="display:none">
+          <h4>Purchase Order id</h4>
+                <select id="update_col2" class='form-control'name= "update_col2">                  
+                  <%
+                  for ( var i = 0; i < purchase_order.length; i++ )
+                  {
+                      %><option value="<%=purchase_order[ i ].Po_ID %>" ><%=purchase_order[i].Po_ID%></option><%
+                  }
+                  %>
+                  </select>
           <h4>Attempt Date</h4>
            <input id="update_col3" type="date" class="form-control" name="update_col3" placeholder="Attempt Date">
           <h4>Result Date</h4>
