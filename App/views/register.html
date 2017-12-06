@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Message Board</title>
+		<link rel="stylesheet" 
+			href="/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+		<script src='https://icode.run/jquery.js'>
+		</script>
+	</head>
+	<body>
+
+<style>
+	form {
+		max-width: 320px;
+		display: block;
+		margin: 0 auto;
+		border: 2px solid hotpink;
+		padding: 10px;
+		margin-top: 10px;
+		border-radius: 4px;
+		transition: all 0.5s linear;
+	}
+	form > * {
+		margin-bottom: 10px;
+	}
+	form:hover {
+		box-shadow: 0 0 10px gray;
+	}
+</style>
+
+<form method="post" >
+	<H1>Register</H1>
+	<input name="first" 
+		class='form-control'
+		placeholder="First Name"
+		autofocus>
+	<input name="last" 
+		class='form-control'
+		placeholder="Last Name">
+	<input name="email" 
+		class='form-control'
+		type ="email" 
+		placeholder="Email">
+	<input name="password" type="password"
+		class='form-control'
+		placeholder="Password">
+	<input name="number" 
+		class='form-control' type="number"
+		placeholder="Number">
+	<input name="address" type="text"
+		class='form-control'
+		placeholder="Address">
+	<input name="company"
+		class='form-control'
+		placeholder="Company">
+	<button type="submit"
+		class='btn btn-primary'>Join now</button>
+</form>
+
+	<body>
+</html>

@@ -4,6 +4,7 @@ module.exports = function(app){
 //product
 var ProductController = require('../controllers/product.controller.js');
 app.get('/Product', ProductController.showItem);
+app.post('/product',ProductController.showItem);
 app.post('/addProduct', ProductController.addItem);
 app.post('/deleteProduct', ProductController.deleteItem);
 app.post('/updateProduct', ProductController.updateItem);
@@ -50,11 +51,14 @@ app.get('/BuyOrder', BuyOrderController.showItem);
 app.post('/addBuyOrder', BuyOrderController.addItem);
 app.post('/deleteBuyOrder', BuyOrderController.deleteItem);
 app.post('/updateBuyOrder', BuyOrderController.updateItem);
+	
 
-//Buy Order List
-var BuyOrderListController = require('../controllers/buyorderlist.controller.js');
-app.get('/BuyOrderList', BuyOrderListController.showItem);
-app.post('/addBuyOrderList', BuyOrderListController.addItem);
-app.post('/deleteBuyOrderList', BuyOrderListController.deleteItem);
-app.post('/updateBuyOrderList', BuyOrderListController.updateItem);
+//Register
+var register = require('../controllers/register.controller.js');
+app.get('/register',register.registerCustomer);
+app.post('/register',register.registerCustomerSave);
+
+var login = require('../controllers/login.controller.js');
+app.get('/login',login.loginForm);
+app.post('/login',login.loginUser);
 };
