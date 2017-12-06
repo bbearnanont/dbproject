@@ -41,6 +41,7 @@ exports.registerCustomerSave = function(req,res){
 		            return;
 		        }
 		        sess.email=inputEmail;
+		        sess.Cutomer=1;
 		        res.redirect('/Product');
 			});
         }

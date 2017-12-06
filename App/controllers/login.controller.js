@@ -46,7 +46,7 @@ exports.loginUser = function(req,res){
 	        	{
 
 	        			sess.email = resultEmail[0].Customer_Email;
-	        			sess.uID = resultEmail[0].Customer_ID;
+	        			sess.Customer=1;
 	        			console.log("TEST session "+sess.email);
 
 						res.redirect('/Product');
