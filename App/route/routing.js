@@ -44,4 +44,12 @@ app.post('/addWarehouse', WarehouseController.addWarehouse);
 app.post('/deleteWarehouse', WarehouseController.deleteWarehouse);
 app.post('/updateWarehouse', WarehouseController.updateWarehouse);
 
+//Purchase Order
+var PurchaseorderController = require('../controllers/purchaseorder.controller.js');
+app.get('/purchaseorder', PurchaseorderController.showItem);
+app.post('/addpurchaseorder', PurchaseorderController.addItem);
+/*app.post('/deletepurchaseorder', PurchaseorderController.deleteItem);
+app.post('/updatepurchaseorder', PurchaseorderController.updateItem);
+*/
+
 };
