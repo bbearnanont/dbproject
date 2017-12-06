@@ -24,14 +24,14 @@ exports.showItem = function (req, res){
     }
     else
     {
-    connection.query("SELECT Po_ID FROM purchase_order",function(err2,result2)
+    connection.query("SELECT pl.Po_ID AS Po_ID,pl.Product_ID AS Product_ID, pl.Product_Amount AS Product_Amount, pl.Description AS Description,p.Product_Name ,p.Unit_Measure AS Unit_Measure FROM purchase_order_list pl, product p WHERE p.Product_ID = pl.Product_ID",function(err2,result2)
     {
         if(err2){
             res.send('Error' + err2);
             return;
         }
         else
-                res.render('returnproduct.html',{item:result,purchase_order:result2});
+                res.render('returnproduct.html',{item:result,purchase_order_list:result2});
                 
             }
         );

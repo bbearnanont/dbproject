@@ -6,39 +6,80 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-        <script src='/template.js'></script>
+        <script src='/returnproduct.js'></script>
 		<link rel="stylesheet" type="text/css" href="template.css">
     </head>
     <body>
-        <div id="container">
-        <h2>Return Product</h2></div>
-        <div id="contain">   
-        <form action="/addReturnProduct" method="POST">
+        <div class="container">
+        <h2>Return Product</h2>
             <div class="col-md-12">
-               <h4>Purchase Order id</h4>
-                <select class='form-control'name= "PO_ID">                  
-                  <%
-                  for ( var i = 0; i < purchase_order.length; i++ )
-                  {
-                      %><option value="<%=purchase_order[ i ].Po_ID %>" ><%=purchase_order[i].Po_ID%></option><%
-                  }
-                  %>
-                  </select>
               <h4>Attempt Date</h4>
-                <input class='form-control' type="date" name="Attempt_Date" placeholder="Attempt Date">
+                <input class='form-control' type="date" id="Attempt_Date" placeholder="Attempt Date">
               <h4>Result Date</h4>
-                <input class='form-control' type="date" name="Result_Date" placeholder="Result Date">
+                <input class='form-control' type="date" id="Result_Date" placeholder="Result Date">
               <h4>Description</h4>
-                <input class="form-control" type="text" name="Description" placeholder="Description">
+                <input class="form-control" type="text" id="Description" placeholder="Description">        
             </div>
-            <div id="container">        
-                <button class='btn btn-primary' type="submit" value="Submit">Push</button>    
-            </div>
-        </form>
         </div>
         <div class="container">
+          <div class="row">
+            
+              <table class="table table-hover">
+                  <thead>
+                      <tr>
+                          <th></th>
+                          <th>Po_ID</th>
+                          <th>Product_Name</th>
+                          <th></th>
+                          <th>Return Amount</th>
+                          <th>Amount</th>
+                          <th class="text-center">Unit</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <%var i%>
+                      <%for(i = 0 ; i < purchase_order_list.length; i++){ var index = i+1;%>
+                      <tr>
+                        <td></td>
+                          <td id = "col1_ID<%=index%>"><%=purchase_order_list[i].Po_ID%></td>
+                          <td class="col-sm-8 col-md-6">
+                          <div class="media">
+                              <div class="media-body">
+                                  <h4 class="media-heading" id = "col2_ID<%=index%>"><%=purchase_order_list[i].Product_Name%></h4>
+                              </div>
+                          </div>
+                          </td>
+  
+                          <td></td>
+                          <td class="col-sm-2 col-md-2" style="text-align: center">
+                          <input type="number" min="0" class="form-control onChange" id = "<%=index%>" value="0">
+                          </td>
+                          <td class="col-sm-1 col-md-1 text-center"><strong id = "col4_ID<%=index%>"><%=purchase_order_list[i].Product_Amount%></strong></td>
+                          <td class="col-sm-1 col-md-1 text-center"><strong><%=purchase_order_list[i].Unit_Measure%></strong></td>
+                          <td id="col6_ID<%=index%>" style="display:none"><%=purchase_order_list[i].Product_ID%></td>
+                      </tr>
+                      <% } %>
+                      
+                      <tr>
+                          <td>   </td>
+                          <td>   </td>
+                          <td>   </td>
+                          <td>   </td>
+                          <td>   </td>
+                          <td></td>
+                          <td>
+                          <button type="button" class="btn btn-success" id="checkout">
+                              Checkout <span class="glyphicon glyphicon-play"></span>
+                          </button></td>
+                      </tr>
+                  </tbody>
+              </table>
+            <div class="panel-footer">
+                <h4 id="count" style = "display:none"><%=purchase_order_list.length%></h4>
+            </div>
+          </div>
 	<div class="row">
-		<table class="table table-hover table-responsive">
+		<table class="table table-hover table-responsive updatetable">
 		    <thead>
 		        <tr>
 		            <th>Return Product ID</th>
@@ -87,15 +128,6 @@
       <form action = "/updateReturnProduct" method="POST">
       <div class="modal-body">
           <input id="update_col1" type="text" class="form-control" name="update_col1" placeholder="Return Product ID" style="display:none">
-          <h4>Purchase Order id</h4>
-                <select id="update_col2" class='form-control'name= "update_col2">                  
-                  <%
-                  for ( var i = 0; i < purchase_order.length; i++ )
-                  {
-                      %><option value="<%=purchase_order[ i ].Po_ID %>" ><%=purchase_order[i].Po_ID%></option><%
-                  }
-                  %>
-                  </select>
           <h4>Attempt Date</h4>
            <input id="update_col3" type="date" class="form-control" name="update_col3" placeholder="Attempt Date">
           <h4>Result Date</h4>
