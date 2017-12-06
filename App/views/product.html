@@ -21,6 +21,7 @@
                   <option value="Grams">Grams</option>
                   <option value="Kilograms">Kilograms</option>
                   <option value="Tons">Tons</option>
+                  <option value="Pieces">Pieces</option>
                 </select>        
                 <button class='btn btn-primary' type="submit" value="Submit">Push</button>    
             </div>
@@ -74,8 +75,13 @@
           <h4>Unit Price</h4>
            <input id="update_col4" type="text" class="form-control" name="update_col4" placeholder="Unit Price">
           <h4>Unit Measure</h4>
-           <input id="update_col5" type="text" class="form-control" name="update_col5" placeholder="Unit Measure">
-      </div>
+          <select class='form-control' id="update_col5" name="update_col5">
+            <option value="Grams">Grams</option>
+            <option value="Kilograms">Kilograms</option>
+            <option value="Tons">Tons</option>
+            <option value="Pieces">Pieces</option>
+          </select>
+        </div>
       <div class="modal-footer">
         <button type="submit" id="up" class="btn btn-warning" value="submit">Update</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
