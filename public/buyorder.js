@@ -26,7 +26,7 @@ $(document).ready(function(){
     $.ajax({
             type: 'POST',
             url: '/addbuyorder', 
-            data : {"item":item, "SupID":$("#Sup_ID").val(), "Order_Date":$("#Order_Date").val(), "Delivered_Date":$("#Delivered_Date").val(), "Staff_ID":$("#Staff_ID").val(), "Description":$("#Description").val()},
+            data : {"item":item, "Sup_ID":$("#Sup_ID").val(), "Order_Date":$("#Order_Date").val(), "Delivered_Date":$("#Delivered_Date").val(), "Staff_ID":$("#Staff_ID").val(), "Description":$("#Description").val()},
             success: function(data, textStatus, jqXHR) {
                 location.reload();
             },

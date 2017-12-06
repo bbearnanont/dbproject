@@ -13,9 +13,13 @@
     <body>
        <div class="container">
            <div class="row">
+                <h3>Purchase Order</h3>
             <div class="col-md-12">
+                <h4>Destination Address</h4>
                 <input class="form-control" type="text" id="address" placeholder="Destination Address">
+                <h4>Expected Delivered Date</h4>
                 <input class='form-control' type="date" id="date" placeholder="Deliver Date">
+                <h4>Methods of Shipping</h4>
                 <select class='form-control' id = "method">
                   <option value="Road Freight">Road Freight</option>
                   <option value="Sea Freight">Sea Freight</option>
@@ -23,7 +27,7 @@
                 </select>        
             </div>
            </div>
-    <div class="row">
+    <div class="row" style="padding-top:30px">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default panel-table">
               <div class="panel-heading">
@@ -65,7 +69,7 @@
                             </div>
                         </div></td>
                         <td class="col-sm-2 col-md-2" style="text-align: center">
-                        <input type="number" class="form-control onChange" id = "<%=index%>" value="0">
+                        <input type="number" min = "0" class="form-control onChange" id = "<%=index%>" value="0">
                         </td>
                         <td class="col-sm-1 col-md-1 text-center"><strong id = "col3_ID<%=index%>">$<%=product[i].Unit_Price%></strong></td>
                         <td class="col-sm-1 col-md-1 text-center"><strong id = "col4_ID<%=index%>"><%=product[i].Unit_Measure%></strong></td>
@@ -96,7 +100,7 @@
             </table>
               </div>
               <div class="panel-footer">
-                  <h4 id="count"><%=i%> Products in stocks  </h4>
+                  <h4 id="count" style="display:none" ><%=i%> Products in stocks  </h4>
               </div>
             </div>
 </div></div>

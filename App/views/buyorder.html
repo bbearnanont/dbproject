@@ -30,8 +30,7 @@
               <h4>Delivered Date</h4>
                 <input class='form-control' type="date" id="Delivered_Date" placeholder="Delivered Date">
               <h4>Staff</h4>
-                <select class='form-control' id = "Staff_ID">
-                <input class='form-control' type="date" name="Delivered_Date" placeholder="Delivered Date">                  
+                <select class='form-control' id = "Staff_ID">                  
                   <%
                   for ( var i = 0; i < staff.length; i++ )
                   {
@@ -80,7 +79,7 @@
                         <td></td>
                         <td></td>
                         <td class="col-sm-2 col-md-2" style="text-align: center">
-                        <input type="number" class="form-control onChange" id = "<%=index%>" value="0">
+                        <input type="number" min="0" class="form-control onChange" id = "<%=index%>" value="0">
                         </td>
                         <td class="col-sm-1 col-md-1 text-center"><strong id = "col4_ID<%=index%>"><%=material[i].Unit_Measure%></strong></td>
                         <td id="col6_ID<%=index%>" style="display:none"><%=material[i].Mat_ID%></td>
