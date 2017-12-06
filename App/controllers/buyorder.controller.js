@@ -24,7 +24,7 @@ exports.showItem = function (req, res){
     }
     else
     {
-    connection.query("SELECT Sup_Name, Sup_ID FROM supplier",function(err2,result2)
+    connection.query("SELECT Sup_Name, Sup_ID FROM supplier",function(err2,result2) 
     {
         if(err2){
             res.send('Error' + err2);

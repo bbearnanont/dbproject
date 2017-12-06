@@ -34,8 +34,18 @@
         <form action="/StaffRegister" method="POST">
         <h1>Staff Register</h1>
                 <input class="form-control" type="text" name="Staff_First_Name" placeholder="First Name">
+                <h4>Last Name</h4>
                 <input class='form-control' type="text" name="Staff_Last_Name" placeholder="Last Name">
-                <input class='form-control' type="text" name="Department_ID" placeholder="Department ID">
+                <h4>Department ID</h4>
+                <select class='form-control'name= "Department_ID">                  
+                    <%
+                    for ( var i = 0; i < department.length; i++ ) 
+                    {
+                        %><option value="<%=department[ i ].Department_ID %>" ><%=department[i].Department_Name%></option><%
+                    }
+                    %>
+                    </select>
+                    <h4>Phone Number</h4>
                 <input class="form-control" type="tel" pattern="[0-9]{10}" name="Phone_Number" placeholder="Number [0-9]{10}">
                 <input class='form-control' type="email" name="Staff_Email" placeholder="Email">
                 <input class='form-control' type="password" name="Staff_Password" placeholder="Password">
@@ -92,8 +102,15 @@
            <input id="update_col2" type="text" class="form-control" name="update_col2" placeholder="First Name">
           <h4>Last Name</h4>
            <input id="update_col3" type="text" class="form-control" name="update_col3" placeholder="Last Name">
-          <h4>Department ID</h4>
-           <input id="update_col4" type="text" class="form-control" name="update_col4" placeholder="Department ID">
+           <h4>Department ID</h4>
+           <select id="update_col4" type="text" class='form-control'name="update_col4">                  
+               <%
+               for ( var i = 0; i < department.length; i++ ) 
+               {
+                   %><option value="<%=department[ i ].Department_ID %>" ><%=department[i].Department_Name%></option><%
+               }
+               %>
+               </select>
           <h4>Phone Number</h4>
            <input id="update_col5" type="tel" pattern="[0-9]{10}" class="form-control" name="update_col5" placeholder="Number [0-9]{10}">
            <h4>Email</h4>
