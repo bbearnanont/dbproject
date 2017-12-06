@@ -22,8 +22,21 @@ exports.showItem = function (req, res){
         res.send('Error' + err);
         return;
     }
-    res.render('staff.html',{item:result});    
+    else
+    {
+        connection.query("SELECt Department_ID,Department_Name FROM department",function(err2,result2){
+            if(err2)
+            {
+                res.send('Error'+err2)
+                return;
+            }
+            else
+            {
+                res.render('staff.html',{item:result,department:result2});
+            }       
     });
+}
+});
 }
 
 exports.addItem = function (req,res){
