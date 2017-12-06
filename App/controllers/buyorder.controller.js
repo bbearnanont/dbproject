@@ -81,7 +81,7 @@ exports.addItem = function (req,res){
 }
 
 exports.updateItem = function (req,res){
-    var update = {Bo_ID:req.body.update_col1, Order_Date:req.body.update_col3, Delivered_Date:req.body.update_col4, Description:req.body.update_col6};
+    var update = {Bo_ID:req.body.update_col1, Sup_ID:req.body.update_col2, Order_Date:req.body.update_col3, Delivered_Date:req.body.update_col4, Staff_ID:req.body.update_col5, Description:req.body.update_col6};
     connection.query('UPDATE Buy_Order SET ?' + 'WHERE Bo_ID = ' + update.Bo_ID, update, function(err,result){
         if(err){
             console.log(err);
