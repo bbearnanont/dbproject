@@ -10,14 +10,17 @@
 		<link rel="stylesheet" type="text/css" href="template.css">
     </head>
     <body>
-        <div class="container">
-        <h2>Supplier</h2>
+        <div id="container">
+        <h2>Supplier</h2></div>
+        <div id="contain">   
         <form action="/addSupplier" method="POST">
             <div class="col-md-12">
                 <input class="form-control" type="text" name="Sup_Name" placeholder="Supplier Name">
                 <input class='form-control' type="tel" pattern="[0-9]{10}" name="Sup_Number" placeholder="Contact [0-9]{10}">
                 <input class='form-control' type="email" name="Sup_Email" placeholder="Email">
-                <input class='form-control' type="text" name="Sup_Address" placeholder="Address">       
+                <input class='form-control' type="text" name="Sup_Address" placeholder="Address">   
+            </div>
+            <div id="container">    
                 <button class='btn btn-primary' type="submit" value="Submit">Push</button>    
             </div>
         </form>

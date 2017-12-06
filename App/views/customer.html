@@ -10,8 +10,8 @@
 		<link rel="stylesheet" type="text/css" href="template.css">
     </head>
     <body>
-        <div class="container">
-        <h2>Customer</h2>
+        <div id="container"><h2>Customer</h2></div>
+        <div id="contain">        
         <form action="/addCustomer" method="POST">
             <div class="col-md-12">
                 <input class="form-control" type="text" name="Customer_FirstName" placeholder="First Name">
@@ -19,7 +19,9 @@
                 <input class='form-control' type="tel" pattern="[0-9]{10}" name="Customer_Number" placeholder="Number [0-9]{10}">
                 <input class='form-control' type="email" name="Customer_Email" placeholder="Email">
                 <input class="form-control" type="text" name="Customer_Address" placeholder="Address">
-                <input class="form-control" type="text" name="Company" placeholder="Company">        
+                <input class="form-control" type="text" name="Company" placeholder="Company">
+            </div>
+            <div id="container">        
                 <button class='btn btn-primary' type="submit" value="Submit">Push</button>    
             </div>
         </form>

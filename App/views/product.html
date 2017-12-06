@@ -10,8 +10,9 @@
 		<link rel="stylesheet" type="text/css" href="template.css">
     </head>
     <body>
-        <div class="container">
-        <h2>Product</h2>
+        <div id="container">
+        <h2>Product</h2></div>
+        <div id="contain">   
         <form action="/addProduct" method="POST">
             <div class="col-md-12">
                 <input class="form-control" type="text" name="Product_Name" placeholder="Product_Name">
@@ -21,7 +22,9 @@
                   <option value="Grams">Grams</option>
                   <option value="Kilograms">Kilograms</option>
                   <option value="Tons">Tons</option>
-                </select>        
+                </select>
+            </div>
+            <div id="container">        
                 <button class='btn btn-primary' type="submit" value="Submit">Push</button>    
             </div>
         </form>

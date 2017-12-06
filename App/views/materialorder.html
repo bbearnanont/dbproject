@@ -10,15 +10,15 @@
 		<link rel="stylesheet" type="text/css" href="template.css">
     </head>
     <body>
-        <div class="container">
-        <h2>Material Order</h2>
+        <div id="container">
+        <h2>Material Order</h2></div>
+        <div id="contain">   
         <form action="/addMaterialOrder" method="POST">
             <div class="col-md-12">
               <h4>Date</h4>
                 <input class='form-control' type="date" name="Date" placeholder="Date">
                <h4>Staff</h4> 
-                <select class='form-control'name= "Staff_ID">
-                        
+                <select class='form-control'name= "Staff_ID">                        
                         <%
                         for ( var i = 0; i < staff.length; i++ )
                         {
@@ -32,12 +32,15 @@
                         <%
                         for ( var i = 0; i < work_order.length; i++ )
                         {
-                            %><option value="<%=work_order[ i ].Wo_id %>" ><%=work_order[i].Wo_id%></option><%
+                            %><option value="<%=work_order[ i ].Wo_id %>" ><%=work_order[i].Head_Staff%></option><%
                         }
                         %>
                 </select>
               <h4>Description</h4>  
-                <input class="form-control" type="text" name="Description" placeholder="Description">        
+                <input class="form-control" type="text" name="Description" placeholder="Description"> 
+
+            </div>
+            <div id="container">           
                 <button class='btn btn-primary' type="submit" value="Submit">Push</button>    
             </div>
         </form>
@@ -95,26 +98,6 @@
            <input id="update_col1" type="text" class="form-control" name="update_col1" placeholder="Material Order ID" style="display:none">
            <h4>Date</h4>
            <input id="update_col2" type="date" class="form-control" name="update_col2" placeholder="Date">
-           <h4>Staff</h4>
-           <select id="update_col3" type="text" class='form-control'name= "update_col3">
-              
-              <%
-              for ( var i = 0; i < staff.length; i++ )
-              {
-                  %><option value="<%=staff[ i ].Staff_ID %>" ><%=staff[i].Staff_First_Name+' ' +staff[i].Staff_Last_Name%></option><%
-              }
-              %>
-            </select>
-           <h4>Work Order ID</h4>
-           <select id="update_col4" type="text" class='form-control'name= "update_col4">
-              
-              <%
-              for ( var i = 0; i < work_order.length; i++ )
-              {
-                  %><option value="<%=work_order[ i ].Wo_id %>" ><%=work_order[i].Wo_id%></option><%
-              }
-              %>
-            </select>
            <h4>Description</h4>
            <input id="update_col5" type="text" class="form-control" name="update_col5" placeholder="Description">
       </div>

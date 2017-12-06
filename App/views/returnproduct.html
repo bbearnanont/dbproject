@@ -10,8 +10,9 @@
 		<link rel="stylesheet" type="text/css" href="template.css">
     </head>
     <body>
-        <div class="container">
-        <h2>Return Product</h2>
+        <div id="container">
+        <h2>Return Product</h2></div>
+        <div id="contain">   
         <form action="/addReturnProduct" method="POST">
             <div class="col-md-12">
                <h4>Purchase Order id</h4>
@@ -28,7 +29,9 @@
               <h4>Result Date</h4>
                 <input class='form-control' type="date" name="Result_Date" placeholder="Result Date">
               <h4>Description</h4>
-                <input class="form-control" type="text" name="Description" placeholder="Description">        
+                <input class="form-control" type="text" name="Description" placeholder="Description">
+            </div>
+            <div id="container">        
                 <button class='btn btn-primary' type="submit" value="Submit">Push</button>    
             </div>
         </form>
