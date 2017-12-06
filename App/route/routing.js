@@ -12,9 +12,9 @@ app.post('/updateProduct', ProductController.updateItem);
 //staff
 var StaffController = require('../controllers/staff.controller.js');
 app.get('/Staff', StaffController.showItem);
-app.post('/addStaff', StaffController.addItem);
-app.post('/deleteStaff', StaffController.deleteItem);
-app.post('/updateStaff', StaffController.updateItem);
+app.post('/StaffRegister', StaffController.addItem);
+/*app.post('/deleteStaff', StaffController.deleteItem);
+app.post('/updateStaff', StaffController.updateItem);*/
 
 //Supplier
 var SupplierController = require('../controllers/supplier.controller.js');

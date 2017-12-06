@@ -1,6 +1,6 @@
 //sql connection
 var mysql = require('mysql');
-var crypto  = require('crypto')
+var crypto  = require('crypto');
 var sess;
 var connection = mysql.createConnection({
 host: 'localhost',
@@ -34,16 +34,26 @@ exports.registerCustomerSave = function(req,res){
         }
         else
         {
-			 var insert = {Customer_FirstName:req.body.first, Customer_LastName:req.body.last,Customer_Number:req.body.number,Customer_Email:req.body.email,Customer_Password:encrypt(req.body.password),Customer_Address:req.body.address,Company:req.body.company}
-			connection.query("INSERT INTO customer SET ?",insert,function(err2,result){
-		        if(err){
-		            console.log(err);
-		            return;
-		        }
-		        sess.email=inputEmail;
-		        sess.Cutomer=1;
-		        res.redirect('/Product');
-			});
+        	console.log(resultEmail[0]);
+			if(resultEmail.length>0)
+			{
+				console.log('Duplicate email');	
+			     res.redirect('/register',{alert:1});
+			}
+			else
+			{
+				console.log('Accept');
+				 var insert = {Customer_FirstName:req.body.first, Customer_LastName:req.body.last,Customer_Number:req.body.number,Customer_Email:inputEmail,Customer_Password:encrypt(req.body.password),Customer_Address:req.body.address,Company:req.body.company}
+				connection.query("INSERT INTO customer SET ?",insert,function(err2,result){
+			        if(err2){
+			            console.log(err2);
+			            return;
+			        }
+			        sess.email=inputEmail;
+			        sess.Cutomer=1;
+			        res.redirect('/Product');
+				});
+			}
         }
 	
 	});
