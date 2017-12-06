@@ -54,8 +54,9 @@ exports.showItem = function (req, res){
 }
 
 exports.addItem = function (req,res){
-    var insert = {Date:req.body.Date, Staff_ID:req.body.Staff_ID, Wo_id:req.body.Wo_id, Description:req.body.Description};
-    connection.query('INSERT INTO Material_Order SET ?',insert,function(err,result){
+    console.log(req.body);
+    var insertMo = {Date:req.body.Date, Staff_ID:req.body.Staff_ID, Wo_id:req.body.Wo_id, Description:req.body.Description};
+    connection.query('INSERT INTO Material_Order SET ?',insertMo,function(err,result){
         if(err){
             console.log(err);
             return;
@@ -64,8 +65,20 @@ exports.addItem = function (req,res){
         connection.query("SELECT * FROM Material_Order", function(err, result){
     for(var i = 0 ; i < req.body.item.length; i++){
         if(parseFloat(req.body.item[i].Quantity)>0){
-            var insertMoList = {Mo_ID:result[result.length-1].Mo_ID, Mat_ID:req.body.item[i].Mat_ID, Mat_Amount:req.body.item[i].Quantity, UNIT:req.body.item[i].UNIT, Description:req.body.Description};
-            connection.query("INSERT INTO Material_Order_List SET ?", insertBoList);
+            var insertMf = {Mat_ID:req.body.item[i].Mat_ID, Mat_Amount:req.body.item[i].Quantity, Mo_ID:result[result.length-1].Mo_ID, Staff_ID:req.body.Staff_ID, Date:req.body.Date};
+            connection.query("INSERT INTO Material_Flow SET ?",insertMf, function(err, result2){
+                if(err){
+                    console.log(err);
+                    return;
+                }                
+            });
+        }
+    }
+            
+    for(var i = 0 ; i < req.body.item.length; i++){
+        if(parseFloat(req.body.item[i].Quantity)>0){
+            var insertMoList = {Mo_ID:result[result.length-1].Mo_ID, Mat_ID:req.body.item[i].Mat_ID, Mat_Amount:req.body.item[i].Quantity, Description:req.body.Description};
+            connection.query("INSERT INTO Material_Order_List SET ?", insertMoList);
         }
     }
     });
