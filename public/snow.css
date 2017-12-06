@@ -1,20 +1,3 @@
-table{
-    font-family:'Calibri';
-    font-size:15px;
-    background-color:#fff;
-    color:#333;
-}
-.modal-header{
-    background-color:#333;
-    color:#fff;
-}
-input{
-    margin-top:5px;
-}
-.btn-primary{
-    margin-top:5px;
-}
-
 
 * {
   margin: 0;
@@ -61,7 +44,7 @@ body {
 
 #container {
 	width: 800px;
-	margin: auto;
+	margin: 200px auto;
 	
 	text-align: center;
 	color: white;
@@ -69,18 +52,6 @@ body {
 	
 	text-shadow: 0px 0px 4px rgba(255,255,255, 0.5);
 }
-
-#contain {
-	width: 800px;
-	margin: auto;
-	
-	
-	color: white;
-	font: 100px/1 'Spirax', cursive;
-	
-	text-shadow: 0px 0px 4px rgba(255,255,255, 0.5);
-}
-
 
 #container p {
 	font: 12px/1.5 "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;

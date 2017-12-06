@@ -39,14 +39,18 @@ exports.showItem = function (req, res){
                 }
                 else
                 {
-                    res.render('materialorder.html',{item:result,staff:result2,work_order:result3});
-                }   
+                    connection.query("SELECT * FROM Material",function(err4,result4){
+                    res.render('materialorder.html',{item:result,staff:result2,work_order:result3,material:result4});
                 });
-            }
+                }
+            });
+
         }
-        );
-    } 
-    });    
+
+    }
+    );  
+    };    
+    });
 }
 
 exports.addItem = function (req,res){
@@ -56,10 +60,24 @@ exports.addItem = function (req,res){
             console.log(err);
             return;
         }
-        {
-            res.redirect('/MaterialOrder');
-        };
     });
+        connection.query("SELECT * FROM Material_Order", function(err, result){
+    for(var i = 0 ; i < req.body.item.length; i++){
+        if(parseFloat(req.body.item[i].Quantity)>0){
+            var insertMoList = {Mo_ID:result[result.length-1].Mo_ID, Mat_ID:req.body.item[i].Mat_ID, Mat_Amount:req.body.item[i].Quantity, UNIT:req.body.item[i].UNIT, Description:req.body.Description};
+            connection.query("INSERT INTO Material_Order_List SET ?", insertBoList);
+        }
+    }
+    });
+    for(var i = 0 ; i < req.body.item.length; i++){
+        connection.query('UPDATE Material SET Mat_Balance = Mat_Balance + '+ req.body.item[i].Quantity + ' WHERE Mat_ID = '+ req.body.item[i].Mat_ID + '', function(err,result){
+        if(err){
+            console.log(err);
+            return;
+        }        
+    });
+    }
+            res.redirect('/MaterialOrder');
 }
 
 exports.updateItem = function (req,res){
