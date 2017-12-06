@@ -44,14 +44,35 @@ exports.addItem = function (req,res){
     var Description = req.body.Description;
     var Attempt_Date = req.body.Attempt_Date;
     var Result_Date = req.body.Result_Date;
-    connection.query('INSERT INTO return_product SET ?',insert,function(err,result){
+    var insertPR = {Description:Description, Attempt_Date:Attempt_Date, Result_Date:Result_Date};
+    connection.query('INSERT INTO return_product SET ?',insertPR,function(err,result){
         if(err){
             console.log(err);
             return;
         }
         {
-            res.redirect('/ReturnProduct')
         };
+    });
+    connection.query('SELECT * FROM return_product', function(err, result){
+    for(var i = 0 ; i < req.body.item.length;i++){
+        if(parseFloat(req.body.item[i].Product_Amount)>0){
+            var Rp_ID = result[result.length-1];
+            var Po_ID = req.body.item[i].Po_ID;
+            var Product_ID = req.body.item[i].Product_ID;
+            var Amount = req.body.item[i].Amount;
+            var insertPRList = {Rp_ID: Rp_ID,Po_ID:Po_ID, Product_ID:Product_ID, Amount:Amount};
+            connecytion.query('INSERT INTO return_product_list SET ?', insertPRList, function(err, result2){
+                if(err){
+                    console.log(err);
+                    return;
+                }
+            });
+        }
+    }
+    for(var i = 0 ; i < req.body.item.length; i++){
+        connection.query('UPDATE Product SET Product_Balance = Product_Balance - '+ req.body.item[i].Amount + ' WHERE Product_ID = '+ req.body.item[i].Product_ID + '', function(err,result){
+        });           
+    }    
     });
 }
 
