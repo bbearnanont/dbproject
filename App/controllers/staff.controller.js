@@ -1,5 +1,6 @@
 //sql connection
 var mysql = require('mysql');
+var crypto  = require('crypto');
 var connection = mysql.createConnection({
 host: 'localhost',
 user: 'root',
@@ -14,6 +15,10 @@ else{
     console.log('Connected');
 }
 });
+function encrypt(s) {
+    return crypto.createHmac('sha512', s).digest('hex')
+}
+
 
 //function exports
 exports.showItem = function (req, res){
@@ -39,7 +44,7 @@ exports.showItem = function (req, res){
 });
 }
 
-exports.addItem = function (req,res){
+exports.StaffRegister = function (req,res){
     var inputEmail = req.body.Staff_Email;
     sess = req.session;
     connection.query("SELECT Staff_Email FROM staff WHERE Staff_Email="+"'"+inputEmail+"'",function(err,resultEmail){
@@ -52,20 +57,24 @@ exports.addItem = function (req,res){
             if(resultEmail.length>0)
             {
                 console.log('Duplicate email'); 
-                 res.redirect('/Staff');
+                 res.redirect('/StaffLogin');
             }
             else
             {
                 console.log('Accept');
-                var insert = {Staff_First_Name:req.body.Staff_First_Name, Staff_Last_Name:req.body.Staff_Last_Name, Department_ID:req.body.Department_ID, Phone_Number:req.body.Phone_Number, Staff_Email:inputEmail, Address:req.body.Address}
-                connection.query('INSERT INTO staff SET ?',insert,function(err2,result){
-                    if(err2){
-                        console.log(err2);
+               // var insert = {Staff_First_Name:req.body.Staff_First_Name, Staff_Last_Name:req.body.Staff_Last_Name, Department_ID:req.body.Department_ID, Phone_Number:req.body.Phone_Number, Staff_Email:inputEmail,Staff_Password:encrypt(req.body.password),Address:req.body.Address,Manger:0}
+                console.log('Accept',inputEmail,req.body.Staff_Password);
+                var insert = {Staff_First_Name:req.body.Staff_First_Name,Staff_Last_Name:req.body.Staff_Last_Name,Department_ID:req.body.Department_ID,Phone_Number:req.body.Phone_Number,Staff_Email:req.body.Staff_Email,Staff_Password:encrypt(req.body.Staff_Password),Manager:0,Address:req.body.Address}
+                connection.query("INSERT INTO staff SET ?",insert,function(err3,result3){
+                    if(err3)
+                    {
+                        console.log(err3);
                         return;
                     }
-                    sess.StaffEmail=inputEmail;
-                    sess.Staff=1;
-                    res.redirect('/addMaterial');
+                    else
+                    {
+                         res.redirect('/StaffLogin');
+                    }
                 });
             }
         }
