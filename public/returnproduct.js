@@ -18,15 +18,16 @@ $(document).ready(function(){
          var item = [];
          var obj;
          var index;
+         
          for(var i = 0 ; i < count; i++){
              index = i+1;
-             obj = {Product_ID:$("#col6_ID"+index).text(), Product_Amount:parseFloat($("#"+index).val())};
+             obj = {Po_ID:$("#col1_ID"+index).text(), Product_ID:$("#col6_ID"+index).text(), Product_Amount:parseFloat($("#"+index).val())};
              item.push(obj);
          }   
      $.ajax({
              type: 'POST',
-             url: '/addbuyorder', 
-             data : {"item":item, "Sup_ID":$("#Sup_ID").val(), "Order_Date":$("#Order_Date").val(), "Delivered_Date":$("#Delivered_Date").val(), "Staff_ID":$("#Staff_ID").val(), "Description":$("#Description").val()},
+             url: '/addreturnproduct', 
+             data : {"item":item, "Attempt_Date":$("#Attempt_Date").val(), "Result_Date":$("#Result_Date").val(), "Description":$("#Description").val()},
              success: function(data, textStatus, jqXHR) {
                  location.reload();
              },

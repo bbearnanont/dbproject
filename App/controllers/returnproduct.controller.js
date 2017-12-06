@@ -41,7 +41,9 @@ exports.showItem = function (req, res){
 }
 
 exports.addItem = function (req,res){
-    var insert = {PO_ID:req.body.PO_ID, Attempt_Date:req.body.Attempt_Date, Result_Date:req.body.Result_Date, Description:req.body.Description};
+    var Description = req.body.Description;
+    var Attempt_Date = req.body.Attempt_Date;
+    var Result_Date = req.body.Result_Date;
     connection.query('INSERT INTO return_product SET ?',insert,function(err,result){
         if(err){
             console.log(err);
