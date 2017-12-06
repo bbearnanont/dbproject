@@ -44,6 +44,7 @@ app.post('/addWarehouse', WarehouseController.addWarehouse);
 app.post('/deleteWarehouse', WarehouseController.deleteWarehouse);
 app.post('/updateWarehouse', WarehouseController.updateWarehouse);
 
+<<<<<<< HEAD
 //Purchase Order
 var PurchaseorderController = require('../controllers/purchaseorder.controller.js');
 app.get('/purchaseorder', PurchaseorderController.showItem);
@@ -53,3 +54,41 @@ app.post('/updatepurchaseorder', PurchaseorderController.updateItem);
 */
 
 };
+=======
+//Buy Order
+var BuyOrderController = require('../controllers/buyorder.controller.js');
+app.get('/BuyOrder', BuyOrderController.showItem);
+app.post('/addBuyOrder', BuyOrderController.addItem);
+app.post('/deleteBuyOrder', BuyOrderController.deleteItem);
+app.post('/updateBuyOrder', BuyOrderController.updateItem);
+
+//Material Order
+var MaterialOrderController = require('../controllers/materialorder.controller.js');
+app.get('/MaterialOrder', MaterialOrderController.showItem);
+app.post('/addMaterialOrder', MaterialOrderController.addItem);
+app.post('/deleteMaterialOrder', MaterialOrderController.deleteItem);
+app.post('/updateMaterialOrder', MaterialOrderController.updateItem);
+
+//Return Product
+var ReturnProductController = require('../controllers/returnproduct.controller.js');
+app.get('/ReturnProduct', ReturnProductController.showItem);
+app.post('/addReturnProduct', ReturnProductController.addItem);
+app.post('/deleteReturnProduct', ReturnProductController.deleteItem);
+app.post('/updateReturnProduct', ReturnProductController.updateItem);
+
+//Return Material
+var ReturnMaterialController = require('../controllers/returnmaterial.controller.js');
+app.get('/ReturnMaterial', ReturnMaterialController.showItem);
+app.post('/addReturnMaterial', ReturnMaterialController.addItem);
+app.post('/deleteReturnMaterial', ReturnMaterialController.deleteItem);
+app.post('/updateReturnMaterial', ReturnMaterialController.updateItem);
+
+//Work Order
+var WorkOrderController = require('../controllers/workorder.controller.js');
+app.get('/WorkOrder', WorkOrderController.showItem);
+app.post('/addWorkOrder', WorkOrderController.addItem);
+app.post('/deleteWorkOrder', WorkOrderController.deleteItem);
+app.post('/updateWorkOrder', WorkOrderController.updateItem);
+};
+
+>>>>>>> 1a3ac4f72730824f1283cfa2692ddfb3c870ac81
