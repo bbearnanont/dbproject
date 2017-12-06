@@ -14,8 +14,8 @@
         <h2>Return Material</h2>
         <form action="/addReturnMaterial" method="POST">
             <div class="col-md-12">
-                <select class='form-control'name= "Mo_ID">
-                  
+              <h4>Material Order ID</h4> 
+                <select class='form-control'name= "Mo_ID">                  
                   <%
                   for ( var i = 0; i < material_order.length; i++ )
                   {
@@ -23,8 +23,11 @@
                   }
                   %>
                   </select>
+             <h4>Attempt Date</h4>
                 <input class='form-control' type="date" name="Attempt_Date" placeholder="Attempt Date">
+             <h4>Result Date</h4>
                 <input class='form-control' type="date" name="Result_Date" placeholder="Result Date">
+             <h4>Description</h4>
                 <input class="form-control" type="text" name="Description" placeholder="Description">        
                 <button class='btn btn-primary' type="submit" value="Submit">Push</button>    
             </div>
@@ -81,6 +84,15 @@
       <form action = "/updateReturnMaterial" method="POST">
       <div class="modal-body">
           <input id="update_col1" type="text" class="form-control" name="update_col1" placeholder="Return Material ID" style="display:none">
+          <h4>Material Order ID</h4> 
+                <select id="update_col2" class='form-control'name= "update_col2">                  
+                  <%
+                  for ( var i = 0; i < material_order.length; i++ )
+                  {
+                      %><option value="<%=material_order[ i ].Mo_ID %>" ><%=material_order[i].Mo_ID%></option><%
+                  }
+                  %>
+                  </select>
           <h4>Attempt Date</h4>
            <input id="update_col3" type="date" class="form-control" name="update_col3" placeholder="Attempt Date">
           <h4>Result Date</h4>

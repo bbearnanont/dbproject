@@ -54,7 +54,7 @@ exports.addItem = function (req,res){
 }
 
 exports.updateItem = function (req,res){
-    var update = {Rm_ID:req.body.update_col1, Attempt_Date:req.body.update_col3, Result_Date:req.body.update_col4, Description:req.body.update_col5};
+    var update = {Rm_ID:req.body.update_col1, Mo_ID:req.body.update_col2, Attempt_Date:req.body.update_col3, Result_Date:req.body.update_col4, Description:req.body.update_col5};
     connection.query('UPDATE return_material SET ?' + 'WHERE Rm_ID = ' + update.Rm_ID, update, function(err,result){
         if(err){
             console.log(err);
