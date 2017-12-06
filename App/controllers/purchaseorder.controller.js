@@ -56,15 +56,21 @@ exports.addItem = function (req,res){
         }
         for(var i = 0 ; i < req.body.item.length ; i++){
             if(parseFloat(req.body.item[i].Quantity)> 0){
-        var insertPoList = {Po_ID:result[result.length-1].Po_ID, Product_ID:req.body.item[i].Product_ID, Product_Amount:req.body.item[i].Quantity, Description:req.body.item[i].Description};
+        var insertPoList = {Po_ID:result[result.length-1].Po_ID, Product_ID:req.body.item[i].Product_ID, Product_Amount:req.body.item[i].Quantity};
         connection.query('INSERT INTO Purchase_Order_List SET ?',insertPoList,function(err,result2){
             if(err){
                 console.log(err);
                 return;
             }
         });
-        }
-        console.log(i);
+        var insertPf = {Po_ID:result[result.length-1].Po_ID, Product_ID:req.body.item[i].Product_ID, Product_Amount:req.body.item[i].Quantity, Staff_ID:result[result.length-1].Staff_ID};
+        connection.query('INSERT INTO Product_Flow SET ?'+', Date = CURDATE()', insertPf, function(err, result2){
+            if(err){
+                console.log(err);
+                return;
+            }
+        });    
+    }
         }
         });
     res.redirect('/purchaseorder');

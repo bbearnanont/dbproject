@@ -13,15 +13,13 @@
         <div class="container">
         <h2>Return Product</h2>
             <div class="col-md-12">
-              <h4>Attempt Date</h4>
-                <input class='form-control' type="date" id="Attempt_Date" placeholder="Attempt Date">
               <h4>Result Date</h4>
                 <input class='form-control' type="date" id="Result_Date" placeholder="Result Date">
               <h4>Description</h4>
                 <input class="form-control" type="text" id="Description" placeholder="Description">        
             </div>
         </div>
-        <div class="container">
+        <div class="container" style="padding-top:30px">
           <div class="row">
             
               <table class="table table-hover">
@@ -83,7 +81,6 @@
 		    <thead>
 		        <tr>
 		            <th>Return Product ID</th>
-		            <th>Purchase Order ID</th>
 		            <th>Attempt Date</th>
                     <th>Result Date</th>
                     <th>Description</th>
@@ -106,7 +103,6 @@
 		        <%for(var i = 0 ; i < item.length;i++){%>
                     <tr> 
 					    <td id = "col1_ID<%=item[i].Rp_ID%>"><%=item[i].Rp_ID%></td>
-					   	<td id = "col2_ID<%=item[i].Rp_ID%>"><%=item[i].PO_ID%></td>
 					   	<td id = "col3_ID<%=item[i].Rp_ID%>"><%=formatDate(item[i].Attempt_Date)%></td>
                         <td id = "col4_ID<%=item[i].Rp_ID%>"><%=formatDate(item[i].Result_Date)%></td>
                         <td id = "col5_ID<%=item[i].Rp_ID%>"><%=item[i].Description%></td>
