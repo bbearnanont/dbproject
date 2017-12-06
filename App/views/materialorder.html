@@ -32,7 +32,7 @@
                         <%
                         for ( var i = 0; i < work_order.length; i++ )
                         {
-                            %><option value="<%=work_order[ i ].Wo_id %>" ><%=work_order[i].Head_Staff%></option><%
+                            %><option value="<%=work_order[ i ].Wo_id %>" ><%=work_order[i].Wo_id%></option><%
                         }
                         %>
                 </select>
@@ -95,6 +95,26 @@
            <input id="update_col1" type="text" class="form-control" name="update_col1" placeholder="Material Order ID" style="display:none">
            <h4>Date</h4>
            <input id="update_col2" type="date" class="form-control" name="update_col2" placeholder="Date">
+           <h4>Staff</h4>
+           <select id="update_col3" type="text" class='form-control'name= "update_col3">
+              
+              <%
+              for ( var i = 0; i < staff.length; i++ )
+              {
+                  %><option value="<%=staff[ i ].Staff_ID %>" ><%=staff[i].Staff_First_Name+' ' +staff[i].Staff_Last_Name%></option><%
+              }
+              %>
+            </select>
+           <h4>Work Order ID</h4>
+           <select id="update_col4" type="text" class='form-control'name= "update_col4">
+              
+              <%
+              for ( var i = 0; i < work_order.length; i++ )
+              {
+                  %><option value="<%=work_order[ i ].Wo_id %>" ><%=work_order[i].Wo_id%></option><%
+              }
+              %>
+            </select>
            <h4>Description</h4>
            <input id="update_col5" type="text" class="form-control" name="update_col5" placeholder="Description">
       </div>
