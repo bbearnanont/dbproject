@@ -47,9 +47,6 @@ exports.addItem = function (req,res){
             console.log(err);
             return;
         }
-        {
-            res.redirect('/ReturnMaterial')
-        };
     });
 }
 
