@@ -22,9 +22,11 @@ input{
 }
 
 a {
-	color: white;
-	font-style: italic;
+	color: rgb(255, 20, 20);
+	font-style: normal;
 }
+
+
 
 /*Keyframes*/
 @keyframes snow {
@@ -54,7 +56,7 @@ body {
 	background-image: url('snow.png'), url('snow3.png'), url('snow2.png');
 	
 	-webkit-animation: snow 20s linear infinite;
-	-moz-animation: snow 20s linear infinite;
+	-moz-animation: rgb(56, 33, 33) 20s linear infinite;
 	-ms-animation: snow 20s linear infinite;
 	animation: snow 20s linear infinite;
 }
@@ -84,4 +86,8 @@ body {
 
 #container p {
 	font: 12px/1.5 "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+}
+#navbar
+{
+	font-style: normal;
 }

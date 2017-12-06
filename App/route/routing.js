@@ -62,7 +62,7 @@ app.post('/addBuyOrder', BuyOrderController.addItem);
 app.post('/deleteBuyOrder', BuyOrderController.deleteItem);
 app.post('/updateBuyOrder', BuyOrderController.updateItem);
 	
-/*
+
 //Register
 var register = require('../controllers/register.controller.js');
 app.get('/register',register.registerCustomer);
@@ -71,7 +71,7 @@ app.post('/register',register.registerCustomerSave);
 var login = require('../controllers/login.controller.js');
 app.get('/login',login.loginForm);
 app.post('/login',login.loginUser);
-*/
+
 
 //Material Order
 var MaterialOrderController = require('../controllers/materialorder.controller.js');
@@ -102,6 +102,6 @@ app.post('/deleteWorkOrder', WorkOrderController.deleteItem);
 app.post('/updateWorkOrder', WorkOrderController.updateItem);
 
 //Demo Home Page
-var DemonController = require('../controllers/demo.controller.js');
-app.get('/Demo', DemonController.showItem);
+var HomeController = require('../controllers/home.controller.js');
+app.get('/Home', HomeController.showItem);
 };

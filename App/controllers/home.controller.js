@@ -18,7 +18,7 @@ else{
 //function exports
 exports.showItem = function(req,res)
 {
-    res.render('navbar.html');
+    res.render('home.html');
 }
 
 /*
