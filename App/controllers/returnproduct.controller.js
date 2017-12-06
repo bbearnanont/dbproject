@@ -24,7 +24,7 @@ exports.showItem = function (req, res){
     }
     else
     {
-    connection.query("SELECT pl.Po_ID AS Po_ID,pl.Product_ID AS Product_ID, pl.Product_Amount AS Product_Amount, po.Description AS Description,p.Product_Name ,p.Unit_Measure AS Unit_Measure FROM purchase_order po, purchase_order_list pl, product p WHERE po.Po_ID = pl.Po_ID AND p.Product_ID = pl.Product_ID",function(err2,result2)
+    connection.query("SELECT pl.Po_ID AS Po_ID,pl.Product_ID AS Product_ID, pl.Product_Amount AS Product_Amount, po.Description AS Description,p.Product_Name AS Product_Name,p.Unit_Measure AS Unit_Measure FROM purchase_order po, purchase_order_list pl, product p WHERE po.Po_ID = pl.Po_ID AND p.Product_ID = pl.Product_ID",function(err2,result2)
     {
         if(err2){
             res.send('Error' + err2);

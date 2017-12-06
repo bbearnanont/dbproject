@@ -63,7 +63,7 @@ exports.addItem = function (req,res){
                 return;
             }
         });
-        var insertPf = {Po_ID:result[result.length-1].Po_ID, Product_ID:req.body.item[i].Product_ID, Product_Amount:req.body.item[i].Quantity, Staff_ID:result[result.length-1].Staff_ID};
+        var insertPf = {Po_ID:result[result.length-1].Po_ID, Product_ID:req.body.item[i].Product_ID, Product_Amount:-Sreq.body.item[i].Quantity, Staff_ID:result[result.length-1].Staff_ID};
         connection.query('INSERT INTO Product_Flow SET ?'+', Date = CURDATE()', insertPf, function(err, result2){
             if(err){
                 console.log(err);

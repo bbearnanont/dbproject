@@ -54,6 +54,10 @@ exports.showItem = function (req, res){
 }
 
 exports.addItem = function (req,res){
+    var arr = [];
+    for(var i = 0 ; i < req.body.item.length; i++){
+        arr.push(i);
+    }
     console.log(req.body);
     var insertMo = {Date:req.body.Date, Staff_ID:req.body.Staff_ID, Wo_id:req.body.Wo_id, Description:req.body.Description};
     connection.query('INSERT INTO Material_Order SET ?',insertMo,function(err,result){
@@ -63,9 +67,9 @@ exports.addItem = function (req,res){
         }
     });
         connection.query("SELECT * FROM Material_Order", function(err, result){
-    for(var i = 0 ; i < req.body.item.length; i++){
+    arr.forEach(function(i){
         if(parseFloat(req.body.item[i].Quantity)>0){
-            var insertMf = {Mat_ID:req.body.item[i].Mat_ID, Mat_Amount:req.body.item[i].Quantity, Mo_ID:result[result.length-1].Mo_ID, Staff_ID:req.body.Staff_ID, Date:req.body.Date};
+            var insertMf = {Mat_ID:req.body.item[i].Mat_ID, Mat_Amount:-req.body.item[i].Quantity, Mo_ID:result[result.length-1].Mo_ID, Staff_ID:req.body.Staff_ID, Date:req.body.Date};
             connection.query("INSERT INTO Material_Flow SET ?",insertMf, function(err, result2){
                 if(err){
                     console.log(err);
@@ -73,30 +77,30 @@ exports.addItem = function (req,res){
                 }                
             });
         }
-    }
+    });
             
-    for(var i = 0 ; i < req.body.item.length; i++){
+    arr.forEach(function(i){
         if(parseFloat(req.body.item[i].Quantity)>0){
-            var insertMoList = {Mo_ID:result[result.length-1].Mo_ID, Mat_ID:req.body.item[i].Mat_ID, Mat_Amount:req.body.item[i].Quantity, Description:req.body.Description};
+            var insertMoList = {Mo_ID:result[result.length-1].Mo_ID, Mat_ID:req.body.item[i].Mat_ID, Mat_Amount:req.body.item[i].Quantity};
             connection.query("INSERT INTO Material_Order_List SET ?", insertMoList);
         }
-    }
     });
-    for(var i = 0 ; i < req.body.item.length; i++){
-        connection.query('UPDATE Material SET Mat_Balance = Mat_Balance + '+ req.body.item[i].Quantity + ' WHERE Mat_ID = '+ req.body.item[i].Mat_ID + '', function(err,result){
+    });
+    arr.forEach(function(i){
+        connection.query('UPDATE Material SET Mat_Balance = Mat_Balance - '+ req.body.item[i].Quantity + ' WHERE Mat_ID = '+ req.body.item[i].Mat_ID + '', function(err,result){
         if(err){
             console.log(err);
             return;
         }        
     });
-    }
+    });
             res.redirect('/MaterialOrder');
 }
 
 exports.updateItem = function (req,res){
     console.log(req.body.update_col1); 
-    var update = {Mo_ID:req.body.update_col1 , Date:req.body.update_col2, Staff_ID:req.body.update_col3, Wo_id:req.body.update_col4, Description:req.body.update_col5};
-    connection.query('UPDATE Material_Order SET ?'+ 'WHERE Mo_ID = ' + update.Mo_ID, update, function(err,result){
+    var update = {Date:req.body.update_col2, Description:req.body.update_col5};
+    connection.query('UPDATE Material_Order SET ?'+ 'WHERE Mo_ID = ' + req.body.update_col1, update, function(err,result){
         if(err){
             console.log(err);
             return;

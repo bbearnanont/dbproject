@@ -76,7 +76,7 @@ exports.addItem = function (req,res){
             
     for(var i = 0 ; i < req.body.item.length; i++){
         if(parseFloat(req.body.item[i].Quantity)>0){
-            var insertBoList = {Bo_ID:result[result.length-1].Bo_ID, Mat_ID:req.body.item[i].Mat_ID, Mat_Amount:req.body.item[i].Quantity, UNIT:req.body.item[i].UNIT, Description:req.body.Description};
+            var insertBoList = {Bo_ID:result[result.length-1].Bo_ID, Mat_ID:req.body.item[i].Mat_ID, Mat_Amount:req.body.item[i].Quantity, UNIT:req.body.item[i].UNIT};
             connection.query("INSERT INTO Buy_Order_List SET ?", insertBoList);
         }
     }
