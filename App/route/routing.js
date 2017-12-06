@@ -12,9 +12,9 @@ app.post('/updateProduct', ProductController.updateItem);
 //staff
 var StaffController = require('../controllers/staff.controller.js');
 app.get('/Staff', StaffController.showItem);
-app.post('/addStaff', StaffController.addItem);
-app.post('/deleteStaff', StaffController.deleteItem);
-app.post('/updateStaff', StaffController.updateItem);
+app.post('/StaffRegister', StaffController.addItem);
+/*app.post('/deleteStaff', StaffController.deleteItem);
+app.post('/updateStaff', StaffController.updateItem);*/
 
 //Supplier
 var SupplierController = require('../controllers/supplier.controller.js');
@@ -62,7 +62,7 @@ app.post('/addBuyOrder', BuyOrderController.addItem);
 app.post('/deleteBuyOrder', BuyOrderController.deleteItem);
 app.post('/updateBuyOrder', BuyOrderController.updateItem);
 	
-
+/*
 //Register
 var register = require('../controllers/register.controller.js');
 app.get('/register',register.registerCustomer);
@@ -71,6 +71,8 @@ app.post('/register',register.registerCustomerSave);
 var login = require('../controllers/login.controller.js');
 app.get('/login',login.loginForm);
 app.post('/login',login.loginUser);
+*/
+
 //Material Order
 var MaterialOrderController = require('../controllers/materialorder.controller.js');
 app.get('/MaterialOrder', MaterialOrderController.showItem);

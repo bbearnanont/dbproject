@@ -40,17 +40,40 @@ exports.showItem = function (req, res){
 }
 
 exports.addItem = function (req,res){
-    var insert = {Staff_First_Name:req.body.Staff_First_Name, Staff_Last_Name:req.body.Staff_Last_Name, Department_ID:req.body.Department_ID, Phone_Number:req.body.Phone_Number, Email:req.body.Email, Address:req.body.Address}
-    connection.query('INSERT INTO Staff SET ?',insert,function(err,result){
+    var inputEmail = req.body.Staff_Email;
+    sess = req.session;
+    connection.query("SELECT Staff_Email FROM staff WHERE Staff_Email="+"'"+inputEmail+"'",function(err,resultEmail){
         if(err){
             console.log(err);
             return;
         }
-        res.redirect('/Staff');
+        else
+        {
+            if(resultEmail.length>0)
+            {
+                console.log('Duplicate email'); 
+                 res.redirect('/Staff');
+            }
+            else
+            {
+                console.log('Accept');
+                var insert = {Staff_First_Name:req.body.Staff_First_Name, Staff_Last_Name:req.body.Staff_Last_Name, Department_ID:req.body.Department_ID, Phone_Number:req.body.Phone_Number, Staff_Email:inputEmail, Address:req.body.Address}
+                connection.query('INSERT INTO staff SET ?',insert,function(err2,result){
+                    if(err2){
+                        console.log(err2);
+                        return;
+                    }
+                    sess.StaffEmail=inputEmail;
+                    sess.Staff=1;
+                    res.redirect('/addMaterial');
+                });
+            }
+        }
+    
     });
 }
 
-exports.updateItem = function (req,res){
+/*exports.updateItem = function (req,res){
     var id = {Staff_ID:req.body.update_col1};
     var update = {Staff_ID:req.body.update_col1, Staff_First_Name:req.body.update_col2, Staff_Last_Name:req.body.update_col3, Department_ID:req.body.update_col4, Phone_Number:req.body.update_col5, Staff_Email:req.body.update_col6, Address:req.body.update_col7};
     connection.query('UPDATE Staff SET ?' + 'WHERE Staff_ID =' + update.Staff_ID, update, function(err,result){
@@ -72,4 +95,4 @@ exports.deleteItem = function (req,res){
         }
         res.redirect('/Staff');
     });
-}
+}*/

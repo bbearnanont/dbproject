@@ -57,7 +57,7 @@ exports.addItem = function (req,res){
             return;
         }
         {
-            res.redirect('/MaterialOrder')
+            res.redirect('/MaterialOrder');
         };
     });
 }

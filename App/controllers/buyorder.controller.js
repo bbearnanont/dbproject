@@ -64,7 +64,7 @@ exports.addItem = function (req,res){
         connection.query("SELECT * FROM Buy_Order", function(err, result){
     for(var i = 0 ; i < req.body.item.length; i++){
         if(parseFloat(req.body.item[i].Quantity)>0){
-            var insertBoList = {Bo_ID:result[i].Bo_ID, Mat_ID:req.body.item[i].Mat_ID, Mat_Amount:req.body.item[i].Quantity, UNIT:req.body.item[i].UNIT};
+            var insertBoList = {Bo_ID:result[result.length-1].Bo_ID, Mat_ID:req.body.item[i].Mat_ID, Mat_Amount:req.body.item[i].Quantity, UNIT:req.body.item[i].UNIT, Description:req.body.Description};
             connection.query("INSERT INTO Buy_Order_List SET ?", insertBoList);
         }
     }
@@ -77,7 +77,7 @@ exports.addItem = function (req,res){
         }        
     });
     }
-
+    res.redirect('/buyorder');
 }
 
 exports.updateItem = function (req,res){

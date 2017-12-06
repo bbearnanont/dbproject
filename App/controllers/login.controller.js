@@ -1,6 +1,7 @@
 //sql connection
 var mysql = require('mysql');
 var crypto  = require('crypto')
+//var popupsItem = require('popups');
 var granted = [ ];
 var sess ;
 var connection = mysql.createConnection({
@@ -60,7 +61,10 @@ exports.loginUser = function(req,res){
 		else
 		{
 				res.redirect('/login');
-		}
+			/*	popupS.alert({
+					    content: 'Email was duplicated'
+					});
+		*/}
 			});
 	
 	}

@@ -1,20 +1,38 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-        <script src='/jquery-3.1.1.min.js'></script>    
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-        <script src='/customer.js'></script>
-		<link rel="stylesheet" type="text/css" href="template.css">
-    </head>
+  <head>
+    <title>Message Board</title>
+    <link rel="stylesheet" 
+      href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <script src='https://icode.run/jquery.js'>
+    </script>
+  </head>
+  <body>
+
+<style>
+  form {
+    max-width: 320px;
+    display: block;
+    margin: 0 auto;
+    border: 2px solid hotpink;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 4px;
+    transition: all 0.5s linear;
+  }
+  form > * {
+    margin-bottom: 10px;
+  }
+  form:hover {
+    box-shadow: 0 0 10px gray;
+  }
+</style>
     <body>
         <div class="container">
-        <h2>Staff</h2>
-        <form action="/addStaff" method="POST">
-            <div class="col-md-12">
-              <h4>First Name</h4>
+        <form action="/StaffRegister" method="POST">
+        <h1>Staff Register</h1>
                 <input class="form-control" type="text" name="Staff_First_Name" placeholder="First Name">
                 <h4>Last Name</h4>
                 <input class='form-control' type="text" name="Staff_Last_Name" placeholder="Last Name">
@@ -29,16 +47,14 @@
                     </select>
                     <h4>Phone Number</h4>
                 <input class="form-control" type="tel" pattern="[0-9]{10}" name="Phone_Number" placeholder="Number [0-9]{10}">
-                <h4>Email</h4>
-                <input class='form-control' type="email" name="Email" placeholder="Email">
-                <h4>Address</h4>
+                <input class='form-control' type="email" name="Staff_Email" placeholder="Email">
+                <input class='form-control' type="password" name="Staff_Password" placeholder="Password">
                 <input class="form-control" type="text" name="Address" placeholder="Address">        
-                <button class='btn btn-primary' type="submit" value="Submit">Push</button>    
-            </div>
+                <button class='btn btn-primary' type="submit" value="Submit">Join Now</button>    
         </form>
         </div>
         <div class="container">
-	<div class="row">
+<!--	<div class="row">
 		<table class="table table-hover table-responsive">
 		    <thead>
 		        <tr>
@@ -133,3 +149,4 @@
 </div>
     </body>
 </html>
+-->
