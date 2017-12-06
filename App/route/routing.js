@@ -98,4 +98,8 @@ app.get('/WorkOrder', WorkOrderController.showItem);
 app.post('/addWorkOrder', WorkOrderController.addItem);
 app.post('/deleteWorkOrder', WorkOrderController.deleteItem);
 app.post('/updateWorkOrder', WorkOrderController.updateItem);
+
+//Demo Home Page
+var DemonController = require('../controllers/demo.controller.js');
+app.get('/Demo', DemonController.showItem);
 };
