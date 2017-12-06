@@ -37,7 +37,7 @@
                   <%
                   for ( var i = 0; i < staff.length; i++ )
                   {
-                      %><option value="<%=staff[ i ].Staff_ID %>" ><%=staff[i].Staff_First_Name+' ' +staff[i].Staff_Last_Name%></option><%
+                      %><option value="<%=staff[ i ].Staff_ID %>" ><%=staff[i].Staff_First_Name%> <%=staff[i].Staff_Last_Name%></option><%
                   }
                   %>
                   </select>
@@ -75,7 +75,6 @@
           
               return [year, month, day].join('-');
           }%>
-  <%for(var i = 0 ; i < item.length;i++){%>
 		        <%for(var i = 0 ; i < item.length;i++){%>
                     <tr> 
 					    <td id = "col1_ID<%=item[i].Wo_id%>"><%=item[i].Wo_id%></td>
@@ -103,8 +102,7 @@
       </div>
       <form action = "/updateWorkOrder" method="POST">
       <div class="modal-body">
-          <h4>Work Order ID</h4>
-           <input id="update_col1" type="text" class="form-control" name="update_col1" placeholder="Work Order ID">
+            <input id="update_col1" type="text" class="form-control" name="update_col1" placeholder="Work Order ID" style="display:none">
           <h4>Recieved Date</h4>
            <input id="update_col2" type="date" class="form-control" name="update_col2" placeholder="Recieved Date">
           <h4>Delivery Date</h4>
