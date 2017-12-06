@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <script src='/jquery-3.1.1.min.js'></script>    
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src='/customer.js'></script>
+        <script src="/shopping.js"></script>
+		<link rel="stylesheet" type="text/css" href="template.css">
+    </head>
+    <body>
+       <div class="container">
+           <div class="row">
+            <div class="col-md-12">
+                <input class="form-control" type="text" id="address" placeholder="Destination Address">
+                <input class='form-control' type="date" id="date" placeholder="Deliver Date">
+                <select class='form-control' id = "method">
+                  <option value="Road Freight">Road Freight</option>
+                  <option value="Sea Freight">Sea Freight</option>
+                  <option value="Air Freight">Air Freight</option>
+                </select>        
+            </div>
+           </div>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="panel panel-default panel-table">
+              <div class="panel-heading">
+                <div class="row">
+                  <div class="col col-xs-6">
+                    <h4 class="panel-title">Purchasing List</h4>
+                  </div>
+                  <div class="col col-xs-6 text-right">
+                  </div>
+                </div>
+              </div>
+              <div class="panel-body">
+      <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th class="text-center">Price</th>
+                        <th class="text-center">Unit</th>
+                        <th class="text-center">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%var i%>
+                    <%for(i = 0 ; i < product.length; i++){ var index = i+1;%>
+                    <tr>
+                        <td id = "col1_ID<%=index%>"><%=index%></td>
+                        <td class="col-sm-8 col-md-6">
+                        <div class="media">
+                            <div class="media-body">
+                                <h4 class="media-heading" id = "col2_ID<%=index%>"><%=product[i].Product_Name%></h4>
+                                <span>Status: </span>
+                                <%if(product[i].Product_Balance>0){%>    
+                                    <span class="text-success"><strong>In Stock</strong></span>
+                                <%}else{%>
+                                    <span class="text-danger"><strong>Out of Stock</strong></span> 
+                                    <%}%>
+                            </div>
+                        </div></td>
+                        <td class="col-sm-2 col-md-2" style="text-align: center">
+                        <input type="number" class="form-control onChange" id = "<%=index%>" value="0">
+                        </td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong id = "col3_ID<%=index%>">$<%=product[i].Unit_Price%></strong></td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong id = "col4_ID<%=index%>"><%=product[i].Unit_Measure%></strong></td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong>$</strong><strong id = "col5_ID<%=index%>">0</strong></td>
+                        <td id="col6_ID<%=index%>" style="display:none"><%=product[i].Product_ID%></td>
+                    </tr>
+                    <% } %>
+                    <tr>
+                        <td> </td>
+                        <td>   </td>
+                        <td></td>
+                        <td></td>
+                        <td><h3>Total</h3></td>
+                        <td class="text-right" id="alltotal"><h3><strong>$</strong><strong id ="allTotal">0</strong></h3></td>
+                    </tr>
+                    <tr>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>
+                        <button type="button" class="btn btn-success" id="checkout">
+                            Checkout <span class="glyphicon glyphicon-play"></span>
+                        </button></td>
+                    </tr>
+                </tbody>
+            </table>
+              </div>
+              <div class="panel-footer">
+                  <h4 id="count"><%=i%> Products in stocks  </h4>
+              </div>
+            </div>
+</div></div>
+</div>
+       </div>
+    </body>
+</html>

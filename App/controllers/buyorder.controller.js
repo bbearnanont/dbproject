@@ -39,7 +39,9 @@ exports.showItem = function (req, res){
                 }
                 else
                 {
-                    res.render('buyorder.html',{item:result,supplier:result2,staff:result3});
+                connection.query("SELECT * FROM Material",function(err4,result4){
+                    res.render('buyorder.html',{item:result,supplier:result2,staff:result3,material:result4});
+                });
                 }
             });
 
@@ -52,21 +54,35 @@ exports.showItem = function (req, res){
 }
 
 exports.addItem = function (req,res){
-    var insert = {Sup_ID:req.body.Sup_ID, Order_Date:req.body.Order_Date, Delivered_Date:req.body.Delivered_Date, Staff_ID:req.body.Staff_ID, Description:req.body.Description};
-    connection.query('INSERT INTO Buy_Order SET ?',insert,function(err,result){
+    var insertBo = {Sup_ID:req.body.Sup_ID, Order_Date:req.body.Order_Date, Delivered_Date:req.body.Delivered_Date, Staff_ID:req.body.Staff_ID, Description:req.body.Description};
+    connection.query("INSERT INTO Buy_Order SET ?", insertBo, function(err, result){
         if(err){
             console.log(err);
             return;
         }
-        {
-            res.redirect('/BuyOrder')
-        };
     });
+        connection.query("SELECT * FROM Buy_Order", function(err, result){
+    for(var i = 0 ; i < req.body.item.length; i++){
+        if(parseFloat(req.body.item[i].Quantity)>0){
+            var insertBoList = {Bo_ID:result[i].Bo_ID, Mat_ID:req.body.item[i].Mat_ID, Mat_Amount:req.body.item[i].Quantity, UNIT:req.body.item[i].UNIT};
+            connection.query("INSERT INTO Buy_Order_List SET ?", insertBoList);
+        }
+    }
+    });
+    for(var i = 0 ; i < req.body.item.length; i++){
+        connection.query('UPDATE Material SET Mat_Balance = Mat_Balance + '+ req.body.item[i].Quantity + ' WHERE Mat_ID = '+ req.body.item[i].Mat_ID + '', function(err,result){
+        if(err){
+            console.log(err);
+            return;
+        }        
+    });
+    }
+
 }
 
 exports.updateItem = function (req,res){
-    var update = {BO_ID:req.body.update_col1, Sup_ID:req.body.update_col2, Order_Date:req.body.update_col3, Delivered_Date:req.body.update_col4, Staff_ID:req.body.update_col5, Description:req.body.update_col6};
-    connection.query('UPDATE Buy_Order SET ?' + 'WHERE BO_ID = ' + update.BO_ID, update, function(err,result){
+    var update = {Bo_ID:req.body.update_col1, Sup_ID:req.body.update_col2, Order_Date:req.body.update_col3, Delivered_Date:req.body.update_col4, Staff_ID:req.body.update_col5, Description:req.body.update_col6};
+    connection.query('UPDATE Buy_Order SET ?' + 'WHERE Bo_ID = ' + update.Bo_ID, update, function(err,result){
         if(err){
             console.log(err);
             return;
@@ -76,7 +92,7 @@ exports.updateItem = function (req,res){
 }
 
 exports.deleteItem = function (req,res){
-    var del = {BO_ID:req.body.del_BO_ID};
+    var del = {Bo_ID:req.body.del_Bo_ID};
     connection.query('DELETE FROM Buy_Order WHERE ?', del, function(err,result){
         if(err){
             console.log(err);
