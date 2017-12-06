@@ -14,9 +14,13 @@
         <h2>Work Order</h2>
         <form action="/addWorkOrder" method="POST">
             <div class="col-md-12">
+              <h4>Recieved Date</h4>
                <input class='form-control' type="date" name="Recieved_Date" placeholder="Recieved Date">
+              <h4>Delivery Date</h4>
                 <input class='form-control' type="date" name="Delivery_Date" placeholder="Delivery Date">
+              <h4>Complete Date</h4>
                 <input class='form-control' type="date" name="Complete_Date" placeholder="Complete Date">
+              <h4>Purchase Order ID</h4>
                 <select class='form-control'name= "Po_ID">                  
                   <%
                   for ( var i = 0; i < po.length; i++ )
@@ -25,6 +29,7 @@
                   }
                   %>
                   </select>
+              <h4>Product</h4>    
                 <select class='form-control'name= "Product_ID">                  
                   <%
                   for ( var i = 0; i < product.length; i++ )
@@ -33,6 +38,7 @@
                   }
                   %>
                   </select>
+              <h4>Head Staff</h4>     
                 <select class='form-control'name= "Staff_ID">                  
                   <%
                   for ( var i = 0; i < staff.length; i++ )
@@ -41,6 +47,7 @@
                   }
                   %>
                   </select>
+              <h4>Description</h4>
                 <input class="form-control" type="text" name="Description" placeholder="Description">        
                 <button class='btn btn-primary' type="submit" value="Submit">Push</button>    
             </div>
@@ -110,7 +117,7 @@
           <h4>Complete Date</h4>
            <input id="update_col4" type="date" class="form-control" name="update_col4" placeholder="Complete Date">
           <h4>Purchase Order ID</h4>
-              <select class='form-control'name= "update_col5">                  
+              <select id="update_col5" class='form-control'name= "update_col5">                  
                   <%
                   for ( var i = 0; i < po.length; i++ )
                   {
@@ -119,7 +126,7 @@
                   %>
                   </select>
           <h4>Product</h4>      
-                <select class='form-control'name= "update_col6">                  
+                <select id="update_col6" class='form-control'name= "update_col6">                  
                   <%
                   for ( var i = 0; i < product.length; i++ )
                   {
@@ -128,7 +135,7 @@
                   %>
                   </select>
           <h4>Head Staff</h4> 
-                <select class='form-control'name= "update_col7">                  
+                <select id="update_col7" class='form-control'name= "update_col7">                  
                   <%
                   for ( var i = 0; i < staff.length; i++ )
                   {
