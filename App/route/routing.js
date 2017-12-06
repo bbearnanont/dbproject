@@ -62,7 +62,7 @@ app.post('/addBuyOrder', BuyOrderController.addItem);
 app.post('/deleteBuyOrder', BuyOrderController.deleteItem);
 app.post('/updateBuyOrder', BuyOrderController.updateItem);
 	
-
+/*
 //Register
 var register = require('../controllers/register.controller.js');
 app.get('/register',register.registerCustomer);
@@ -71,6 +71,8 @@ app.post('/register',register.registerCustomerSave);
 var login = require('../controllers/login.controller.js');
 app.get('/login',login.loginForm);
 app.post('/login',login.loginUser);
+*/
+
 //Material Order
 var MaterialOrderController = require('../controllers/materialorder.controller.js');
 app.get('/MaterialOrder', MaterialOrderController.showItem);
