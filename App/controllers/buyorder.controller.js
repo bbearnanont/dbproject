@@ -62,6 +62,18 @@ exports.addItem = function (req,res){
         }
     });
         connection.query("SELECT * FROM Buy_Order", function(err, result){
+    for(var i = 0 ; i < req.body.item.length;i++){
+        if(parseFloat(req.body.item[i].Quantity)>0){
+            var insertMf = {Mat_ID:req.body.item[i].Mat_ID, Mat_Amount:req.body.item[i].Quantity, Bo_ID:result[result.length-1].Bo_ID, Date:req.body.Order_Date, Staff_ID:req.body.Staff_ID};
+            connection.query("INSERT INTO Material_Flow SET ?",insertMf, function(err, result2){
+                if(err){
+                    console.log(err);
+                    return;
+                }                
+            });
+        }
+    }
+            
     for(var i = 0 ; i < req.body.item.length; i++){
         if(parseFloat(req.body.item[i].Quantity)>0){
             var insertBoList = {Bo_ID:result[result.length-1].Bo_ID, Mat_ID:req.body.item[i].Mat_ID, Mat_Amount:req.body.item[i].Quantity, UNIT:req.body.item[i].UNIT, Description:req.body.Description};
