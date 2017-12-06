@@ -52,7 +52,7 @@ exports.addItem = function (req,res){
 
 exports.updateItem = function (req,res){
     var id = {Staff_ID:req.body.update_col1};
-    var update = {Staff_ID:req.body.update_col1, Staff_First_Name:req.body.update_col2, Staff_Last_Name:req.body.update_col3, Department_ID:req.body.update_col4, Phone_Number:req.body.update_col5, Email:req.body.update_col6, Address:req.body.update_col7};
+    var update = {Staff_ID:req.body.update_col1, Staff_First_Name:req.body.update_col2, Staff_Last_Name:req.body.update_col3, Department_ID:req.body.update_col4, Phone_Number:req.body.update_col5, Staff_Email:req.body.update_col6, Address:req.body.update_col7};
     connection.query('UPDATE Staff SET ?' + 'WHERE Staff_ID =' + update.Staff_ID, update, function(err,result){
         if(err){
             console.log(err);

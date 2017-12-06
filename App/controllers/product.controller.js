@@ -6,6 +6,7 @@ user: 'root',
 password: '',
 database: 'dbproject'
 });
+var sess;
 connection.connect(function(error){
 if(!!error){
 console.log('Error');
@@ -17,13 +18,23 @@ else{
 
 //function exports
 exports.showItem = function (req, res){
-    connection.query("SELECT * FROM Product",function(err,result){
-    if(err){
-        res.send('Error' + err);
-        return;
+    sess = req.session;
+    if(sess.email)
+    {
+        console.log("Email"+sess.email+"Cus")
+        connection.query("SELECT * FROM Product",function(err,result){
+        if(err){
+            res.send('Error' + err);
+            return;
+        }
+        res.render('product.html',{item:result});    
+        });
     }
-    res.render('product.html',{item:result});    
-    });
+    else
+    {
+        console.log("Please login");
+        res.redirect('login');
+    }
 }
 
 exports.addItem = function (req,res){

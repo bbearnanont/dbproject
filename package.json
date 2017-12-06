@@ -8,7 +8,8 @@
     "ejs": "^2.5.7",
     "express": "^4.16.2",
     "mysql": "^2.15.0",
-    "nodemon": "^1.12.4"
+    "nodemon": "^1.12.4",
+    "express-session": "^1.7.6"
   },
   "devDependencies": {},
   "scripts": {

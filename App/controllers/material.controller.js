@@ -33,7 +33,7 @@ exports.addMaterial = function (req,res){
             console.log(err);
             return;
         }
-        res.redirect('/Material');
+        res.redirect('/Product');
     });
 }
 
