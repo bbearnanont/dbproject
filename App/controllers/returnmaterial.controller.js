@@ -6,6 +6,7 @@ user: 'root',
 password: '',
 database: 'dbproject'
 });
+var sess;
 connection.connect(function(error){
 if(!!error){
 console.log('Error');
@@ -17,27 +18,36 @@ else{
 
 //function exports
 exports.showItem = function (req, res){
-    connection.query("SELECT * FROM return_material",function(err,result){
-    if(err){
-        res.send('Error' + err);
-        return;
-    }
-    else
+    sess = req.session;
+    if(sess.Staff)
     {
-    connection.query("SELECT ml.Mo_ID AS Mo_ID,ml.Mat_ID AS Mat_ID, ml.Mat_Amount AS Mat_Amount, mo.Description AS Description, m.Mat_Name AS Mat_Name, m.Unit_Measure AS Unit_Measure FROM material_order mo, material_order_list ml, material m WHERE mo.Mo_ID = ml.Mo_ID AND m.Mat_ID = ml.Mat_ID",function(err2,result2)
-    {
-        if(err2){
-            res.send('Error' + err2);
+        connection.query("SELECT * FROM return_material",function(err,result){
+        if(err){
+            res.send('Error' + err);
             return;
         }
         else
-                res.render('returnmaterial.html',{item:result,material_order_list:result2});
-                
+        {
+        connection.query("SELECT ml.Mo_ID AS Mo_ID,ml.Mat_ID AS Mat_ID, ml.Mat_Amount AS Mat_Amount, mo.Description AS Description, m.Mat_Name AS Mat_Name, m.Unit_Measure AS Unit_Measure FROM material_order mo, material_order_list ml, material m WHERE mo.Mo_ID = ml.Mo_ID AND m.Mat_ID = ml.Mat_ID",function(err2,result2)
+        {
+            if(err2){
+                res.send('Error' + err2);
+                return;
             }
-        );
+            else
+                    res.render('returnmaterial.html',{item:result,material_order_list:result2});
+                    
+                }
+            );
+            }
         }
+        );  
     }
-    );  
+    else
+    {
+        console.log("Please login");
+        res.redirect('StaffLogin');
+    }
 }
 
 exports.addItem = function (req,res){

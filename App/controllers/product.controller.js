@@ -38,6 +38,7 @@ exports.showItem = function (req, res){
 }
 
 exports.addItem = function (req,res){
+    
     var insert = {Product_Name:req.body.Product_Name, Product_Balance:req.body.Product_Balance, Unit_Price:req.body.Unit_Price, Unit_Measure:req.body.Unit_Measure}
     connection.query('INSERT INTO Product SET ?',insert,function(err,result){
         if(err){

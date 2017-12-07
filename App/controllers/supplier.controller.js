@@ -17,13 +17,22 @@ else{
 
 //function exports
 exports.showItem = function (req, res){
-    connection.query("SELECT * FROM Supplier",function(err,result){
-    if(err){
-        res.send('Error' + err);
-        return;
+sess = req.session;
+    if(sess.Staff)
+    {
+        connection.query("SELECT * FROM Supplier",function(err,result){
+        if(err){
+            res.send('Error' + err);
+            return;
+        }
+        res.render('supplier.html',{item:result});    
+        });
     }
-    res.render('supplier.html',{item:result});    
-    });
+    else
+    {
+        console.log("Please login");
+        res.redirect('StaffLogin');
+    }
 }
 
 exports.addItem = function (req,res){

@@ -6,6 +6,7 @@ user: 'root',
 password: '',
 database: 'dbproject'
 });
+var condition;
 connection.connect(function(error){
 if(!!error){
 console.log('Error');
@@ -21,13 +22,20 @@ exports.showItem = function (req, res){
     console.log(sess);
     if(sess.Customer||sess.Staff)
     {
+        if(sess.Customer)
+        {
+            condition = "WHERE Customer_ID = +'"+sess.CustomerID+"'";
+        }
+        else
+        {
+            condition = "";
+        }
         connection.query("SELECT * FROM Product",function(err,result){
         if(err){
             res.send('Error' + err);
             return;
         }
-        console.log("SELECT * FROM purchase_order WHERE Customer_ID = "+"'"+sess.CustomerID+"'");
-            connection.query("SELECT * FROM purchase_order WHERE Customer_ID = "+"'"+sess.CustomerID+"'",function(err,result2){
+            connection.query("SELECT * FROM purchase_order "+condition,function(err,result2){
                 if(err){
                     res.send('Err'+err);
                     return;
@@ -45,7 +53,7 @@ exports.showItem = function (req, res){
 
 exports.addItem = function (req,res){
 
-        var insertPo = {Customer_ID:1, Staff_ID:1, Description:req.body.item[0].Description, Delivered_Date:req.body.item[0].Delivered_Date,Total:req.body.allTotal};
+        var insertPo = {Customer_ID:sess.CustomerID, Staff_ID:1, Description:req.body.item[0].Description, Delivered_Date:req.body.item[0].Delivered_Date,Total:req.body.allTotal};
     connection.query('INSERT INTO Purchase_Order SET ?' + ',`Order_Date` = CURDATE()', insertPo,function(err,result){
         if(err){
             console.log(err);
