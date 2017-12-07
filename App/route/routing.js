@@ -151,4 +151,9 @@ app.get('/longestWorkOrder',ReportAnalysisController.longestWorkOrder);
 var PfSelectProductController = require('../controllers/productflowselectproduct.controller.js');
 app.get('/productflowselectproduct',PfSelectProductController.showItem);
 app.post('/productflowselectproductShow',PfSelectProductController.showItem);
+
+var slow = require('../controllers/slowmove.controller.js');
+app.get('/reportstockslow',slow.show);
+app.post('/reportstockslow',slow.show);
+
 };
