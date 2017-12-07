@@ -124,5 +124,7 @@ var StockBalanceController = require('../controllers/stockbalance.controller.js'
 app.get('/StockBalance', StockBalanceController.showItem);
 
 //Show Most Return Product
+var ReportAnalysisController = require('../controllers/reportanalysis.controller.js');
+app.get('/mostreturnproduct',ReportAnalysisController.showMostReturnProduct);
 
 };
