@@ -23,6 +23,7 @@
                   <option value="Kilograms">Kilograms</option>
                   <option value="Tons">Tons</option>
                 </select>
+                <input class='form-control' type="text" name="Wh_ID" placeholder="WareHouse ID">
             </div>
             <div id="container">        
                 <button class='btn btn-primary' type="submit" value="Submit">Push</button>    
@@ -38,6 +39,7 @@
                 <th>Material Name</th>
                 <th>Balance</th>                
                 <th>Unit Measure</th>
+                <th>Wh_ID</th>
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
@@ -49,6 +51,7 @@
               <td id = "col2_ID<%=item[i].Mat_ID%>"><%=item[i].Mat_Name%></td>
               <td id = "col3_ID<%=item[i].Mat_ID%>"><%=item[i].Mat_Balance%></td>
               <td id = "col4_ID<%=item[i].Mat_ID%>"><%=item[i].Unit_Measure%></td>
+              <td id = "col5_ID<%=item[i].Mat_ID%>"><%=item[i].Wh_ID%></td>
                         <td><button type="button" data-toggle="modal" data-target="#edit" data-uid="<%=item[i].Mat_ID%>" class="update btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span></button></td>
                     <td><button type="button" data-toggle="modal" data-target="#delete" data-uid="<%=item[i].Mat_ID%>" class="delete btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span></button></td>
           </tr>
@@ -77,6 +80,8 @@
             <option value="Kilograms">Kilograms</option>
             <option value="Tons">Tons</option>
           </select>
+          <h4>Wh_ID</h4>
+          <input id="update_col5" type="number" class="form-control" name="update_col5" placeholder="Material Balance">
       </div>
       <div class="modal-footer">
         <button type="submit" id="up" class="btn btn-warning" value="submit">Update</button>

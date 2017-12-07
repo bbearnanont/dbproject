@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <script src='/jquery-3.1.1.min.js'></script>    
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src='/template.js'></script>
+        <link rel="stylesheet" type="text/css" href="template.css">
+    </head>
+    <body>
+        <div id="container">
+        <h2>Most Buy Order</h2></div>
+        <div class="container">
+	<div class="row">
+
+                    <div class="panel panel-primary product">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Most Buy Order</h3>
+                            <div class="pull-right">
+                                <span class="clickable filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
+                                    <i class="glyphicon glyphicon-filter"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filter Products" />
+                        </div>
+                        <table class="table table-hover" id="dev-table">
+                            <thead>
+                                <tr>
+                                    <th>Supplier ID</th>
+                                    <th>Product Name</th>
+                                    <th>Amount</th>
+                                    <th>Unit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    <%for(var i = 0 ; i < item.length;i++){%>
+                                        <tr> 
+                                            <td id = "col1_ID<%=item[i].Product_ID%>"><%=item[i].Sup_ID%></td>
+                                               <td id = "col2_ID<%=item[i].item_ID%>"><%=item[i].Sup_Name%></td>
+                                               <td id = "col3_ID<%=item[i].item_ID%>"><%=item[i].Amount%></td>
+                                               <td id = "col3_ID<%=item[i].item_ID%>"><%=item[i].UNIT%></td>
+                                        </tr>
+                                    <%}%>
+                                    <%for(var i = 0 ; i < item2.length;i++){%>
+                                        <tr> 
+                                            <td id = "col1_ID<%=item2[i].Product_ID%>"><%=item2[i].Sup_ID%></td>
+                                               <td id = "col2_ID<%=item2[i].item_ID%>"><%=item2[i].Sup_Name%></td>
+                                               <td id = "col3_ID<%=item2[i].item_ID%>"><%=item2[i].Amount%></td>
+                                               <td id = "col3_ID<%=item2[i].item_ID%>"><%=item2[i].UNIT%></td>
+                                        </tr>
+                                    <%}%>
+                                    <%for(var i = 0 ; i < item3.length;i++){%>
+                                        <tr> 
+                                            <td id = "col1_ID<%=item3[i].Sup_ID%>"><%=item3[i].Sup_ID%></td>
+                                               <td id = "col2_ID<%=item3[i].Sup_ID%>"><%=item3[i].Sup_Name%></td>
+                                               <td id = "col3_ID<%=item3[i].Sup_ID%>"><%=item3[i].Amount%></td>
+                                               <td id = "col3_ID<%=item3[i].Sup_ID%>"><%=item3[i].UNIT%></td>
+                                        </tr>
+                                    <%}%>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+	</div>
+</div>
+    </body>
+    <script>
+    /**
+*   I don't recommend using this plugin on large tables, I just wrote it to make the demo useable. It will work fine for smaller tables 
+*   but will likely encounter performance issues on larger tables.
+*
+*		<input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filter Developers" />
+*		$(input-element).filterTable()
+*		
+*	The important attributes are 'data-action="filter"' and 'data-filters="#table-selector"'
+*/
+(function(){
+    'use strict';
+	var $ = jQuery;
+	$.fn.extend({
+		filterTable: function(){
+			return this.each(function(){
+				$(this).on('keyup', function(e){
+					$('.filterTable_no_results').remove();
+					var $this = $(this), 
+                        search = $this.val().toLowerCase(), 
+                        target = $this.attr('data-filters'), 
+                        $target = $(target), 
+                        $rows = $target.find('tbody tr');
+                        
+					if(search == '') {
+						$rows.show(); 
+					} else {
+						$rows.each(function(){
+							var $this = $(this);
+							$this.text().toLowerCase().indexOf(search) === -1 ? $this.hide() : $this.show();
+						})
+						if($target.find('tbody tr:visible').size() === 0) {
+							var col_count = $target.find('tr').first().find('td').size();
+							var no_results = $('<tr class="filterTable_no_results"><td colspan="'+col_count+'">No results found</td></tr>')
+							$target.find('tbody').append(no_results);
+						}
+					}
+				});
+			});
+		}
+	});
+	$('[data-action="filter"]').filterTable();
+})(jQuery);
+
+$(function(){
+    // attach table filter plugin to inputs
+	$('[data-action="filter"]').filterTable();
+	
+	$('.container').on('click', '.panel-heading span.filter', function(e){
+		var $this = $(this), 
+			$panel = $this.parents('.panel');
+		
+		$panel.find('.panel-body').slideToggle();
+		if($this.css('display') != 'none') {
+			$panel.find('.panel-body input').focus();
+		}
+	});
+	$('[data-toggle="tooltip"]').tooltip();
+})
+    </script>
+</html>

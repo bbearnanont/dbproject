@@ -24,8 +24,13 @@
                   <option value="Kilograms">Kilograms</option>
                   <option value="Tons">Tons</option>
                   <option value="Pieces">Pieces</option>
+<<<<<<< HEAD
                 </select>
                 <div id="container">        
+=======
+                </select>        
+                <input class='form-control' type="text" name="Wh_ID" placeholder="WareHouse ID">
+>>>>>>> 3ced047f43b42947c6b1687597e88e8a43188a84
                 <button class='btn btn-primary' type="submit" value="Submit">Push</button>    
               </div> 
             </div>
@@ -41,6 +46,7 @@
 		            <th>Balance</th>
 		            <th>Unit Price</th>
                     <th>Unit Measure</th>
+                    <th>WareHouse ID</th>
 		            <th>Edit</th>
 		            <th>Delete</th>
 		        </tr>
@@ -48,11 +54,12 @@
 		    <tbody> 
 		        <%for(var i = 0 ; i < item.length;i++){%>
                     <tr> 
-					    <td id = "col1_ID<%=item[i].Product_ID%>"><%=item[i].Product_ID%></td>
-					   	<td id = "col2_ID<%=item[i].Product_ID%>"><%=item[i].Product_Name%></td>
-					   	<td id = "col3_ID<%=item[i].Product_ID%>"><%=item[i].Product_Balance%></td>
+					              <td id = "col1_ID<%=item[i].Product_ID%>"><%=item[i].Product_ID%></td>
+					   	          <td id = "col2_ID<%=item[i].Product_ID%>"><%=item[i].Product_Name%></td>
+					   	          <td id = "col3_ID<%=item[i].Product_ID%>"><%=item[i].Product_Balance%></td>
                         <td id = "col4_ID<%=item[i].Product_ID%>"><%=item[i].Unit_Price%></td>
                         <td id = "col5_ID<%=item[i].Product_ID%>"><%=item[i].Unit_Measure%></td>
+                        <td id = "col6_ID<%=item[i].Product_ID%>"><%=item[i].Wh_ID%></td>
                         <td><button type="button" data-toggle="modal" data-target="#edit" data-uid="<%=item[i].Product_ID%>" class="update btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span></button></td>
 		                <td><button type="button" data-toggle="modal" data-target="#delete" data-uid="<%=item[i].Product_ID%>" class="delete btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span></button></td>
 					</tr>
@@ -85,6 +92,9 @@
             <option value="Tons">Tons</option>
             <option value="Pieces">Pieces</option>
           </select>
+          <h4>WareHouse ID</h4>
+          <input id="update_col6" type="text" class="form-control" name="update_col6" placeholder="Unit Price">
+
         </div>
       <div class="modal-footer">
         <button type="submit" id="up" class="btn btn-warning" value="submit">Update</button>

@@ -21,7 +21,7 @@ exports.showItem = function (req, res){
     if(sess.Customer)
     {
         userlevel = 'customer';
-        connection.query("SELECT * FROM return_product rp, return_product_list rpl , purchase_order po WHERE rp.Rp_ID = rpl.Rp_ID AND po.Po_ID = rpl.Po_ID AND po.Customer_ID = "+sess.CustomerID,function(err,result){
+        connection.query("SELECT rp.Rp_ID, rp.Attempt_Date, rp.Result_Date, rp.Description FROM return_product rp, return_product_list rpl , purchase_order po WHERE rp.Rp_ID = rpl.Rp_ID AND po.Po_ID = rpl.Po_ID AND po.Customer_ID = "+sess.CustomerID,function(err,result){
         if(err){
             res.send('Error' + err);
             return;
@@ -34,7 +34,8 @@ exports.showItem = function (req, res){
                 res.send('Error' + err2);
                 return;
             }
-            else
+            else    
+                console.log("kuyyyyyyyyyyyy"+result[0].Description);
                     res.render('returnproduct.html',{item:result,purchase_order_list:result2, userlevel:userlevel});
                     
                 }
@@ -75,10 +76,9 @@ exports.showItem = function (req, res){
 }
 
 exports.addItem = function (req,res){
-    var Description = req.body.Description;
     var Attempt_Date = req.body.Attempt_Date;
     var Result_Date = req.body.Result_Date;
-    var insertPR = {Description:Description, Result_Date:Result_Date};    
+    var insertPR = {Description:req.body.Description, Result_Date:Result_Date};    
     var arr = [];
     for(var i = 0 ; i < req.body.item.length; i++){
         arr.push(i);
@@ -132,7 +132,6 @@ exports.addItem = function (req,res){
                 }); 
             });
         }
-        console.log("END LOOP");
     });
     arr.forEach(function(i){
         connection.query('UPDATE Product SET Product_Balance = Product_Balance + '+ req.body.item[i].Product_Amount + ' WHERE Product_ID = '+ req.body.item[i].Product_ID, function(err,result){

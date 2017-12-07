@@ -117,5 +117,38 @@ app.post('/MaterialFlowSelectMatShow', MaterialFlowSelectMatController.showItem)
 //MaterialFlowSelectDate
 var MaterialFlowSelectDateController = require('../controllers/matflowselectdate.controller.js');
 app.get('/MaterialFlowSelectDate',MaterialFlowSelectDateController.showItem);
+
+
+
+//PopularProduct
+var PopularProductController = require('../controllers/popularproduct.controller.js');
+app.get('/PopularProduct',PopularProductController.showItem);
+
+//BestSalesProduct
+var BestSalesProductController = require('../controllers/bestsalesproduct.controller.js');
+app.get('/BestSalesProduct',BestSalesProductController.showItem);
+
+//ProductFlowSelectDate
+var ProductFlowSelectDateController = require('../controllers/productflowselectdate.controller.js');
+app.get('/ProductFlowSelectDate',ProductFlowSelectDateController.showItem);
+
+
+
+
 app.post('/MaterialFlowSelectDateShow', MaterialFlowSelectDateController.showItem);
+
+//Show Stock Balance
+var StockBalanceController = require('../controllers/stockbalance.controller.js');
+app.get('/StockBalance', StockBalanceController.showItem);
+
+//Show Most Return Product
+var ReportAnalysisController = require('../controllers/reportanalysis.controller.js');
+app.get('/mostreturnproduct',ReportAnalysisController.showMostReturnProduct);
+app.get('/mostbuyorder',ReportAnalysisController.showMostBuyOrder);
+app.get('/mostpurchasecustomer',ReportAnalysisController.mostPurchaseCustomer);
+app.get('/longestWorkOrder',ReportAnalysisController.longestWorkOrder);
+
+var PfSelectProductController = require('../controllers/productflowselectproduct.controller.js');
+app.get('/productflowselectproduct',PfSelectProductController.showItem);
+app.post('/productflowselectproductShow',PfSelectProductController.showItem);
 };
