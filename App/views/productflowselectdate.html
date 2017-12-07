@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <script src='/jquery-3.1.1.min.js'></script>    
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        
+		<link rel="stylesheet" type="text/css" href="template.css">
+    </head>
+
+    <body>
+        <div class="container">
+          <form action="/ProductFlowSelectDate" method="GET">
+        <h2>Product Flow (Select by Duration Date)</h2>
+            <div class="col-md-12">
+              <h4>Start Date</h4>
+                <input class='form-control' type="date" name="Start_Date"  placeholder="Start Date">
+              <h4>End Date</h4>
+                <input class='form-control' type="date" name="End_Date" placeholder="End Date">
+
+                  <button class="btn btn-outline-dark" type="submit" value="Submit">Push</button>    
+            </div>
+           </form> 
+        </div>
+       
+<div class="container" style="padding-top:20px">
+	<div class="row">
+		<table class="table table-hover table-responsive updatetable">
+		    <thead>
+		        <tr>
+                <th>         Date        </th> 
+                <th>       Product       </th>    
+		            <th>        Amount       </th>		            
+		            <th>    Purchase Order   </th>
+                <th>Return Product Order</th>
+                            
+		        </tr>
+		    </thead>
+		    <tbody>
+            <%function formatDate(date) {
+              var d = new Date(date),
+                  month = '' + (d.getMonth() + 1),
+                  day = '' + d.getDate(),
+                  year = d.getFullYear();
+          
+              if (month.length < 2) month = '0' + month;
+              if (day.length < 2) day = '0' + day;
+          
+              return [year, month, day].join('-');
+          }%> 
+		        <%for(var i = 0 ; i < pf.length;i++){%>
+          <tr> 
+					    <td id = "col7_ID<%=pf[i].Pf_ID%>"><%=formatDate(pf[i].Date)%></td>
+              <td id = "col2_ID<%=pf[i].Pf_ID%>"><%=pf[i].Product_Name%></td>
+					   	<td id = "col3_ID<%=pf[i].Pf_ID%>"><%=pf[i].Product_Amount%></td>
+					   	<td id = "col4_ID<%=pf[i].Pf_ID%>"><%=pf[i].Po_ID%></td>
+              <td id = "col5_ID<%=pf[i].Pf_ID%>"><%=pf[i].RP_ID%></td>
+              
+					</tr>
+                <%}%>
+		      </tbody>
+	 	 </table>
+	 </div>
+  </div>
+</div>
+
+
+    </body>
+</html>

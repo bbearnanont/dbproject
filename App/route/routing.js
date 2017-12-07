@@ -117,6 +117,24 @@ app.post('/MaterialFlowSelectMatShow', MaterialFlowSelectMatController.showItem)
 //MaterialFlowSelectDate
 var MaterialFlowSelectDateController = require('../controllers/matflowselectdate.controller.js');
 app.get('/MaterialFlowSelectDate',MaterialFlowSelectDateController.showItem);
+<<<<<<< HEAD
+
+
+//PopularProduct
+var PopularProductController = require('../controllers/popularproduct.controller.js');
+app.get('/PopularProduct',PopularProductController.showItem);
+
+//BestSalesProduct
+var BestSalesProductController = require('../controllers/bestsalesproduct.controller.js');
+app.get('/BestSalesProduct',BestSalesProductController.showItem);
+
+//ProductFlowSelectDate
+var ProductFlowSelectDateController = require('../controllers/productflowselectdate.controller.js');
+app.get('/ProductFlowSelectDate',ProductFlowSelectDateController.showItem);
+
+
+
+=======
 app.post('/MaterialFlowSelectDateShow', MaterialFlowSelectDateController.showItem);
 
 //Show Stock Balance
