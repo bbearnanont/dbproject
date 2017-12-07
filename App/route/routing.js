@@ -103,4 +103,16 @@ app.get('/WorkOrder', WorkOrderController.showItem);
 app.post('/addWorkOrder', WorkOrderController.addItem);
 app.post('/deleteWorkOrder', WorkOrderController.deleteItem);
 app.post('/updateWorkOrder', WorkOrderController.updateItem);
+
+
+//AnalysisReport
+//MaterialFlowSelectMat
+var MaterialFlowSelectMatController = require('../controllers/matflowselectmat.controller.js');
+app.get('/MaterialFlowSelectMat',MaterialFlowSelectMatController.showItem);
+app.post('/MaterialFlowSelectMatShow', MaterialFlowSelectMatController.showItem);
+
+//MaterialFlowSelectDate
+var MaterialFlowSelectDateController = require('../controllers/matflowselectdate.controller.js');
+app.get('/MaterialFlowSelectDate',MaterialFlowSelectDateController.showItem);
+app.post('/MaterialFlowSelectDateShow', MaterialFlowSelectDateController.showItem);
 };

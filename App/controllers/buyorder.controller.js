@@ -98,7 +98,7 @@ exports.addItem = function (req,res){
         }        
     });
     }
-    res.redirect('/buyorder');
+    res.redirect('/BuyOrder');
 }
 
 exports.updateItem = function (req,res){
