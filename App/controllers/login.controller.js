@@ -46,20 +46,23 @@ exports.loginUser = function(req,res){
 	        	if (p==resultEmail[0].Customer_Password) 
 	        	{
 
-	        			sess.email = resultEmail[0].Customer_Email;
+	        			sess.CustomerEmail = resultEmail[0].Customer_Email;
+	        			sess.CustomerID = resultEmail[0].Customer_ID;
 	        			sess.Customer=1;
 	        			console.log("TEST session "+sess.email);
 
-						res.redirect('/Product');
+						res.redirect('/PurchaseOrder');
 	        	}
 	        	else
 	        	{
+	        		console.log("Wrong Passsword");
 						res.redirect('/CustomerLogin');
 	        	}
 	        }
 		}
 		else
 		{
+				console.log("Wrong Email");
 				res.redirect('/CustomerLogin');
 			/*	popupS.alert({
 					    content: 'Email was duplicated'

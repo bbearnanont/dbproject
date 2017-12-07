@@ -19,7 +19,7 @@ else{
 //function exports
 exports.showItem = function (req, res){
     sess = req.session;
-    if(sess.Customer||sess.Staff)
+    if(sess.Staff)
     {
         console.log("Email"+sess.email+"Cus")
         connection.query("SELECT * FROM Product",function(err,result){
@@ -33,7 +33,7 @@ exports.showItem = function (req, res){
     else
     {
         console.log("Please login");
-        res.redirect('CustomerLogin');
+        res.redirect('StaffLogin');
     }
 }
 

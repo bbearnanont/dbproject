@@ -14,43 +14,52 @@ else{
     console.log('Connected');
 }
 });
-
+var sses;
 //function exports
 exports.showItem = function (req, res){
-    connection.query("SELECT * FROM Buy_Order ",function(err,result){
-    if(err){
-        res.send('Error' + err);
-        return;
-    }
-    else
+    sess = req.session;
+    console.log(sess);
+    if(sess.Staff)
     {
-    connection.query("SELECT Sup_Name, Sup_ID FROM supplier",function(err2,result2) 
-    {
-        if(err2){
-            res.send('Error' + err2);
+        connection.query("SELECT * FROM Buy_Order ",function(err,result){
+        if(err){
+            res.send('Error' + err);
             return;
         }
         else
         {
-            connection.query("SELECT Staff_ID,Staff_First_Name,Staff_Last_Name FROM staff",function(err3,result3){
-                if(err3){
-                    res.send('Error' + err3);
-                    return;
-                }
-                else
-                {
-                connection.query("SELECT * FROM Material",function(err4,result4){
-                    res.render('buyorder.html',{item:result,supplier:result2,staff:result3,material:result4});
+        connection.query("SELECT Sup_Name, Sup_ID FROM supplier",function(err2,result2) 
+        {
+            if(err2){
+                res.send('Error' + err2);
+                return;
+            }
+            else
+            {
+                connection.query("SELECT Staff_ID,Staff_First_Name,Staff_Last_Name FROM staff",function(err3,result3){
+                    if(err3){
+                        res.send('Error' + err3);
+                        return;
+                    }
+                    else
+                    {
+                    connection.query("SELECT * FROM Material",function(err4,result4){
+                        res.render('buyorder.html',{item:result,supplier:result2,staff:result3,material:result4});
+                    });
+                    }
                 });
-                }
-            });
+
+            }
 
         }
-
+        );  
+        };    
+        });
     }
-    );  
-    };    
-    });
+    else
+    {
+        res.redirect('StaffLogin');
+    }
 }
 
 exports.addItem = function (req,res){

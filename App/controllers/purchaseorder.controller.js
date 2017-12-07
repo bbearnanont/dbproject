@@ -17,22 +17,34 @@ else{
 
 //function exports
 exports.showItem = function (req, res){
-    connection.query("SELECT * FROM Product",function(err,result){
-    if(err){
-        res.send('Error' + err);
-        return;
-    }
-        connection.query("SELECT * FROM purchase_order",function(err,result2){
-            if(err){
-                res.send('Err'+err);
-                return;
-            }
-            res.render('purchaseorder.html',{product:result, po:result2});
+    sess = req.session;
+    console.log(sess);
+    if(sess.Customer||sess.Staff)
+    {
+        connection.query("SELECT * FROM Product",function(err,result){
+        if(err){
+            res.send('Error' + err);
+            return;
+        }
+        console.log("SELECT * FROM purchase_order WHERE Customer_ID = "+"'"+sess.CustomerID+"'");
+            connection.query("SELECT * FROM purchase_order WHERE Customer_ID = "+"'"+sess.CustomerID+"'",function(err,result2){
+                if(err){
+                    res.send('Err'+err);
+                    return;
+                }
+                console.log(result2);
+                res.render('purchaseorder.html',{product:result, po:result2});
+            });
         });
-    });
+    }
+    else
+    {
+        res.redirect('CustomerLogin');
+    }
 }
 
 exports.addItem = function (req,res){
+
         var insertPo = {Customer_ID:1, Staff_ID:1, Description:req.body.item[0].Description, Delivered_Date:req.body.item[0].Delivered_Date,Total:req.body.allTotal};
     connection.query('INSERT INTO Purchase_Order SET ?' + ',`Order_Date` = CURDATE()', insertPo,function(err,result){
         if(err){
