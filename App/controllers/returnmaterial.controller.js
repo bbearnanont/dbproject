@@ -41,10 +41,6 @@ exports.showItem = function (req, res){
 }
 
 exports.addItem = function (req,res){
-<<<<<<< HEAD
-    var insert = {Mo_ID:req.body.Mo_ID, Attempt_Date:req.body.Attempt_Date, Result_Date:req.body.Result_Date, Description:req.body.Description};
-    connection.query("INSERT INTO return_material SET ?",insert,function(err,result){
-=======
     var Description = req.body.Description;
     var Result_Date = req.body.Result_Date;
     var insertMR = {Description:Description, Result_Date:Result_Date};    
@@ -54,7 +50,6 @@ exports.addItem = function (req,res){
     }
 
     connection.query('INSERT INTO return_material SET ? ,'+ 'Attempt_Date = CURDATE()',insertPR,function(err,result){
->>>>>>> c8747ba360053cabcf05e7309e61d40034bad58d
         if(err){
             console.log(err);
             return;
@@ -86,9 +81,6 @@ exports.addItem = function (req,res){
                 }       
             });
         }
-<<<<<<< HEAD
-            res.redirect('/ReturnMaterial');
-=======
         {
         };
     });
@@ -144,7 +136,6 @@ exports.addItem = function (req,res){
     });
     });
     res.redirect('/returnmaterial');
->>>>>>> c8747ba360053cabcf05e7309e61d40034bad58d
 }
 
 exports.updateItem = function (req,res){

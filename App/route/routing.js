@@ -67,23 +67,14 @@ app.post('/deleteBuyOrder', BuyOrderController.deleteItem);
 app.post('/updateBuyOrder', BuyOrderController.updateItem);
 	
 
-<<<<<<< HEAD
-//Register
-=======
 //Register Customer
->>>>>>> c8747ba360053cabcf05e7309e61d40034bad58d
 var register = require('../controllers/register.controller.js');
 app.get('/register',register.registerCustomer);
 app.post('/register',register.registerCustomerSave);
 
 var login = require('../controllers/login.controller.js');
-<<<<<<< HEAD
-app.get('/login',login.loginForm);
-app.post('/login',login.loginUser);
-=======
 app.get('/CustomerLogin',login.loginForm);
 app.post('/CustomerLogin',login.loginUser);
->>>>>>> c8747ba360053cabcf05e7309e61d40034bad58d
 
 
 //Material Order
