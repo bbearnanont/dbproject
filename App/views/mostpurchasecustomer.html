@@ -31,17 +31,17 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Product Name</th>
-                                    <th>Amount</th>
+                                    <th>Customer Name</th>
+                                    <th>Purchase Order Count</th>
                                 </tr>
                             </thead>
                             <tbody>
                                     <%for(var i = 0 ; i < item.length;i++){%>
                                         <% if(i < item.length){ %>
                                         <tr> 
-                                            <td id = "col1_ID<%=item[i].Product_ID%>"><%=item[i].Product_ID%></td>
-                                               <td id = "col2_ID<%=item[i].Product_ID%>"><%=item[i].Product_Name%></td>
-                                               <td id = "col3_ID<%=item[i].Product_ID%>"><%=item[i].Amount%></td>
+                                            <td id = "col1_ID<%=item[i].Product_ID%>"><%=item[i].Customer_ID%></td>
+                                               <td id = "col2_ID<%=item[i].Product_ID%>"><%=(item[i].Customer_FirstName+" "+item[i].Customer_LastName)%></td>
+                                               <td id = "col3_ID<%=item[i].Product_ID%>"><%=item[i].Po_Count%></td>
                                         </tr>
                                         <% } %>
 

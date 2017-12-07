@@ -30,21 +30,36 @@
                         <table class="table table-hover" id="dev-table">
                             <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <th>Supplier ID</th>
                                     <th>Product Name</th>
                                     <th>Amount</th>
+                                    <th>Unit</th>
                                 </tr>
                             </thead>
                             <tbody>
                                     <%for(var i = 0 ; i < item.length;i++){%>
-                                        <% if(i < item.length){ %>
                                         <tr> 
-                                            <td id = "col1_ID<%=item[i].Product_ID%>"><%=item[i].Product_ID%></td>
-                                               <td id = "col2_ID<%=item[i].Product_ID%>"><%=item[i].Product_Name%></td>
-                                               <td id = "col3_ID<%=item[i].Product_ID%>"><%=item[i].Amount%></td>
+                                            <td id = "col1_ID<%=item[i].Product_ID%>"><%=item[i].Sup_ID%></td>
+                                               <td id = "col2_ID<%=item[i].item_ID%>"><%=item[i].Sup_Name%></td>
+                                               <td id = "col3_ID<%=item[i].item_ID%>"><%=item[i].Amount%></td>
+                                               <td id = "col3_ID<%=item[i].item_ID%>"><%=item[i].UNIT%></td>
                                         </tr>
-                                        <% } %>
-
+                                    <%}%>
+                                    <%for(var i = 0 ; i < item2.length;i++){%>
+                                        <tr> 
+                                            <td id = "col1_ID<%=item2[i].Product_ID%>"><%=item2[i].Sup_ID%></td>
+                                               <td id = "col2_ID<%=item2[i].item_ID%>"><%=item2[i].Sup_Name%></td>
+                                               <td id = "col3_ID<%=item2[i].item_ID%>"><%=item2[i].Amount%></td>
+                                               <td id = "col3_ID<%=item2[i].item_ID%>"><%=item2[i].UNIT%></td>
+                                        </tr>
+                                    <%}%>
+                                    <%for(var i = 0 ; i < item3.length;i++){%>
+                                        <tr> 
+                                            <td id = "col1_ID<%=item3[i].Sup_ID%>"><%=item3[i].Sup_ID%></td>
+                                               <td id = "col2_ID<%=item3[i].Sup_ID%>"><%=item3[i].Sup_Name%></td>
+                                               <td id = "col3_ID<%=item3[i].Sup_ID%>"><%=item3[i].Amount%></td>
+                                               <td id = "col3_ID<%=item3[i].Sup_ID%>"><%=item3[i].UNIT%></td>
+                                        </tr>
                                     <%}%>
                             </tbody>
                         </table>
