@@ -81,8 +81,6 @@ exports.addItem = function (req,res){
                 }       
             });
         }
-        {
-        };
     });
     connection.query('SELECT * FROM return_material', function(err, result){
     arr.forEach(function(i){
