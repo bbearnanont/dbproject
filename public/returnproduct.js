@@ -27,7 +27,7 @@ $(document).ready(function(){
      $.ajax({
              type: 'POST',
              url: '/addreturnproduct', 
-             data : {"item":item, "Attempt_Date":$("#Attempt_Date").val(), "Result_Date":$("#Result_Date").val(), "Description":$("#Description").val()},
+             data : {"item":item, "Result_Date":$("#Result_Date").val(), "Description":$("#Description").val()},
              success: function(data, textStatus, jqXHR) {
                  location.reload();
              },

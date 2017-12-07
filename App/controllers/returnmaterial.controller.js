@@ -24,14 +24,14 @@ exports.showItem = function (req, res){
     }
     else
     {
-    connection.query("SELECT Mo_ID FROM material_order",function(err2,result2)
+    connection.query("SELECT ml.Mo_ID AS Mo_ID,ml.Mat_ID AS Mat_ID, ml.Mat_Amount AS Mat_Amount, mo.Description AS Description, m.Mat_Name AS Mat_Name, m.Unit_Measure AS Unit_Measure FROM material_order mo, material_order_list ml, material m WHERE mo.Mo_ID = ml.Mo_ID AND m.Mat_ID = ml.Mat_ID",function(err2,result2)
     {
         if(err2){
             res.send('Error' + err2);
             return;
         }
         else
-                res.render('returnmaterial.html',{item:result,material_order:result2});
+                res.render('returnmaterial.html',{item:result,material_order_list:result2});
                 
             }
         );
@@ -41,8 +41,20 @@ exports.showItem = function (req, res){
 }
 
 exports.addItem = function (req,res){
+<<<<<<< HEAD
     var insert = {Mo_ID:req.body.Mo_ID, Attempt_Date:req.body.Attempt_Date, Result_Date:req.body.Result_Date, Description:req.body.Description};
     connection.query("INSERT INTO return_material SET ?",insert,function(err,result){
+=======
+    var Description = req.body.Description;
+    var Result_Date = req.body.Result_Date;
+    var insertMR = {Description:Description, Result_Date:Result_Date};    
+    var arr = [];
+    for(var i = 0 ; i < req.body.item.length; i++){
+        arr.push(i);
+    }
+
+    connection.query('INSERT INTO return_material SET ? ,'+ 'Attempt_Date = CURDATE()',insertPR,function(err,result){
+>>>>>>> c8747ba360053cabcf05e7309e61d40034bad58d
         if(err){
             console.log(err);
             return;
@@ -74,7 +86,65 @@ exports.addItem = function (req,res){
                 }       
             });
         }
+<<<<<<< HEAD
             res.redirect('/ReturnMaterial');
+=======
+        {
+        };
+    });
+    connection.query('SELECT * FROM return_material', function(err, result){
+    arr.forEach(function(i){
+        var Rm_ID = result[result.length-1].Rm_ID;
+        var Mo_ID = req.body.item[i].Mo_ID;
+        var Mat_ID = req.body.item[i].Mat_ID;
+        var Amount = req.body.item[i].Mat_Amount;
+        if(parseFloat(req.body.item[i].Mat_Amount)>0){
+            var insertMRList = {Rm_ID: Rm_ID,Mo_ID:Mo_ID, Mat_ID:Mat_ID, Mat_Amount:Amount};
+            connection.query('INSERT INTO return_material_list SET ?', insertMRList, function(err, result2){
+                if(err){
+                    console.log(err);
+                    return;
+                }
+            });
+            var insertMFlow = {Mat_ID:Mat_ID, Matt_Amount:Amount, Rm_ID:Rm_ID, Staff_ID:1};
+            connection.query('INSERT INTO Material_Flow SET ?'+', Date = CURDATE()',insertMFlow,function(err, result2){
+                if(err){
+                    console.log(err);
+                    return;
+                }
+            });    
+          
+        }
+    });
+
+    arr.forEach(function(i){
+        if(parseFloat(req.body.item[i].Mat_Amount)>0){
+            connection.query('SELECT * FROM return_material_list',function(err, result2){
+                if(err){
+                    console.log(err);
+                    return;
+                }
+                connection.query('UPDATE Purchase_order_list SET Mat_Amount = Mat_Amount - '+ req.body.item[i].Mat_Amount + ' WHERE Mat_ID = '+ req.body.item[i].Mat_ID + ' AND Mo_ID = ' + result2[result2.length-1].Mo_ID, function(err, result3){
+                    if(err){
+                        console.log(err);
+                        return;
+                    }
+                }); 
+            });
+        }
+        console.log("END LOOP");
+    });
+    arr.forEach(function(i){
+        connection.query('UPDATE Material SET Mat_Balance = Mat_Balance + '+ req.body.item[i].Mat_Amount + ' WHERE Mat_ID = '+ req.body.item[i].Mat_ID, function(err,result){
+            if(err){
+                console.log(err);
+                return;
+            }
+        });
+    });
+    });
+    res.redirect('/returnmaterial');
+>>>>>>> c8747ba360053cabcf05e7309e61d40034bad58d
 }
 
 exports.updateItem = function (req,res){

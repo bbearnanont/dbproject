@@ -99,6 +99,30 @@
                     </tr>
                 </tbody>
             </table>
+            <table class="table table-hover table-responsive">
+            <thead>
+                <tr>
+                    <th>Po_ID</th>
+                    <th>Customer_ID</th>
+                    <th>Order_Date</th>
+                    <th>Staff_ID</th>
+                    <th>Description</th>
+                    <th>Delivered_Date</th>
+                </tr>
+            </thead>
+            <tbody> 
+                <%for(var i = 0 ; i < po.length;i++){%>
+                    <tr> 
+                        <td id = "col1_ID<%=po[i].Product_ID%>"><%=po[i].Po_ID%></td>
+                        <td id = "col2_ID<%=po[i].Product_ID%>"><%=po[i].Customer_ID%></td>
+                        <td id = "col3_ID<%=po[i].Product_ID%>"><%=po[i].Order_Date%></td>
+                        <td id = "col4_ID<%=po[i].Product_ID%>"><%=po[i].Staff_ID%></td>
+                        <td id = "col5_ID<%=po[i].Product_ID%>"><%=po[i].Description%></td>
+                        <td id = "col6_ID<%=po[i].Product_ID%>"><%=po[i].Delevered_Date%></td>
+                    </tr>
+                <%}%>
+            </tbody>
+        </table>
               </div>
               <div class="panel-footer">
                   <h4 id="count" style="display:none" ><%=i%> Products in stocks  </h4>

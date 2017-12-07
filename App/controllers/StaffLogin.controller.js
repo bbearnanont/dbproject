@@ -23,14 +23,14 @@ function encrypt(s) {
 }
 exports.loginForm = function(req,res)
 {
-	res.render('login.html');
+	res.render('StaffLogin.html');
 }
 exports.loginUser = function(req,res){
 		//console.log(req.body);
 		sess = req.session;
 		var p = encrypt(req.body.password);
-		console.log(req.body.user);
-		var sql = "SELECT * FROM customer WHERE Customer_Email="+"'"+req.body.user+"'";
+		console.log("USER",req.body.user,"Pass",req.body.password,"Encrypt",p);
+		var sql = "SELECT * FROM staff WHERE Staff_Email="+"'"+req.body.user+"'";
 		connection.query(sql,function(err,resultEmail){
 		if(resultEmail.length>0)
 		{
@@ -43,27 +43,26 @@ exports.loginUser = function(req,res){
 				//console.log(p,resultEmail[0].Customer_Password);
 	        	//console.log(resultEmail.length);
 	        	console.log(req.session);
-	        	if (p==resultEmail[0].Customer_Password) 
+	        	if (p==resultEmail[0].Staff_Password) 
 	        	{
 
-	        			sess.CustomerEmail = resultEmail[0].Customer_Email;
-	        			sess.CustomerID = resultEmail[0].Customer_ID;
-	        			sess.Customer=1;
+	        			sess.email = resultEmail[0].Staff_Email;
+	        			sess.Staff=1;
 	        			console.log("TEST session "+sess.email);
 
-						res.redirect('/PurchaseOrder');
+						res.redirect('/Material');
 	        	}
 	        	else
 	        	{
-	        		console.log("Wrong Passsword");
-						res.redirect('/CustomerLogin');
+	        			console.log("Wrong Password");
+						res.redirect('/StaffLogin');
 	        	}
 	        }
 		}
 		else
 		{
-				console.log("Wrong Email");
-				res.redirect('/CustomerLogin');
+				console.log("Wrong email");
+				res.redirect('/StaffLogin');
 			/*	popupS.alert({
 					    content: 'Email was duplicated'
 					});

@@ -13,6 +13,7 @@
 		<link rel="stylesheet" type="text/css" href="template.css">
     </head>
     <body>
+<<<<<<< HEAD
         <div class="container">
         <h2>Buy Order</h2>
             <div class="col-md-12">
@@ -40,8 +41,19 @@
                   </select>
                <h4>Description</h4>
                 <input class="form-control" type="text" id="Description" placeholder="Description">        
+=======
+        <div id="container">
+        <h2>Return Material</h2></div>
+        <div id="contain">   
+            <div class="col-md-12">
+             <h4>Result Date</h4>
+                <input class='form-control' type="date" id="Result_Date" name="Result_Date" placeholder="Result Date">
+             <h4>Description</h4>
+                <input class="form-control" type="text" id="Description" name="Description" placeholder="Description">  
+>>>>>>> c8747ba360053cabcf05e7309e61d40034bad58d
             </div>
         </div>
+<<<<<<< HEAD
         <div class="container" style="padding-top:20px">
           <div class="row">
             <table class="table table-hover">
@@ -143,6 +155,101 @@
                 <%}%>
 		    </tbody>
 		</table>
+=======
+        <div class="container">
+          <div class="row">
+            
+              <table class="table table-hover">
+                  <thead>
+                      <tr>
+                          <th></th>
+                          <th>Po_ID</th>
+                          <th>Product_Name</th>
+                          <th></th>
+                          <th>Return Amount</th>
+                          <th>Amount</th>
+                          <th class="text-center">Unit</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <%var i%>
+                      <%for(i = 0 ; i < material_order_list.length; i++){ var index = i+1;%>
+                      <tr>
+                        <td></td>
+                          <td id = "col1_ID<%=index%>"><%=material_order_list[i].Mo_ID%></td>
+                          <td class="col-sm-8 col-md-6">
+                          <div class="media">
+                              <div class="media-body">
+                                  <h4 class="media-heading" id = "col2_ID<%=index%>"><%=material_order_list[i].Mat_Name%></h4>
+                              </div>
+                          </div>
+                          </td>
+  
+                          <td></td>
+                          <td class="col-sm-2 col-md-2" style="text-align: center">
+                          <input type="number" min="0" class="form-control onChange" id = "<%=index%>" value="0">
+                          </td>
+                          <td class="col-sm-1 col-md-1 text-center"><strong id = "col4_ID<%=index%>"><%=material_order_list[i].Mat_Amount%></strong></td>
+                          <td class="col-sm-1 col-md-1 text-center"><strong><%=material_order_list[i].Unit_Measure%></strong></td>
+                          <td id="col6_ID<%=index%>" style="display:none"><%=material_order_list[i].Mat_ID%></td>
+                      </tr>
+                      <% } %>
+                      
+                      <tr>
+                          <td>   </td>
+                          <td>   </td>
+                          <td>   </td>
+                          <td>   </td>
+                          <td>   </td>
+                          <td></td>
+                          <td>
+                          <button type="button" class="btn btn-success" id="checkout">
+                              Checkout <span class="glyphicon glyphicon-play"></span>
+                          </button></td>
+                      </tr>
+                  </tbody>
+              </table>
+            <div class="panel-footer">
+                <h4 id="count" style = "display:none"><%=material_order_list.length%></h4>
+            </div>
+          </div>
+	<div class="row">
+      <table class="table table-hover table-responsive updatetable">
+          <thead>
+              <tr>
+                  <th>Return Product ID</th>
+                  <th>Attempt Date</th>
+                      <th>Result Date</th>
+                      <th>Description</th>
+                  <th>Edit</th>
+                  <th>Delete</th>
+              </tr>
+          </thead>
+          <tbody> 
+                     <%function formatDate(date) {
+                          var d = new Date(date),
+                              month = '' + (d.getMonth() + 1),
+                              day = '' + d.getDate(),
+                              year = d.getFullYear();
+                      
+                          if (month.length < 2) month = '0' + month;
+                          if (day.length < 2) day = '0' + day;
+                      
+                          return [year, month, day].join('-');
+                      }%>
+              <%for(var i = 0 ; i < item.length;i++){%>
+                      <tr> 
+                <td id = "col1_ID<%=item[i].Rm_ID%>"><%=item[i].Rm_ID%></td>
+                 <td id = "col3_ID<%=item[i].Rm_ID%>"><%=formatDate(item[i].Attempt_Date)%></td>
+                          <td id = "col4_ID<%=item[i].Rm_ID%>"><%=formatDate(item[i].Result_Date)%></td>
+                          <td id = "col5_ID<%=item[i].Rm_ID%>"><%=item[i].Description%></td>
+                          <td><button type="button" data-toggle="modal" data-target="#edit" data-uid="<%=item[i].Rm_ID%>" class="update btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span></button></td>
+                      <td><button type="button" data-toggle="modal" data-target="#delete" data-uid="<%=item[i].Rm_ID%>" class="delete btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span></button></td>
+            </tr>
+                  <%}%>
+          </tbody>
+      </table>
+>>>>>>> c8747ba360053cabcf05e7309e61d40034bad58d
 	</div>
 </div>
 <div id="edit" class="modal fade" role="dialog">
@@ -154,6 +261,7 @@
       </div>
       <form action = "/updateBuyOrder" method="POST">
       <div class="modal-body">
+<<<<<<< HEAD
           <input id="update_col1" type="text" class="form-control" name="update_col1" placeholder="Buy Order ID" style="display:none">
           <h4>Supplier</h4>
                 <select id="update_col2" class='form-control'name= "update_col2">                  
@@ -177,6 +285,13 @@
                   }
                   %>
                   </select>
+=======
+          <input id="update_col1" type="text" class="form-control" name="update_col1" placeholder="Return Material ID" style="display:none">
+          <h4>Attempt Date</h4>
+           <input id="update_col3" type="date" class="form-control" name="update_col3" placeholder="Attempt Date">
+          <h4>Result Date</h4>
+           <input id="update_col4" type="date" class="form-control" name="update_col4" placeholder="Result Date">
+>>>>>>> c8747ba360053cabcf05e7309e61d40034bad58d
            <h4>Description</h4>
            <input id="update_col6" type="text" class="form-control" name="update_col6" placeholder="Description">
       </div>

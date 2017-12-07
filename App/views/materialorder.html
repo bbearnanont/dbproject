@@ -11,15 +11,13 @@
 		<link rel="stylesheet" type="text/css" href="template.css">
     </head>
     <body>
-        <div id="container">
-        <h2>Material Order</h2></div>
-        <div id="contain">   
-        <form action="/addMaterialOrder" method="POST">
+        <div id="container" class="container">
+        <h2>Material Order</h2>
             <div class="col-md-12">
               <h4>Date</h4>
-                <input class='form-control' type="date" name="Date" placeholder="Date">
+                <input class='form-control' type="date" id="Date" name="Date" placeholder="Date">
                <h4>Staff</h4> 
-                <select class='form-control'name= "Staff_ID">                        
+                <select class='form-control'  id="Staff_ID" name = "Staff_ID">                        
                         <%
                         for ( var i = 0; i < staff.length; i++ )
                         {
@@ -28,7 +26,7 @@
                         %>
                 </select>
               <h4>Work Order ID</h4>  
-                <select class='form-control'name= "Wo_id">
+                <select class='form-control' id="Wo_id" name= "Wo_id">
                         
                         <%
                         for ( var i = 0; i < work_order.length; i++ )
@@ -38,17 +36,12 @@
                         %>
                 </select>
               <h4>Description</h4>  
-                <input class="form-control" type="text" name="Description" placeholder="Description"> 
+                <input class="form-control" type="text" id="Description" name="Description" placeholder="Description"> 
+              </div>
+           </div>
 
-            </div>
-            <div id="container">           
-                <button class='btn btn-primary' type="submit" value="Submit">Push</button>    
-            </div>
-        </form>
-        </div>
-
-        <div class="container">
-          <div class="row">
+        <div class="container" style="padding-top:20px">
+          <div class="row" >
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -109,9 +102,8 @@
               </div>
           </div>
 
-        <div class="container">
 	<div class="row">
-		<table class="table table-hover table-responsive">
+		<table class="table table-hover table-responsive updatetable">
 		    <thead>
 		        <tr>
 		            <th>Material ID</th>
@@ -164,6 +156,7 @@
            <input id="update_col2" type="date" class="form-control" name="update_col2" placeholder="Date">
            <h4>Description</h4>
            <input id="update_col5" type="text" class="form-control" name="update_col5" placeholder="Description">
+           
       </div>
       <div class="modal-footer">
         <button type="submit" id="up" class="btn btn-warning" value="submit">Update</button>

@@ -9,10 +9,14 @@ app.post('/addProduct', ProductController.addItem);
 app.post('/deleteProduct', ProductController.deleteItem);
 app.post('/updateProduct', ProductController.updateItem);
 
-//staff
+//staff register
 var StaffController = require('../controllers/staff.controller.js');
-app.get('/Staff', StaffController.showItem);
-app.post('/StaffRegister', StaffController.addItem);
+app.get('/StaffRegister', StaffController.showItem);
+app.post('/StaffRegister', StaffController.StaffRegister);
+//staff login
+var StaffControllerLogin = require('../controllers/StaffLogin.controller.js');
+app.get('/StaffLogin',StaffControllerLogin.loginForm);
+app.post('/StaffLogin',StaffControllerLogin.loginUser);
 /*app.post('/deleteStaff', StaffController.deleteItem);
 app.post('/updateStaff', StaffController.updateItem);*/
 
@@ -63,14 +67,23 @@ app.post('/deleteBuyOrder', BuyOrderController.deleteItem);
 app.post('/updateBuyOrder', BuyOrderController.updateItem);
 	
 
+<<<<<<< HEAD
 //Register
+=======
+//Register Customer
+>>>>>>> c8747ba360053cabcf05e7309e61d40034bad58d
 var register = require('../controllers/register.controller.js');
 app.get('/register',register.registerCustomer);
 app.post('/register',register.registerCustomerSave);
 
 var login = require('../controllers/login.controller.js');
+<<<<<<< HEAD
 app.get('/login',login.loginForm);
 app.post('/login',login.loginUser);
+=======
+app.get('/CustomerLogin',login.loginForm);
+app.post('/CustomerLogin',login.loginUser);
+>>>>>>> c8747ba360053cabcf05e7309e61d40034bad58d
 
 
 //Material Order

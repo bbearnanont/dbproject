@@ -25,8 +25,8 @@ $(document).ready(function(){
         }   
     $.ajax({
             type: 'POST',
-            url: '/addbuyorder', 
-            data : {"item":item, "Mo_ID":$("#Mo_ID").val(), "Date":$("#Date").val(), "Staff_ID":$("#Staff_ID").val(), "Wo_ID":$("#Wo_ID").val(), "Description":$("#Description").val()},
+            url: '/addMaterialOrder', 
+            data : {"item":item, "Mo_ID":$("#Mo_ID").val(), "Date":$("#Date").val(), "Staff_ID":$("#Staff_ID").val(), "Wo_id":$("#Wo_id").val(), "Description":$("#Description").val()},
             success: function(data, textStatus, jqXHR) {
                 location.reload();
             },

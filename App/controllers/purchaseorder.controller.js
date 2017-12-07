@@ -17,22 +17,34 @@ else{
 
 //function exports
 exports.showItem = function (req, res){
-    connection.query("SELECT * FROM Product",function(err,result){
-    if(err){
-        res.send('Error' + err);
-        return;
-    }
-        connection.query("SELECT * FROM purchase_order",function(err,result2){
-            if(err){
-                res.send('Err'+err);
-                return;
-            }
-            res.render('purchaseorder.html',{product:result, po:result2});
+    sess = req.session;
+    console.log(sess);
+    if(sess.Customer||sess.Staff)
+    {
+        connection.query("SELECT * FROM Product",function(err,result){
+        if(err){
+            res.send('Error' + err);
+            return;
+        }
+        console.log("SELECT * FROM purchase_order WHERE Customer_ID = "+"'"+sess.CustomerID+"'");
+            connection.query("SELECT * FROM purchase_order WHERE Customer_ID = "+"'"+sess.CustomerID+"'",function(err,result2){
+                if(err){
+                    res.send('Err'+err);
+                    return;
+                }
+                console.log(result2);
+                res.render('purchaseorder.html',{product:result, po:result2});
+            });
         });
-    });
+    }
+    else
+    {
+        res.redirect('CustomerLogin');
+    }
 }
 
 exports.addItem = function (req,res){
+
         var insertPo = {Customer_ID:1, Staff_ID:1, Description:req.body.item[0].Description, Delivered_Date:req.body.item[0].Delivered_Date,Total:req.body.allTotal};
     connection.query('INSERT INTO Purchase_Order SET ?' + ',`Order_Date` = CURDATE()', insertPo,function(err,result){
         if(err){
@@ -56,15 +68,21 @@ exports.addItem = function (req,res){
         }
         for(var i = 0 ; i < req.body.item.length ; i++){
             if(parseFloat(req.body.item[i].Quantity)> 0){
-        var insertPoList = {Po_ID:result[result.length-1].Po_ID, Product_ID:req.body.item[i].Product_ID, Product_Amount:req.body.item[i].Quantity, Description:req.body.item[i].Description};
+        var insertPoList = {Po_ID:result[result.length-1].Po_ID, Product_ID:req.body.item[i].Product_ID, Product_Amount:req.body.item[i].Quantity};
         connection.query('INSERT INTO Purchase_Order_List SET ?',insertPoList,function(err,result2){
             if(err){
                 console.log(err);
                 return;
             }
         });
-        }
-        console.log(i);
+        var insertPf = {Po_ID:result[result.length-1].Po_ID, Product_ID:req.body.item[i].Product_ID, Product_Amount:-Sreq.body.item[i].Quantity, Staff_ID:result[result.length-1].Staff_ID};
+        connection.query('INSERT INTO Product_Flow SET ?'+', Date = CURDATE()', insertPf, function(err, result2){
+            if(err){
+                console.log(err);
+                return;
+            }
+        });    
+    }
         }
         });
     res.redirect('/purchaseorder');

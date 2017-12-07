@@ -49,8 +49,8 @@ exports.registerCustomerSave = function(req,res){
 			            console.log(err2);
 			            return;
 			        }
-			        sess.email=inputEmail;
-			        sess.Cutomer=1;
+			        sess.CustomerEmail=inputEmail;
+			        sess.Customer=1;
 			        res.redirect('/Product');
 				});
 			}
