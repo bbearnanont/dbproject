@@ -70,7 +70,7 @@ exports.addItem = function (req,res){
             return;
         }
     });
-        connection.query("SELECT * FROM Buy_Order", function(err, result){
+    connection.query("SELECT * FROM Buy_Order", function(err, result){
     for(var i = 0 ; i < req.body.item.length;i++){
         if(parseFloat(req.body.item[i].Quantity)>0){
             var insertMf = {Mat_ID:req.body.item[i].Mat_ID, Mat_Amount:req.body.item[i].Quantity, Bo_ID:result[result.length-1].Bo_ID, Date:req.body.Order_Date};
@@ -98,7 +98,7 @@ exports.addItem = function (req,res){
         }        
     });
     }
-    res.redirect('/buyorder');
+    res.redirect('/BuyOrder');
 }
 
 exports.updateItem = function (req,res){

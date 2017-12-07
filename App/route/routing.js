@@ -104,6 +104,21 @@ app.post('/addWorkOrder', WorkOrderController.addItem);
 app.post('/deleteWorkOrder', WorkOrderController.deleteItem);
 app.post('/updateWorkOrder', WorkOrderController.updateItem);
 
+//Demo Home Page
+var HomeController = require('../controllers/home.controller.js');
+app.get('/Home', HomeController.showItem);
+
+//AnalysisReport
+//MaterialFlowSelectMat
+var MaterialFlowSelectMatController = require('../controllers/matflowselectmat.controller.js');
+app.get('/MaterialFlowSelectMat',MaterialFlowSelectMatController.showItem);
+app.post('/MaterialFlowSelectMatShow', MaterialFlowSelectMatController.showItem);
+
+//MaterialFlowSelectDate
+var MaterialFlowSelectDateController = require('../controllers/matflowselectdate.controller.js');
+app.get('/MaterialFlowSelectDate',MaterialFlowSelectDateController.showItem);
+app.post('/MaterialFlowSelectDateShow', MaterialFlowSelectDateController.showItem);
+
 //Show Stock Balance
 var StockBalanceController = require('../controllers/stockbalance.controller.js');
 app.get('/StockBalance', StockBalanceController.showItem);

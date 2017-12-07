@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <script src='/jquery-3.1.1.min.js'></script>    
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        
+		<link rel="stylesheet" type="text/css" href="template.css">
+    </head>
+
+    <body>
+        <div class="container">
+          <form action="/MaterialFlowSelectMatShow" method="POST">
+        <h2>Material Flow (Select by Material)</h2>
+            <div class="col-md-12">
+              <h4>Material</h4>
+              <select class='form-control'id = "Mat_ID" name ="Select">
+                  <%
+                  for ( var i = 0; i < item.length; i++ )
+                  {
+                      %><option value="<%=item[ i ].Mat_ID %>" ><%=item[i].Mat_Name%></option><%
+                  }
+                  %>
+              </select>
+                  <button class="btn btn-outline-dark" type="submit" value="Submit">Push</button>    
+            </div>
+           </form> 
+        </div>
+       
+<div class="container" style="padding-top:20px">
+	<div class="row">
+		<table class="table table-hover table-responsive updatetable">
+		    <thead>
+		        <tr>
+                <th>         Date        </th>
+                <th>       Material      </th>     
+		            <th>        Amount       </th>
+		            <th>       Buy Order     </th>
+		            <th>    Material Order   </th>
+                <th>Return Material Order</th>                            
+		        </tr>
+		    </thead>
+		    <tbody>
+            <%function formatDate(date) {
+              var d = new Date(date),
+                  month = '' + (d.getMonth() + 1),
+                  day = '' + d.getDate(),
+                  year = d.getFullYear();
+          
+              if (month.length < 2) month = '0' + month;
+              if (day.length < 2) day = '0' + day;
+          
+              return [year, month, day].join('-');
+          }%> 
+		        <%for(var i = 0 ; i < mf.length;i++){%>
+          <tr> 
+					    <td id = "col7_ID<%=mf[i].Mf_ID%>"><%=formatDate(mf[i].Date)%></td>
+              <td id = "col2_ID<%=mf[i].Mf_ID%>"><%=mf[i].Mat_Name%></td>
+					   	<td id = "col3_ID<%=mf[i].Mf_ID%>"><%=mf[i].Mat_Amount%></td>
+					   	<td id = "col4_ID<%=mf[i].Mf_ID%>"><%=mf[i].Bo_ID%></td>
+              <td id = "col5_ID<%=mf[i].Mf_ID%>"><%=mf[i].Mo_ID%></td>
+              <td id = "col6_ID<%=mf[i].Mf_ID%>"><%=mf[i].Rm_ID%></td>             
+              
+					</tr>
+                <%}%>
+		      </tbody>
+	 	 </table>
+	 </div>
+  </div>
+</div>
+
+
+    </body>
+</html>
