@@ -117,7 +117,7 @@ app.post('/MaterialFlowSelectMatShow', MaterialFlowSelectMatController.showItem)
 //MaterialFlowSelectDate
 var MaterialFlowSelectDateController = require('../controllers/matflowselectdate.controller.js');
 app.get('/MaterialFlowSelectDate',MaterialFlowSelectDateController.showItem);
-<<<<<<< HEAD
+
 
 
 //PopularProduct
@@ -134,7 +134,7 @@ app.get('/ProductFlowSelectDate',ProductFlowSelectDateController.showItem);
 
 
 
-=======
+
 app.post('/MaterialFlowSelectDateShow', MaterialFlowSelectDateController.showItem);
 
 //Show Stock Balance
