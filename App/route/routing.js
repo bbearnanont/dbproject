@@ -129,4 +129,8 @@ app.get('/mostreturnproduct',ReportAnalysisController.showMostReturnProduct);
 app.get('/mostbuyorder',ReportAnalysisController.showMostBuyOrder);
 app.get('/mostpurchasecustomer',ReportAnalysisController.mostPurchaseCustomer);
 app.get('/longestWorkOrder',ReportAnalysisController.longestWorkOrder);
+
+var PfSelectProductController = require('../controllers/productflowselectproduct.controller.js');
+app.get('/productflowselectproduct',PfSelectProductController.showItem);
+app.post('/productflowselectproductShow',PfSelectProductController.showItem);
 };
