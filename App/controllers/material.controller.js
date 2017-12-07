@@ -37,18 +37,18 @@ exports.Material = function (req, res){
 }
 
 exports.addMaterial = function (req,res){
-    var insert = {Mat_Name:req.body.Material_Name, Mat_Balance:req.body.Material_Balance, Unit_Measure:req.body.Unit_Measure}
+    var insert = {Mat_Name:req.body.Material_Name, Mat_Balance:req.body.Material_Balance, Unit_Measure:req.body.Unit_Measure,Wh_ID:req.body.Wh_ID}
     connection.query('INSERT INTO Material SET ?',insert,function(err,result){
         if(err){
             console.log(err);
             return;
         }
-        res.redirect('/Product');
+        res.redirect('/Material');
     });
 }
 
 exports.updateMaterial = function (req,res){
-    var update = {Mat_ID:req.body.update_col1, Mat_Name:req.body.update_col2, Mat_Balance:req.body.update_col3, Unit_Measure:req.body.update_col4};
+    var update = {Mat_ID:req.body.update_col1, Mat_Name:req.body.update_col2, Mat_Balance:req.body.update_col3, Unit_Measure:req.body.update_col4, Wh_ID:req.body.update_col5};
     //console.log(update.Mat_ID, update);
     connection.query('UPDATE Material SET ?'+'WHERE Mat_ID ='+update.Mat_ID, update, function(err,result){
         if(err){

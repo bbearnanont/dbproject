@@ -6,6 +6,8 @@ $(document).ready(function(){
        $("#update_col3").val($("#col3_ID"+id).html());
        $("#update_col4").val($("#col4_ID"+id).html());
        $("#update_col5").val($("#col5_ID"+id).html());
+       $("#update_col6").val($("#col6_ID"+id).html());
+       $("#update_col7").val($("#col7_ID"+id).html());
    });
    $(".delete").click(function(){
       var id = $(this).data("uid");

@@ -39,7 +39,7 @@ exports.showItem = function (req, res){
 
 exports.addItem = function (req,res){
     
-    var insert = {Product_Name:req.body.Product_Name, Product_Balance:req.body.Product_Balance, Unit_Price:req.body.Unit_Price, Unit_Measure:req.body.Unit_Measure}
+    var insert = {Product_Name:req.body.Product_Name, Product_Balance:req.body.Product_Balance, Unit_Price:req.body.Unit_Price, Unit_Measure:req.body.Unit_Measure,Wh_ID:req.body.Wh_ID};
     connection.query('INSERT INTO Product SET ?',insert,function(err,result){
         if(err){
             console.log(err);
@@ -50,8 +50,8 @@ exports.addItem = function (req,res){
 }
 
 exports.updateItem = function (req,res){
-    var update = {Product_ID:req.body.update_col1, Product_Name:req.body.update_col2, Product_Balance:req.body.update_col3, Unit_Price:req.body.update_col4, Unit_Measure:req.body.update_col5};
-    connection.query('UPDATE Product SET ?' + 'WHERE Product_ID = ' + 'update.Product_ID', update, function(err,result){
+    var update = {Product_ID:req.body.update_col1, Product_Name:req.body.update_col2, Product_Balance:req.body.update_col3, Unit_Price:req.body.update_col4, Unit_Measure:req.body.update_col5, Wh_ID:req.body.update_col6};
+    connection.query('UPDATE Product SET ?' + 'WHERE Product_ID = ' + update.Product_ID, update, function(err,result){
         if(err){
             console.log(err);
             return;
