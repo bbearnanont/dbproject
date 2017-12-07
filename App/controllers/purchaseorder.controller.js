@@ -7,6 +7,7 @@ password: '',
 database: 'dbproject'
 });
 var condition;
+var userlevel;
 connection.connect(function(error){
 if(!!error){
 console.log('Error');
@@ -25,10 +26,12 @@ exports.showItem = function (req, res){
         if(sess.Customer)
         {
             condition = "WHERE Customer_ID = +'"+sess.CustomerID+"'";
+            userlevel = 'customer';
         }
         else
         {
             condition = "";
+            userlevel = 'staff';
         }
         connection.query("SELECT * FROM Product",function(err,result){
         if(err){
@@ -41,7 +44,7 @@ exports.showItem = function (req, res){
                     return;
                 }
                 console.log(result2);
-                res.render('purchaseorder.html',{product:result, po:result2});
+                res.render('purchaseorder.html',{product:result, po:result2, userlevel:userlevel});
             });
         });
     }
@@ -53,7 +56,7 @@ exports.showItem = function (req, res){
 
 exports.addItem = function (req,res){
 
-        var insertPo = {Customer_ID:sess.CustomerID, Staff_ID:1, Description:req.body.item[0].Description, Delivered_Date:req.body.item[0].Delivered_Date,Total:req.body.allTotal};
+        var insertPo = {Customer_ID:sess.CustomerID, Description:req.body.Description, Delivered_Date:req.body.Delivered_Date,Total:req.body.allTotal};
     connection.query('INSERT INTO Purchase_Order SET ?' + ',`Order_Date` = CURDATE()', insertPo,function(err,result){
         if(err){
             console.log(err);
@@ -83,7 +86,7 @@ exports.addItem = function (req,res){
                 return;
             }
         });
-        var insertPf = {Po_ID:result[result.length-1].Po_ID, Product_ID:req.body.item[i].Product_ID, Product_Amount:-Sreq.body.item[i].Quantity, Staff_ID:result[result.length-1].Staff_ID};
+        var insertPf = {Po_ID:result[result.length-1].Po_ID, Product_ID:req.body.item[i].Product_ID, Product_Amount:-req.body.item[i].Quantity};
         connection.query('INSERT INTO Product_Flow SET ?'+', Date = CURDATE()', insertPf, function(err, result2){
             if(err){
                 console.log(err);
@@ -93,27 +96,28 @@ exports.addItem = function (req,res){
     }
         }
         });
+    
     res.redirect('/purchaseorder');
 }
 
 exports.updateItem = function (req,res){
-    var update = {Sup_ID:req.body.update_col1, Sup_Name:req.body.update_col2, Sup_Number:req.body.update_col3, Sup_Email:req.body.update_col4, Sup_Address:req.body.update_col5};
-    connection.query('UPDATE Supplier SET ?' + 'WHERE Sup_ID = ' + update.Sup_ID, update, function(err,result){
+    var update = {Po_ID:req.body.update_col1, Description:req.body.update_col5, Delivered_Date:req.body.update_col6};
+    connection.query('UPDATE Purchase_order SET ?' + 'WHERE Po_ID = ' + update.Po_ID, update, function(err,result){
         if(err){
             console.log(err);
             return;
         }
-        res.redirect('/Supplier');
+        res.redirect('/purchaseorder');
     });
 }
 
 exports.deleteItem = function (req,res){
-    var del = {Sup_ID:req.body.del_Sup_ID};
-    connection.query('DELETE FROM Supplier WHERE ?', del, function(err,result){
+    var del = {Po_ID:req.body.del_Po_ID};
+    connection.query('DELETE FROM Purchase_Order WHERE ?', del, function(err,result){
         if(err){
             console.log(err);
             return;
         }
-        res.redirect('/Supplier');
+        res.redirect('/purchaseorder');
     });
 }

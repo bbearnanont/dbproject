@@ -81,7 +81,7 @@ exports.addItem = function (req,res){
                     return;
                 }
             });
-            var insertMFlow = {Mat_ID:Mat_ID, Matt_Amount:Amount, Rm_ID:Rm_ID, Staff_ID:1};
+            var insertMFlow = {Mat_ID:Mat_ID, Matt_Amount:Amount, Rm_ID:Rm_ID};
             connection.query('INSERT INTO Material_Flow SET ?'+', Date = CURDATE()',insertMFlow,function(err, result2){
                 if(err){
                     console.log(err);

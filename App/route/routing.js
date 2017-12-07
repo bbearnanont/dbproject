@@ -54,9 +54,8 @@ app.post('/updateWarehouse', WarehouseController.updateWarehouse);
 var PurchaseorderController = require('../controllers/purchaseorder.controller.js');
 app.get('/purchaseorder', PurchaseorderController.showItem);
 app.post('/addpurchaseorder', PurchaseorderController.addItem);
-/*app.post('/deletepurchaseorder', PurchaseorderController.deleteItem);
+app.post('/deletepurchaseorder', PurchaseorderController.deleteItem);
 app.post('/updatepurchaseorder', PurchaseorderController.updateItem);
-*/
 
 
 //Buy Order
