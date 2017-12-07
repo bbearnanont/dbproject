@@ -38,7 +38,7 @@ exports.registerCustomerSave = function(req,res){
 			if(resultEmail.length>0)
 			{
 				console.log('Duplicate email');	
-			     res.redirect('/register',{alert:1});
+			     res.redirect('/CustomerLogin',{alert:1});
 			}
 			else
 			{

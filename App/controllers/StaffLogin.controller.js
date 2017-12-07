@@ -46,7 +46,8 @@ exports.loginUser = function(req,res){
 	        	if (p==resultEmail[0].Staff_Password) 
 	        	{
 
-	        			sess.email = resultEmail[0].Staff_Email;
+	        			sess.StaffEmail = resultEmail[0].Staff_Email;
+	        			sess.StaffID=resultEmail[0].Staff_ID;
 	        			sess.Staff=1;
 	        			console.log("TEST session "+sess.email);
 

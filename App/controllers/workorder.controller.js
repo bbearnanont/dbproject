@@ -17,47 +17,57 @@ else{
 
 //function exports
 exports.showItem = function (req, res){
-    connection.query("SELECT * FROM work_order ",function(err,result){
-    if(err){
-        res.send('Error' + err);
-        return;
-    }
-    else
+sess = req.session;
+    if(sess.Staff)
     {
-       connection.query("SELECT Po_ID FROM purchase_order",function(err2,result2)
-       {
-        if(err2){
-            res.send('Error' + err2);
+        connection.query("SELECT * FROM work_order ",function(err,result){
+        if(err){
+            res.send('Error' + err);
             return;
         }
         else
         {
-            connection.query("SELECT Product_ID,Product_Name FROM product",function(err3,result3)
+           connection.query("SELECT Po_ID FROM purchase_order",function(err2,result2)
+           {
+            if(err2){
+                res.send('Error' + err2);
+                return;
+            }
+            else
             {
-                if(err3){
-                    res.send('Error' + err3);
-                    return;
-                }
-                else
+                connection.query("SELECT Product_ID,Product_Name FROM product",function(err3,result3)
                 {
-                    connection.query("SELECT Staff_ID,Staff_First_Name,Staff_Last_Name FROM staff",function(err4,result4)
-                     {
-                      if(err4){
-                          res.send('Error' + err4);
-                          return;
-                      }
-                     else
-                      {
-                        res.render('workorder.html',{item:result,po:result2,product:result3,staff:result4});
-                      }
-                     });
+                    if(err3){
+                        res.send('Error' + err3);
+                        return;
+                    }
+                    else
+                    {
+                        connection.query("SELECT Staff_ID,Staff_First_Name,Staff_Last_Name FROM staff",function(err4,result4)
+                         {
+                          if(err4){
+                              res.send('Error' + err4);
+                              return;
+                          }
+                         else
+                          {
+                            res.render('workorder.html',{item:result,po:result2,product:result3,staff:result4});
+                          }
+                         });
 
-                }
-                });  
+                    }
+                    });  
+            }    
+            });
         }    
         });
-    }    
-    });
+       
+    }
+    else
+    {
+        console.log("Please login");
+        res.redirect('StaffLogin');
+    }
 }
 
 exports.addItem = function (req,res){

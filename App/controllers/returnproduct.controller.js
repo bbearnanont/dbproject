@@ -14,30 +14,64 @@ else{
     console.log('Connected');
 }
 });
-
+var userlevel;
 //function exports
 exports.showItem = function (req, res){
-    connection.query("SELECT * FROM return_product",function(err,result){
-    if(err){
-        res.send('Error' + err);
-        return;
-    }
-    else
+    sess = req.session;
+    if(sess.Customer)
     {
-    connection.query("SELECT pl.Po_ID AS Po_ID,pl.Product_ID AS Product_ID, pl.Product_Amount AS Product_Amount, po.Description AS Description,p.Product_Name AS Product_Name,p.Unit_Measure AS Unit_Measure FROM purchase_order po, purchase_order_list pl, product p WHERE po.Po_ID = pl.Po_ID AND p.Product_ID = pl.Product_ID",function(err2,result2)
-    {
-        if(err2){
-            res.send('Error' + err2);
+        userlevel = 'customer';
+        connection.query("SELECT * FROM return_product rp, return_product_list rpl , purchase_order po WHERE rp.Rp_ID = rpl.Rp_ID AND po.Po_ID = rpl.Po_ID AND po.Customer_ID = "+sess.CustomerID,function(err,result){
+        if(err){
+            res.send('Error' + err);
             return;
         }
         else
-                res.render('returnproduct.html',{item:result,purchase_order_list:result2});
-                
+        {
+        connection.query("SELECT pl.Po_ID AS Po_ID,pl.Product_ID AS Product_ID, pl.Product_Amount AS Product_Amount, po.Description AS Description,p.Product_Name AS Product_Name,p.Unit_Measure AS Unit_Measure FROM purchase_order po, purchase_order_list pl, product p WHERE po.Po_ID = pl.Po_ID AND p.Product_ID = pl.Product_ID AND po.Customer_ID = "+sess.CustomerID,function(err2,result2)
+        {
+            if(err2){
+                res.send('Error' + err2);
+                return;
             }
-        );
+            else
+                    res.render('returnproduct.html',{item:result,purchase_order_list:result2, userlevel:userlevel});
+                    
+                }
+            );
+            }
         }
+        );  
     }
-    );  
+    else if(sess.Staff)
+    {
+        userlevel = 'staff';
+        connection.query("SELECT * FROM return_product",function(err,result){
+            if(err){
+                res.send('Error' + err);
+                return;
+            }
+            else
+            {
+            connection.query("SELECT pl.Po_ID AS Po_ID,pl.Product_ID AS Product_ID, pl.Product_Amount AS Product_Amount, po.Description AS Description,p.Product_Name AS Product_Name,p.Unit_Measure AS Unit_Measure FROM purchase_order po, purchase_order_list pl, product p WHERE po.Po_ID = pl.Po_ID AND p.Product_ID = pl.Product_ID",function(err2,result2)
+            {
+                if(err2){
+                    res.send('Error' + err2);
+                    return;
+                }
+                else
+                        res.render('returnproduct.html',{item:result,purchase_order_list:result2, userlevel:userlevel});
+                        
+                    }
+                );
+                }
+            }
+            );  
+    }
+    else{
+        console.log("Please login");
+        res.redirect('/CustomerLogin');
+    }
 }
 
 exports.addItem = function (req,res){
@@ -72,7 +106,7 @@ exports.addItem = function (req,res){
                     return;
                 }
             });
-            var insertPFlow = {Product_ID:Product_ID, Product_Amount:Amount, Rp_ID:Rp_ID, Staff_ID:1};
+            var insertPFlow = {Product_ID:Product_ID, Product_Amount:Amount, Rp_ID:Rp_ID};
             connection.query('INSERT INTO Product_Flow SET ?'+', Date = CURDATE()',insertPFlow,function(err, result2){
                 if(err){
                     console.log(err);

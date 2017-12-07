@@ -54,9 +54,8 @@ app.post('/updateWarehouse', WarehouseController.updateWarehouse);
 var PurchaseorderController = require('../controllers/purchaseorder.controller.js');
 app.get('/purchaseorder', PurchaseorderController.showItem);
 app.post('/addpurchaseorder', PurchaseorderController.addItem);
-/*app.post('/deletepurchaseorder', PurchaseorderController.deleteItem);
+app.post('/deletepurchaseorder', PurchaseorderController.deleteItem);
 app.post('/updatepurchaseorder', PurchaseorderController.updateItem);
-*/
 
 
 //Buy Order
@@ -108,4 +107,15 @@ app.post('/updateWorkOrder', WorkOrderController.updateItem);
 //Demo Home Page
 var HomeController = require('../controllers/home.controller.js');
 app.get('/Home', HomeController.showItem);
+
+//AnalysisReport
+//MaterialFlowSelectMat
+var MaterialFlowSelectMatController = require('../controllers/matflowselectmat.controller.js');
+app.get('/MaterialFlowSelectMat',MaterialFlowSelectMatController.showItem);
+app.post('/MaterialFlowSelectMatShow', MaterialFlowSelectMatController.showItem);
+
+//MaterialFlowSelectDate
+var MaterialFlowSelectDateController = require('../controllers/matflowselectdate.controller.js');
+app.get('/MaterialFlowSelectDate',MaterialFlowSelectDateController.showItem);
+app.post('/MaterialFlowSelectDateShow', MaterialFlowSelectDateController.showItem);
 };

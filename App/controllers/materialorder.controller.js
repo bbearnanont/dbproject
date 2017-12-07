@@ -78,7 +78,7 @@ exports.addItem = function (req,res){
         connection.query("SELECT * FROM Material_Order", function(err, result){
     arr.forEach(function(i){
         if(parseFloat(req.body.item[i].Quantity)>0){
-            var insertMf = {Mat_ID:req.body.item[i].Mat_ID, Mat_Amount:-req.body.item[i].Quantity, Mo_ID:result[result.length-1].Mo_ID, Staff_ID:req.body.Staff_ID, Date:req.body.Date};
+            var insertMf = {Mat_ID:req.body.item[i].Mat_ID, Mat_Amount:-req.body.item[i].Quantity, Mo_ID:result[result.length-1].Mo_ID, Date:req.body.Date};
             connection.query("INSERT INTO Material_Flow SET ?",insertMf, function(err, result2){
                 if(err){
                     console.log(err);
