@@ -28,6 +28,7 @@ exports.loginForm = function(req,res)
 exports.loginUser = function(req,res){
 		//console.log(req.body);
 		sess = req.session;
+		console.log(req.body);
 		var p = encrypt(req.body.password);
 		console.log("USER",req.body.user,"Pass",req.body.password,"Encrypt",p);
 		var sql = "SELECT * FROM staff WHERE Staff_Email="+"'"+req.body.user+"'";
@@ -51,19 +52,19 @@ exports.loginUser = function(req,res){
 	        			sess.Staff=1;
 	        			console.log("TEST session "+sess.email);
 
-						res.redirect('/Material');
+						res.send('success');
 	        	}
 	        	else
 	        	{
 	        			console.log("Wrong Password");
-						res.redirect('/StaffLogin');
+						res.send('wp');
 	        	}
 	        }
 		}
 		else
 		{
 				console.log("Wrong email");
-				res.redirect('/StaffLogin');
+				res.send('we');;
 			/*	popupS.alert({
 					    content: 'Email was duplicated'
 					});
