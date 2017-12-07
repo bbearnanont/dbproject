@@ -103,4 +103,9 @@ app.get('/WorkOrder', WorkOrderController.showItem);
 app.post('/addWorkOrder', WorkOrderController.addItem);
 app.post('/deleteWorkOrder', WorkOrderController.deleteItem);
 app.post('/updateWorkOrder', WorkOrderController.updateItem);
+
+//Show Stock Balance
+var StockBalanceController = require('../controllers/stockbalance.controller.js');
+app.get('/StockBalance', StockBalanceController.showItem);
+
 };

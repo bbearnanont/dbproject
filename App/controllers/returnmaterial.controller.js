@@ -35,8 +35,7 @@ exports.showItem = function (req, res){
                 return;
             }
             else
-                    res.render('returnmaterial.html',{item:result,material_order_list:result2});
-                    
+                    res.render('returnmaterial.html', {item:result,material_order_list:result2});                    
                 }
             );
             }

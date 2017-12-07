@@ -45,9 +45,9 @@
 		    <tbody> 
 		        <%for(var i = 0 ; i < item.length;i++){%>
                     <tr> 
-					    <td id = "col1_ID<%=item[i].Product_ID%>"><%=item[i].Product_ID%></td>
-					   	<td id = "col2_ID<%=item[i].Product_ID%>"><%=item[i].Product_Name%></td>
-					   	<td id = "col3_ID<%=item[i].Product_ID%>"><%=item[i].Product_Balance%></td>
+					              <td id = "col1_ID<%=item[i].Product_ID%>"><%=item[i].Product_ID%></td>
+					   	          <td id = "col2_ID<%=item[i].Product_ID%>"><%=item[i].Product_Name%></td>
+					   	          <td id = "col3_ID<%=item[i].Product_ID%>"><%=item[i].Product_Balance%></td>
                         <td id = "col4_ID<%=item[i].Product_ID%>"><%=item[i].Unit_Price%></td>
                         <td id = "col5_ID<%=item[i].Product_ID%>"><%=item[i].Unit_Measure%></td>
                         <td><button type="button" data-toggle="modal" data-target="#edit" data-uid="<%=item[i].Product_ID%>" class="update btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span></button></td>
