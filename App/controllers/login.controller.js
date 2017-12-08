@@ -29,7 +29,7 @@ exports.loginUser = function(req,res){
 		//console.log(req.body);
 		sess = req.session;
 		var p = encrypt(req.body.password);
-		console.log(req.body.user);
+		console.log("TEST LOGIN POST",req.body.user);
 		var sql = "SELECT * FROM customer WHERE Customer_Email="+"'"+req.body.user+"'";
 		connection.query(sql,function(err,resultEmail){
 		if(resultEmail.length>0)
@@ -51,19 +51,19 @@ exports.loginUser = function(req,res){
 	        			sess.Customer=1;
 	        			console.log("TEST session "+sess.email);
 
-						res.redirect('/PurchaseOrder');
+						res.send("success");
 	        	}
 	        	else
 	        	{
 	        		console.log("Wrong Passsword");
-						res.redirect('/CustomerLogin');
+						res.send("wp");
 	        	}
 	        }
 		}
 		else
 		{
 				console.log("Wrong Email");
-				res.redirect('/CustomerLogin');
+						res.send("we");
 			/*	popupS.alert({
 					    content: 'Email was duplicated'
 					});

@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html>
+        <% include navbar.html %>
 	<head>
 		<title>Message Board</title>
-		<link rel="stylesheet" 
-			href="/css/bootstrap.min.css" />
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-		<script src='https://icode.run/jquery.js'>
-		</script>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <script src='/jquery-3.1.1.min.js'></script>    
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src='/template.js'></script>
+        <link rel="stylesheet" type="text/css" href="template.css">
 	</head>
 	<body>
 
@@ -20,6 +23,7 @@
 		margin-top: 10px;
 		border-radius: 4px;
 		transition: all 0.5s linear;
+		background-color: white;
 	}
 	form > * {
 		margin-bottom: 10px;
@@ -34,25 +38,32 @@
 	<input name="first" 
 		class='form-control'
 		placeholder="First Name"
+		required 
 		autofocus>
 	<input name="last" 
 		class='form-control'
+		required
 		placeholder="Last Name">
 	<input name="email" 
 		class='form-control'
 		type ="email" 
+		required
 		placeholder="Email">
 	<input name="password" type="password"
 		class='form-control'
+		required
 		placeholder="Password">
 	<input name="number" 
 		class='form-control' type="number"
-		placeholder="Number">
+		pattern="[0-9]{10}"
+		required
+		placeholder="Number [0-9]{10}">
 	<input name="address" type="text"
 		class='form-control'
 		placeholder="Address">
 	<input name="company"
 		class='form-control'
+		required
 		placeholder="Company">
 	<button type="submit"
 		class='btn btn-primary'>Join now</button>
