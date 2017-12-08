@@ -35,8 +35,12 @@ exports.showItem = function (req, res){
                 return;
             }
             else    
-                console.log("kuyyyyyyyyyyyy"+result[0].Description);
+
+                {
                     res.render('returnproduct.html',{item:result,purchase_order_list:result2, userlevel:userlevel});
+                }
+                res.render('returnproduct.html',{item:result,purchase_order_list:result2, userlevel:userlevel});
+
                     
                 }
             );
