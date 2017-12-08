@@ -35,10 +35,14 @@ exports.showItem = function (req, res){
                 return;
             }
             else    
+<<<<<<< HEAD
                 
                 {
                     res.render('returnproduct.html',{item:result,purchase_order_list:result2, userlevel:userlevel});
                 }
+=======
+                res.render('returnproduct.html',{item:result,purchase_order_list:result2, userlevel:userlevel});
+>>>>>>> master
                     
                 }
             );
